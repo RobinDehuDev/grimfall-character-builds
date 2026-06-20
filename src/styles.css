@@ -413,6 +413,35 @@
     background: oklch(0 0 0 / 0.72);
   }
 
+  .app-modal-backdrop {
+    @apply fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4;
+    background: oklch(0 0 0 / 0.72);
+  }
+
+  .app-modal {
+    @apply flex w-full max-w-md flex-col rounded-lg border shadow-2xl;
+    border-color: var(--gold-muted);
+    background: var(--background);
+  }
+
+  .app-modal__header {
+    @apply flex shrink-0 items-center justify-between gap-3 border-b px-4 py-3;
+    border-color: oklch(1 0 0 / 0.1);
+  }
+
+  .app-modal__title {
+    @apply font-display text-sm tracking-widest uppercase text-gold;
+  }
+
+  .app-modal__body {
+    @apply p-4;
+  }
+
+  .app-modal__footer {
+    @apply flex shrink-0 justify-end gap-2 border-t px-4 py-3;
+    border-color: oklch(1 0 0 / 0.1);
+  }
+
   .talent-modal {
     @apply flex w-full max-w-7xl flex-col rounded-lg border shadow-2xl;
     border-color: var(--gold-muted);

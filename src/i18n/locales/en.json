@@ -19,6 +19,7 @@
     "bugReport": "Bug Report",
     "signInUp": "Sign in / up",
     "signOut": "Sign out",
+    "changeNickname": "Change nickname",
     "accountMenu": "Account menu"
   },
   "auth": {
@@ -27,7 +28,12 @@
     "signInClerk": "Sign in with Clerk",
     "enterForge": "Enter the Forge",
     "enterForgeBody": "Sign in to create and manage your character loadouts",
-    "adventurer": "Adventurer"
+    "adventurer": "Adventurer",
+    "changeNicknameTitle": "Change nickname",
+    "newNicknameLabel": "New nickname",
+    "newNicknamePlaceholder": "Enter a nickname",
+    "nicknameRequired": "Nickname is required.",
+    "nicknameSaveFailed": "Could not save nickname."
   },
   "common": {
     "loading": "Loading...",
@@ -55,7 +61,8 @@
     "requiresLevel": "Requires level {{level}}",
     "dash": "—",
     "done": "Done",
-    "close": "Close"
+    "close": "Close",
+    "workInProgress": "Work in progress"
   },
   "itemTypes": {
     "ability": "Ability",

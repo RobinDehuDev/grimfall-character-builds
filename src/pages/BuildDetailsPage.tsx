@@ -133,9 +133,9 @@ export function BuildDetailsPage() {
         }
       >
         {hasDraft && (
-          <Button asChild>
-            <Link to={`/builds/${build._id}/compare`}>{t("build.compareToDraft")}</Link>
-          </Button>
+          <span title={t("common.workInProgress")}>
+            <Button disabled>{t("build.compareToDraft")}</Button>
+          </span>
         )}
         {isOwner && (
           <>

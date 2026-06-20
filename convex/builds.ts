@@ -31,9 +31,9 @@ function validateSlots(slots: {
     ["epicRes", BUILD_SLOTS.epic_re],
     ["legendaryRes", BUILD_SLOTS.legendary_re],
   ];
-  for (const [key, count] of checks) {
-    if (slots[key].length !== count) {
-      throw new Error(`${key} must have exactly ${count} items`);
+  for (const [key, max] of checks) {
+    if (slots[key].length > max) {
+      throw new Error(`${key} cannot have more than ${max} items`);
     }
   }
 }

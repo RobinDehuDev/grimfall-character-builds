@@ -19,6 +19,7 @@
     "bugReport": "Squawk at Boss",
     "signInUp": "Prove Yerself",
     "signOut": "Walk Away",
+    "changeNickname": "Change war name",
     "accountMenu": "Who be ya"
   },
   "auth": {
@@ -27,7 +28,12 @@
     "signInClerk": "Sign in wit' Clerk",
     "enterForge": "Enter da Forge",
     "enterForgeBody": "Prove yerself to craft an' command yer war kits",
-    "adventurer": "Grunt"
+    "adventurer": "Grunt",
+    "changeNicknameTitle": "Change war name",
+    "newNicknameLabel": "New nickname",
+    "newNicknamePlaceholder": "Pick a war name",
+    "nicknameRequired": "Need a war name.",
+    "nicknameSaveFailed": "Couldn't save war name."
   },
   "common": {
     "loading": "Waitin'...",
@@ -46,6 +52,7 @@
     "privateTag": "· Just Me",
     "backToAdmin": "← Back to Warchief",
     "show": "Show",
+    "workInProgress": "Work in progress",
     "hide": "Hide",
     "collapseSection": "Squish section",
     "expandSection": "Open section",

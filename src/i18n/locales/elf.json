@@ -19,6 +19,7 @@
     "bugReport": "File a Grievance",
     "signInUp": "Present Credentials",
     "signOut": "Take Leave",
+    "changeNickname": "Rename oneself",
     "accountMenu": "One's account"
   },
   "auth": {
@@ -27,7 +28,12 @@
     "signInClerk": "Authenticate via Clerk",
     "enterForge": "Enter the Sanctum",
     "enterForgeBody": "Identify thyself to craft and command one's loadouts",
-    "adventurer": "Wayfarer"
+    "adventurer": "Wayfarer",
+    "changeNicknameTitle": "Rename oneself",
+    "newNicknameLabel": "New nickname",
+    "newNicknamePlaceholder": "Inscribe a nickname",
+    "nicknameRequired": "A nickname is required.",
+    "nicknameSaveFailed": "Could not inscribe the nickname."
   },
   "common": {
     "loading": "Attending...",
@@ -46,6 +52,7 @@
     "privateTag": "· Restricted",
     "backToAdmin": "← Return to Magisterium",
     "show": "Reveal",
+    "workInProgress": "Work in progress",
     "hide": "Conceal",
     "collapseSection": "Collapse section",
     "expandSection": "Expand section",

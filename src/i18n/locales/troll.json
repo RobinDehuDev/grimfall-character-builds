@@ -19,6 +19,7 @@
     "bugReport": "Tell Big Boss",
     "signInUp": "Show Ya Face",
     "signOut": "Walk Away",
+    "changeNickname": "Change nickname",
     "accountMenu": "Who be ya"
   },
   "auth": {
@@ -27,7 +28,12 @@
     "signInClerk": "Sign in wit' Clerk",
     "enterForge": "Enter da Forge",
     "enterForgeBody": "Sign in to craft an' manage ya loadouts, mon",
-    "adventurer": "Wanderer"
+    "adventurer": "Wanderer",
+    "changeNicknameTitle": "Change nickname",
+    "newNicknameLabel": "New nickname",
+    "newNicknamePlaceholder": "Enter a nickname, mon",
+    "nicknameRequired": "Need a nickname, mon.",
+    "nicknameSaveFailed": "Couldn't save nickname."
   },
   "common": {
     "loading": "Waitin', mon...",
@@ -46,6 +52,7 @@
     "privateTag": "· Just Me",
     "backToAdmin": "← Back to Big Boss",
     "show": "Show",
+    "workInProgress": "Work in progress",
     "hide": "Hide",
     "collapseSection": "Squish section",
     "expandSection": "Open section",

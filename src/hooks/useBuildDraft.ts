@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { emptyBuildSlots, type BuildSlots } from "../lib/buildSlots";
+import { emptyBuildSlots, BUILD_SLOTS, type BuildSlots } from "../lib/buildSlots";
 import { CATEGORIES } from "../lib/categories";
 import type { Id } from "../../convex/_generated/dataModel";
 
@@ -104,13 +104,13 @@ export function useBuildDraft(initialClassId?: string) {
       setClassId(data.classId ?? "");
       setIsPublic(data.isPublic);
       setSlots({
-        talent: padSlots(data.talents),
-        ability: padSlots(data.abilities),
-        capstone: padSlots(data.capstone),
-        uncommon_re: padSlots(data.uncommonRes),
-        rare_re: padSlots(data.rareRes),
-        epic_re: padSlots(data.epicRes),
-        legendary_re: padSlots(data.legendaryRes),
+        talent: padSlots(data.talents, "talent"),
+        ability: padSlots(data.abilities, "ability"),
+        capstone: padSlots(data.capstone, "capstone"),
+        uncommon_re: padSlots(data.uncommonRes, "uncommon_re"),
+        rare_re: padSlots(data.rareRes, "rare_re"),
+        epic_re: padSlots(data.epicRes, "epic_re"),
+        legendary_re: padSlots(data.legendaryRes, "legendary_re"),
       });
     },
     [],
@@ -134,8 +134,11 @@ export function useBuildDraft(initialClassId?: string) {
   };
 }
 
-function padSlots(ids: string[]): (string | null)[] {
-  return ids.map((id) => id as string);
+function padSlots(ids: string[], category: keyof BuildSlots): (string | null)[] {
+  const max = BUILD_SLOTS[category];
+  const slots: (string | null)[] = ids.slice(0, max).map((id) => id as string);
+  while (slots.length < max) slots.push(null);
+  return slots;
 }
 
 export function getDraft(): BuildDraft | null {

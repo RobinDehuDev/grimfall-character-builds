@@ -15,7 +15,6 @@ export const store = mutation({
       .unique();
 
     if (existing) {
-      await ctx.db.patch(existing._id, { name: args.name });
       return existing._id;
     }
 
@@ -24,6 +23,27 @@ export const store = mutation({
       name: args.name,
       roles: [],
     });
+  },
+});
+
+export const updateNickname = mutation({
+  args: { name: v.string() },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not authenticated");
+
+    const name = args.name.trim();
+    if (!name) throw new Error("Nickname is required");
+    if (name.length > 50) throw new Error("Nickname is too long");
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+      .unique();
+    if (!user) throw new Error("User not found");
+
+    await ctx.db.patch(user._id, { name });
+    return user._id;
   },
 });
 

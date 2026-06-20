@@ -12,7 +12,6 @@ export function AuthSync() {
   useEffect(() => {
     if (isSignedIn && user) {
       const name =
-        user.fullName ||
         user.username ||
         user.primaryEmailAddress?.emailAddress ||
         t("auth.adventurer");

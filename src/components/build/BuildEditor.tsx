@@ -10,7 +10,6 @@ import { CategorySection } from "./CategorySection";
 import { TalentCategorySection } from "../talents/TalentCategorySection";
 import { AbilityCategorySection } from "../abilities/AbilityCategorySection";
 import {
-  isBuildComplete,
   slotsToConvexIds,
   stripUnresolvedSlotIds,
   useBuildDraft,
@@ -212,10 +211,6 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
       setError(t("build.errorTitleRequired"));
       return;
     }
-    if (!isBuildComplete(slots)) {
-      setError(t("build.errorSlotsIncomplete"));
-      return;
-    }
 
     setSaving(true);
     try {
@@ -383,11 +378,7 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
         <Button variant="outline" asChild>
           <Link to="/builds">{t("common.cancel")}</Link>
         </Button>
-        <Button
-          type="button"
-          onClick={handleSave}
-          disabled={saving || !isBuildComplete(slots)}
-        >
+        <Button type="button" onClick={handleSave} disabled={saving}>
           {saving
             ? t("build.saving")
             : mode === "create"

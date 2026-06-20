@@ -18,10 +18,16 @@ import { isAdmin } from "@/lib/roles";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ChangeNicknameModal } from "@/components/auth/ChangeNicknameModal";
+
+const menuButtonClass =
+  "w-full px-3 py-2 text-left font-display text-[10px] tracking-widest text-muted-foreground uppercase transition-colors hover:bg-secondary hover:text-gold";
 
 function UserMenu() {
   const { t } = useTranslation();
+  const currentUser = useQuery(api.users.current);
   const [open, setOpen] = useState(false);
+  const [nicknameModalOpen, setNicknameModalOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,11 +55,21 @@ function UserMenu() {
         <User className="size-4" strokeWidth={1.5} />
       </Button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-1 min-w-[8rem] rounded-md border border-gold-muted/60 bg-popover py-1 shadow-lg">
+        <div className="absolute right-0 top-full z-50 mt-1 min-w-[10rem] rounded-md border border-gold-muted/60 bg-popover py-1 shadow-lg">
+          <button
+            type="button"
+            className={menuButtonClass}
+            onClick={() => {
+              setOpen(false);
+              setNicknameModalOpen(true);
+            }}
+          >
+            {t("nav.changeNickname")}
+          </button>
           <SignOutButton>
             <button
               type="button"
-              className="w-full px-3 py-2 text-left font-display text-[10px] tracking-widest text-muted-foreground uppercase transition-colors hover:bg-secondary hover:text-gold"
+              className={menuButtonClass}
               onClick={() => setOpen(false)}
             >
               {t("nav.signOut")}
@@ -61,6 +77,11 @@ function UserMenu() {
           </SignOutButton>
         </div>
       )}
+      <ChangeNicknameModal
+        open={nicknameModalOpen}
+        currentNickname={currentUser?.name ?? ""}
+        onClose={() => setNicknameModalOpen(false)}
+      />
     </div>
   );
 }
@@ -70,23 +91,39 @@ function NavItem({
   icon: Icon,
   children,
   isActive: isActiveFn,
+  disabled,
+  title,
 }: {
   to: string;
   icon: LucideIcon;
   children: React.ReactNode;
   isActive?: (pathname: string) => boolean;
+  disabled?: boolean;
+  title?: string;
 }) {
   const { pathname } = useLocation();
   const active = isActiveFn ? isActiveFn(pathname) : pathname === to;
 
+  const className = cn(
+    "flex items-center gap-2 px-3 py-2 font-display text-[11px] font-medium tracking-widest uppercase transition-colors no-underline",
+    disabled
+      ? "cursor-not-allowed opacity-50"
+      : active
+        ? "text-gold"
+        : "text-muted-foreground hover:text-gold",
+  );
+
+  if (disabled) {
+    return (
+      <span className={className} title={title} aria-disabled="true">
+        <Icon className="size-3.5 shrink-0" strokeWidth={1.5} />
+        {children}
+      </span>
+    );
+  }
+
   return (
-    <Link
-      to={to}
-      className={cn(
-        "flex items-center gap-2 px-3 py-2 font-display text-[11px] font-medium tracking-widest uppercase transition-colors no-underline",
-        active ? "text-gold" : "text-muted-foreground hover:text-gold",
-      )}
-    >
+    <Link to={to} className={className}>
       <Icon className="size-3.5 shrink-0" strokeWidth={1.5} />
       {children}
     </Link>
@@ -131,7 +168,8 @@ export function Header() {
           <NavItem
             to="/builds"
             icon={Shield}
-            isActive={(p) => /\/compare$/.test(p)}
+            disabled
+            title={t("common.workInProgress")}
           >
             {t("nav.compare")}
           </NavItem>
