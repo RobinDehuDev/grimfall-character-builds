@@ -1,5 +1,4 @@
 import type { Doc, Id } from "../../convex/_generated/dataModel";
-import type { TalentGridType } from "../../convex/lib/talentGridType";
 import {
   slotCategoryForItem,
   type RunicQuality,
@@ -28,6 +27,10 @@ export interface AbilityGameItem extends BaseGameItem {
   range?: string;
   schools?: number;
   skillLineIds?: number[];
+  treeIndex?: number;
+  treeName?: string;
+  row?: number;
+  col?: number;
 }
 
 export interface CapstoneGameItem extends BaseGameItem {
@@ -40,7 +43,6 @@ export interface CapstoneGameItem extends BaseGameItem {
 
 export interface TalentGameItem extends BaseGameItem {
   type: "talent";
-  gridType?: TalentGridType;
   levelRequirement: number;
   wotlkClass: string;
   treeIndex: number;
@@ -90,6 +92,10 @@ export function fromConvexAbility(item: Doc<"abilities">): AbilityGameItem {
     range: item.range,
     schools: item.schools,
     skillLineIds: item.skillLineIds,
+    treeIndex: item.treeIndex,
+    treeName: item.treeName,
+    row: item.row,
+    col: item.col,
   };
 }
 
@@ -122,7 +128,6 @@ export function fromConvexTalent(item: Doc<"talents">): TalentGameItem {
     spellId: item.spellId,
     externalId: item.externalId,
     tags: item.tags,
-    gridType: item.type,
   };
 }
 
@@ -144,7 +149,9 @@ export function fromSlotPickerRow(
   item: Doc<"talents"> | Doc<"abilities"> | Doc<"capstones"> | Doc<"runicEnhancements">,
   category: SlotCategory,
 ): GameItem {
-  if (category === "talent") return fromConvexTalent(item as Doc<"talents">);
+  if (category === "talent" || category === "epic_re") {
+    return fromConvexTalent(item as Doc<"talents">);
+  }
   if (category === "capstone") return fromConvexCapstone(item as Doc<"capstones">);
   if (category.endsWith("_re")) {
     return fromConvexRunicEnhancement(item as Doc<"runicEnhancements">);
@@ -220,7 +227,6 @@ export function toCreateTalentArgs(item: Omit<TalentGameItem, "id">) {
     spellId: item.spellId,
     externalId: item.externalId,
     tags: item.tags,
-    type: item.gridType,
   };
 }
 

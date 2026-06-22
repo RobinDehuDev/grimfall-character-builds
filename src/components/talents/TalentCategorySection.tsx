@@ -45,7 +45,7 @@ export function TalentCategorySection({
   const [expanded, setExpanded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const maxSlots = BUILD_SLOTS.talent;
+  const maxSlots = BUILD_SLOTS[meta.key];
   const filled = slots.filter(Boolean).length;
   const isComplete = filled === maxSlots;
   const borderColor = itemBorderColor(meta.key);
@@ -53,7 +53,7 @@ export function TalentCategorySection({
   const selectedIds = useMemo(() => slotsToTalentIdSet(slots), [slots]);
 
   const handleSelectionChange = (ids: Set<string>) => {
-    onSlotsChange(talentIdSetToSlots(ids));
+    onSlotsChange(talentIdSetToSlots(ids, maxSlots));
   };
 
   return (
@@ -100,7 +100,7 @@ export function TalentCategorySection({
             onClick={() => setModalOpen(true)}
           >
             <Pencil className="size-3.5" />
-            {t("talents.editTalents")}
+            {t(meta.key === "epic_re" ? "talents.editEpicTalents" : "talents.editTalents")}
           </Button>
 
           {expanded && (
@@ -167,6 +167,8 @@ export function TalentCategorySection({
         onClose={() => setModalOpen(false)}
         selectedIds={selectedIds}
         onSelectionChange={handleSelectionChange}
+        maxSelections={maxSlots}
+        titleKey={meta.key === "epic_re" ? "talents.editEpicTalents" : "talents.editTalents"}
       />
     </>
   );

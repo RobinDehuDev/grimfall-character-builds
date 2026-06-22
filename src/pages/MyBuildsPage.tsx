@@ -33,7 +33,6 @@ export function MyBuildsPage() {
             <BuildPreviewCard
               key={build._id}
               to={`/builds/${build._id}`}
-              buildClass={build.className}
               title={build.title}
               meta={`${build.isPublic ? t("common.public") : t("common.private")}${
                 build.description

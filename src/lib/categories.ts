@@ -50,7 +50,9 @@ export function getCategoryMeta(key: SlotCategory): CategoryMeta {
   return CATEGORIES.find((c) => c.key === key)!;
 }
 
-export const RUNIC_CATEGORIES = CATEGORIES.filter((c) => c.key.endsWith("_re"));
+export const RUNIC_CATEGORIES = CATEGORIES.filter(
+  (c) => c.key.endsWith("_re") && c.key !== "epic_re",
+);
 
 export function slotCategoryForItem(item: {
   type: ItemType;

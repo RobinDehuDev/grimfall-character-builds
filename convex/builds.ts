@@ -9,7 +9,7 @@ const buildSlotsArgs = {
   capstone: v.array(v.id("capstones")),
   uncommonRes: v.array(v.id("runicEnhancements")),
   rareRes: v.array(v.id("runicEnhancements")),
-  epicRes: v.array(v.id("runicEnhancements")),
+  epicRes: v.array(v.id("talents")),
   legendaryRes: v.array(v.id("runicEnhancements")),
 };
 
@@ -49,14 +49,14 @@ export const listPublic = query({
     builds.sort((a, b) => b.updatedAt - a.updatedAt);
 
     return await Promise.all(
-      builds.map(async (build) => {
-        const gameClass = build.classId ? await ctx.db.get(build.classId) : null;
-        const user = await ctx.db
-          .query("users")
-          .filter((q) => q.eq(q.field("clerkId"), build.userId))
-          .first();
-        return { ...build, className: gameClass?.name, authorName: user?.name ?? "Unknown" };
-      }),
+      builds.map(async (build) => ({
+        ...build,
+        authorName:
+          (await ctx.db
+            .query("users")
+            .filter((q) => q.eq(q.field("clerkId"), build.userId))
+            .first())?.name ?? "Unknown",
+      })),
     );
   },
 });
@@ -71,13 +71,7 @@ export const listMine = query({
       .collect();
 
     builds.sort((a, b) => b.updatedAt - a.updatedAt);
-
-    return await Promise.all(
-      builds.map(async (build) => {
-        const gameClass = build.classId ? await ctx.db.get(build.classId) : null;
-        return { ...build, className: gameClass?.name };
-      }),
-    );
+    return builds;
   },
 });
 
@@ -92,15 +86,13 @@ export const get = query({
         throw new Error("Build not found");
       }
     }
-    const gameClass = build.classId ? await ctx.db.get(build.classId) : null;
-    const user = await ctx.db
-      .query("users")
-      .filter((q) => q.eq(q.field("clerkId"), build.userId))
-      .first();
     return {
       ...build,
-      className: gameClass?.name,
-      authorName: user?.name ?? "Unknown",
+      authorName:
+        (await ctx.db
+          .query("users")
+          .filter((q) => q.eq(q.field("clerkId"), build.userId))
+          .first())?.name ?? "Unknown",
     };
   },
 });
@@ -109,7 +101,6 @@ export const create = mutation({
   args: {
     title: v.string(),
     description: v.optional(v.string()),
-    classId: v.optional(v.id("classes")),
     isPublic: v.boolean(),
     ...buildSlotsArgs,
   },
@@ -120,7 +111,6 @@ export const create = mutation({
       userId: identity.subject,
       title: args.title,
       description: args.description,
-      classId: args.classId,
       isPublic: args.isPublic,
       talents: args.talents,
       abilities: args.abilities,
@@ -139,7 +129,6 @@ export const update = mutation({
     id: v.id("builds"),
     title: v.string(),
     description: v.optional(v.string()),
-    classId: v.optional(v.id("classes")),
     isPublic: v.boolean(),
     ...buildSlotsArgs,
   },

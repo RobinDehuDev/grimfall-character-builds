@@ -117,7 +117,7 @@ export function CategorySection({
   };
 
   return (
-    <FantasyCard className={cn("mt-4 h-fit self-start first:mt-0", className)}>
+    <FantasyCard className={cn("mb-6 h-fit self-start", className)}>
       <CardHeader
         className={cn(
           "flex flex-row items-center justify-between gap-2 pb-3",

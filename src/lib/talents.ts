@@ -41,9 +41,12 @@ export function slotsToTalentIdSet(slots: (string | null)[]): Set<string> {
   return new Set(slots.filter((id): id is string => id !== null));
 }
 
-export function talentIdSetToSlots(ids: ReadonlySet<string>): (string | null)[] {
+export function talentIdSetToSlots(
+  ids: ReadonlySet<string>,
+  maxSlots: number,
+): (string | null)[] {
   const filled = [...ids];
-  const slots: (string | null)[] = filled.slice(0, 25);
-  while (slots.length < 25) slots.push(null);
+  const slots: (string | null)[] = filled.slice(0, maxSlots);
+  while (slots.length < maxSlots) slots.push(null);
   return slots;
 }

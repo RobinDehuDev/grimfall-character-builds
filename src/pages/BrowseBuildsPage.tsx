@@ -38,7 +38,6 @@ export function BrowseBuildsPage() {
             <BuildPreviewCard
               key={build._id}
               to={`/builds/${build._id}`}
-              buildClass={build.className}
               title={build.title}
               meta={`${t("common.byAuthor", { name: build.authorName })}${
                 build.description

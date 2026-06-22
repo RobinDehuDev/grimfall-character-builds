@@ -2,18 +2,14 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { abilityMetadataArgs } from "./lib/abilityFields";
 import { requireAdmin } from "./lib/auth";
-import { filterByWotlkClass, wotlkClassFromClassId } from "./lib/wotlkClass";
+import { filterByWotlkClass } from "./lib/wotlkClass";
+import { WOTLK_CLASSES } from "./lib/wotlkClasses";
 
 export const list = query({
-  args: {
-    classId: v.optional(v.id("classes")),
-    wotlkClass: v.optional(v.string()),
-  },
+  args: { wotlkClass: v.optional(v.string()) },
   handler: async (ctx, args) => {
-    const wotlkClass =
-      args.wotlkClass ?? (await wotlkClassFromClassId(ctx, args.classId));
     const abilities = await ctx.db.query("abilities").collect();
-    return filterByWotlkClass(abilities, wotlkClass);
+    return filterByWotlkClass(abilities, args.wotlkClass);
   },
 });
 
@@ -29,9 +25,12 @@ export const listByWotlkClass = query({
 
 export const listAbilityClasses = query({
   args: {},
-  handler: async (ctx) => {
-    const classes = await ctx.db.query("classes").withIndex("by_sort_order").collect();
-    return classes.filter((c) => c.wotlkClass);
+  handler: async () => {
+    return WOTLK_CLASSES.map((c) => ({
+      wotlkClass: c.wotlkClass,
+      name: c.name,
+      sortOrder: c.sortOrder,
+    }));
   },
 });
 

@@ -78,7 +78,7 @@
     "talent": { "label": "Voodoo Gifts", "shortLabel": "Gift" },
     "capstone": { "label": "Big Finish", "shortLabel": "Finish" },
     "legendary_re": { "label": "Legendary RE", "shortLabel": "Legendary RE" },
-    "epic_re": { "label": "Epic RE", "shortLabel": "Epic RE" },
+    "epic_re": { "label": "Epic Talents", "shortLabel": "Epic" },
     "rare_re": { "label": "Rare RE", "shortLabel": "Rare RE" },
     "uncommon_re": { "label": "Uncommon RE", "shortLabel": "Uncommon RE" }
   },

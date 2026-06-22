@@ -1,18 +1,13 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { requireAdmin } from "./lib/auth";
-import { filterByWotlkClass, wotlkClassFromClassId } from "./lib/wotlkClass";
+import { filterByWotlkClass } from "./lib/wotlkClass";
 
 export const list = query({
-  args: {
-    classId: v.optional(v.id("classes")),
-    wotlkClass: v.optional(v.string()),
-  },
+  args: { wotlkClass: v.optional(v.string()) },
   handler: async (ctx, args) => {
-    const wotlkClass =
-      args.wotlkClass ?? (await wotlkClassFromClassId(ctx, args.classId));
     const capstones = await ctx.db.query("capstones").collect();
-    return filterByWotlkClass(capstones, wotlkClass);
+    return filterByWotlkClass(capstones, args.wotlkClass);
   },
 });
 

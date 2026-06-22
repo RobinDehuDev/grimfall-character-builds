@@ -34,13 +34,12 @@ export function ComparePage() {
     api.buildItems.resolveBuildItems,
     build
       ? {
-          talentIds: build.talents,
+          talentIds: [...build.talents, ...build.epicRes],
           abilityIds: build.abilities,
           capstoneIds: build.capstone,
           runicEnhancementIds: [
             ...build.uncommonRes,
             ...build.rareRes,
-            ...build.epicRes,
             ...build.legendaryRes,
           ],
         }

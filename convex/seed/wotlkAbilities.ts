@@ -30,7 +30,7 @@ export const seed = internalMutation({
         name: ability.name,
         description: ability.description,
         wotlkClass: ability.wotlkClass,
-        levelRequirement: ability.levelRequirement,
+        levelRequirement: ability.levelRequirement ?? 0,
         externalId: ability.externalId,
         icon: ability.icon,
         spellId: ability.spellId,
@@ -42,11 +42,16 @@ export const seed = internalMutation({
         range: ability.range,
         schools: ability.schools,
         skillLineIds: ability.skillLineIds,
+        treeIndex: ability.treeIndex,
+        treeName: ability.treeName,
+        row: ability.row,
+        col: ability.col,
         tags: computeItemTags({
           name: ability.name,
           description: ability.description,
           wotlkClass: ability.wotlkClass,
           className,
+          treeName: ability.treeName,
           kind: "ability",
         }),
       };
@@ -77,11 +82,16 @@ export const seed = internalMutation({
       );
     }
 
+    const gridCount = abilityData.abilities.filter(
+      (a) => a.treeIndex !== undefined,
+    ).length;
+
     return {
       inserted,
       updated,
       removed,
       total: abilityData.abilities.length,
+      gridAbilities: gridCount,
       byClass: Object.fromEntries(byClass),
     };
   },

@@ -2,8 +2,8 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { requireAdmin } from "./lib/auth";
 import { itemMatchesSearch } from "./lib/tags";
-import { filterByWotlkClass, wotlkClassFromClassId } from "./lib/wotlkClass";
-import { talentGridTypeValidator } from "./lib/talentGridType";
+import { classNameFromWotlkSlug, filterByWotlkClass } from "./lib/wotlkClass";
+import { WOTLK_CLASSES } from "./lib/wotlkClasses";
 
 export const listByWotlkClass = query({
   args: { wotlkClass: v.string() },
@@ -17,18 +17,20 @@ export const listByWotlkClass = query({
 
 export const listTalentClasses = query({
   args: {},
-  handler: async (ctx) => {
-    const classes = await ctx.db.query("classes").withIndex("by_sort_order").collect();
-    return classes.filter((c) => c.wotlkClass);
+  handler: async () => {
+    return WOTLK_CLASSES.map((c) => ({
+      wotlkClass: c.wotlkClass,
+      name: c.name,
+      sortOrder: c.sortOrder,
+    }));
   },
 });
 
 export const list = query({
-  args: { classId: v.optional(v.id("classes")) },
+  args: { wotlkClass: v.optional(v.string()) },
   handler: async (ctx, args) => {
-    const wotlkClass = await wotlkClassFromClassId(ctx, args.classId);
     const talents = await ctx.db.query("talents").collect();
-    return filterByWotlkClass(talents, wotlkClass);
+    return filterByWotlkClass(talents, args.wotlkClass);
   },
 });
 
@@ -58,11 +60,6 @@ export const searchSpellItems = query({
       wantCapstone ? ctx.db.query("capstones").collect() : Promise.resolve([]),
     ]);
 
-    const classes = await ctx.db.query("classes").collect();
-    const classNameBySlug = new Map(
-      classes.filter((c) => c.wotlkClass).map((c) => [c.wotlkClass!, c.name]),
-    );
-
     const talentResults = wantTalent
       ? talents
           .filter((item) =>
@@ -79,7 +76,7 @@ export const searchSpellItems = query({
             tags: item.tags,
             wotlkClass: item.wotlkClass,
             treeName: item.treeName,
-            className: classNameBySlug.get(item.wotlkClass),
+            className: classNameFromWotlkSlug(item.wotlkClass),
           }))
       : [];
 
@@ -98,7 +95,7 @@ export const searchSpellItems = query({
             description: item.description,
             tags: item.tags,
             wotlkClass: item.wotlkClass,
-            className: classNameBySlug.get(item.wotlkClass),
+            className: classNameFromWotlkSlug(item.wotlkClass),
             levelRequirement: item.levelRequirement,
             skillLineIds: item.skillLineIds,
           }))
@@ -119,7 +116,7 @@ export const searchSpellItems = query({
             description: item.description,
             tags: item.tags,
             wotlkClass: item.wotlkClass,
-            className: classNameBySlug.get(item.wotlkClass),
+            className: classNameFromWotlkSlug(item.wotlkClass),
           }))
       : [];
 
@@ -154,7 +151,6 @@ export const create = mutation({
     spellId: v.optional(v.number()),
     externalId: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
-    type: v.optional(talentGridTypeValidator),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
@@ -181,7 +177,6 @@ export const update = mutation({
     spellId: v.optional(v.number()),
     externalId: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
-    type: v.optional(talentGridTypeValidator),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);

@@ -10,4 +10,8 @@ export const abilityMetadataArgs = {
   range: v.optional(v.string()),
   schools: v.optional(v.number()),
   skillLineIds: v.optional(v.array(v.number())),
+  treeIndex: v.optional(v.number()),
+  treeName: v.optional(v.string()),
+  row: v.optional(v.number()),
+  col: v.optional(v.number()),
 };

@@ -71,13 +71,12 @@ export function BuildDetailsPage() {
     api.buildItems.resolveBuildItems,
     build
       ? {
-          talentIds: build.talents,
+          talentIds: [...build.talents, ...build.epicRes],
           abilityIds: build.abilities,
           capstoneIds: build.capstone,
           runicEnhancementIds: [
             ...build.uncommonRes,
             ...build.rareRes,
-            ...build.epicRes,
             ...build.legendaryRes,
           ],
         }
@@ -119,17 +118,10 @@ export function BuildDetailsPage() {
       <PageHeader
         title={build.title}
         description={
-          <>
-            {build.className && (
-              <Badge variant="secondary" className="mb-2 font-display tracking-widest uppercase">
-                {build.className}
-              </Badge>
-            )}
-            <span className="block">
-              {t("common.byAuthor", { name: build.authorName })}
-              {build.isPublic ? t("common.publicTag") : t("common.privateTag")}
-            </span>
-          </>
+          <span className="block">
+            {t("common.byAuthor", { name: build.authorName })}
+            {build.isPublic ? t("common.publicTag") : t("common.privateTag")}
+          </span>
         }
       >
         {hasDraft && (

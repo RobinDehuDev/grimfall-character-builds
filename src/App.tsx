@@ -11,7 +11,6 @@ import { BuildDetailsPage } from "./pages/BuildDetailsPage";
 import { ComparePage } from "./pages/ComparePage";
 import { BugReportPage } from "./pages/BugReportPage";
 import { AdminHubPage } from "./pages/admin/AdminHubPage";
-import { AdminClassesPage } from "./pages/admin/AdminClassesPage";
 import { AdminItemsPage } from "./pages/admin/AdminItemsPage";
 import { AdminBugReportsPage } from "./pages/admin/AdminBugReportsPage";
 
@@ -37,7 +36,6 @@ function App() {
           <Route element={<AdminRoute />}>
             <Route element={<AdminGuard />}>
               <Route path="admin" element={<AdminHubPage />} />
-              <Route path="admin/classes" element={<AdminClassesPage />} />
               <Route path="admin/items" element={<AdminItemsPage />} />
               <Route path="admin/bug-reports" element={<AdminBugReportsPage />} />
             </Route>

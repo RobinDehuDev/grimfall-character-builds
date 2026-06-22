@@ -81,7 +81,7 @@
     "talent": { "label": "Talents", "shortLabel": "Talent" },
     "capstone": { "label": "Capstone", "shortLabel": "Capstone" },
     "legendary_re": { "label": "Legendary RE", "shortLabel": "Legendary RE" },
-    "epic_re": { "label": "Epic RE", "shortLabel": "Epic RE" },
+    "epic_re": { "label": "Epic Talents", "shortLabel": "Epic" },
     "rare_re": { "label": "Rare RE", "shortLabel": "Rare RE" },
     "uncommon_re": { "label": "Uncommon RE", "shortLabel": "Uncommon RE" }
   },
@@ -154,6 +154,7 @@
     "selected": "Selected",
     "clickToRemove": "Click to remove",
     "editTalents": "Edit talents",
+    "editEpicTalents": "Edit epic talents",
     "searchLabel": "Search spells",
     "searchPlaceholder": "Name, description, or tag…",
     "searchHint": "Type at least 2 characters to search talents, capstones, and abilities.",

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "generate:talents": "node scripts/generate-wotlk-talents.mjs && cp data/wotlk-talents.json convex/seed/data/wotlk-talents.json",
+    "generate:talents": "node scripts/generate-wotlk-talents.mjs && cp data/wotlk-talents.json convex/seed/data/wotlk-talents.json && cp data/wotlk-abilities.json convex/seed/data/wotlk-abilities.json",
+    "split:grid-abilities": "node scripts/split-talent-grid-abilities.mjs",
     "generate:abilities": "node scripts/generate-wotlk-abilities.mjs && cp data/wotlk-abilities.json convex/seed/data/wotlk-abilities.json",
     "generate:data": "pnpm generate:talents && pnpm generate:abilities",
     "seed": "npx convex run seed/reseedAll:run",

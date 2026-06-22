@@ -4,14 +4,13 @@ import { CATEGORIES } from "../lib/categories";
 import type { Id } from "../../convex/_generated/dataModel";
 
 const DRAFT_KEY = "gimfall-build-draft";
-/** Bump when slot ID tables change (e.g. items → split tables). */
-const DRAFT_VERSION = 1;
+/** Bump when slot ID tables or draft shape changes. */
+const DRAFT_VERSION = 2;
 
 export interface BuildDraft {
   version?: number;
   title: string;
   description: string;
-  classId: string;
   isPublic: boolean;
   slots: BuildSlots;
 }
@@ -20,13 +19,12 @@ function loadDraft(): BuildDraft | null {
   try {
     const raw = localStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
-    const draft = JSON.parse(raw) as BuildDraft;
+    const draft = JSON.parse(raw) as BuildDraft & { classId?: string };
     if (draft.version !== DRAFT_VERSION) {
       return {
         version: DRAFT_VERSION,
         title: draft.title ?? "",
         description: draft.description ?? "",
-        classId: draft.classId ?? "",
         isPublic: draft.isPublic ?? true,
         slots: emptyBuildSlots(),
       };
@@ -37,10 +35,9 @@ function loadDraft(): BuildDraft | null {
   }
 }
 
-export function useBuildDraft(initialClassId?: string) {
+export function useBuildDraft() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [classId, setClassId] = useState(initialClassId ?? "");
   const [isPublic, setIsPublic] = useState(true);
   const [slots, setSlots] = useState<BuildSlots>(emptyBuildSlots);
   const [hydrated, setHydrated] = useState(false);
@@ -50,14 +47,11 @@ export function useBuildDraft(initialClassId?: string) {
     if (draft) {
       setTitle(draft.title);
       setDescription(draft.description);
-      setClassId(draft.classId || initialClassId || "");
       setIsPublic(draft.isPublic);
       setSlots(draft.slots);
-    } else if (initialClassId) {
-      setClassId(initialClassId);
     }
     setHydrated(true);
-  }, [initialClassId]);
+  }, []);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -65,23 +59,17 @@ export function useBuildDraft(initialClassId?: string) {
       version: DRAFT_VERSION,
       title,
       description,
-      classId,
       isPublic,
       slots,
     };
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
-  }, [title, description, classId, isPublic, slots, hydrated]);
+  }, [title, description, isPublic, slots, hydrated]);
 
   const clearDraft = useCallback(() => {
     localStorage.removeItem(DRAFT_KEY);
     setTitle("");
     setDescription("");
     setIsPublic(true);
-    setClassId("");
-    setSlots(emptyBuildSlots());
-  }, []);
-
-  const resetSlots = useCallback(() => {
     setSlots(emptyBuildSlots());
   }, []);
 
@@ -89,19 +77,17 @@ export function useBuildDraft(initialClassId?: string) {
     (data: {
       title: string;
       description?: string;
-      classId?: Id<"classes">;
       isPublic: boolean;
       talents: Id<"talents">[];
       abilities: Id<"abilities">[];
       capstone: Id<"capstones">[];
       uncommonRes: Id<"runicEnhancements">[];
       rareRes: Id<"runicEnhancements">[];
-      epicRes: Id<"runicEnhancements">[];
+      epicRes: Id<"talents">[];
       legendaryRes: Id<"runicEnhancements">[];
     }) => {
       setTitle(data.title);
       setDescription(data.description ?? "");
-      setClassId(data.classId ?? "");
       setIsPublic(data.isPublic);
       setSlots({
         talent: padSlots(data.talents, "talent"),
@@ -121,14 +107,11 @@ export function useBuildDraft(initialClassId?: string) {
     setTitle,
     description,
     setDescription,
-    classId,
-    setClassId,
     isPublic,
     setIsPublic,
     slots,
     setSlots,
     clearDraft,
-    resetSlots,
     loadFromBuild,
     hydrated,
   };
@@ -173,12 +156,14 @@ export function stripUnresolvedSlotIds(
 export function slotsToConvexIds(slots: BuildSlots) {
   const pickTalents = (): Id<"talents">[] =>
     slots.talent.filter((id): id is string => id !== null) as Id<"talents">[];
+  const pickEpicTalents = (): Id<"talents">[] =>
+    slots.epic_re.filter((id): id is string => id !== null) as Id<"talents">[];
   const pickAbilities = (): Id<"abilities">[] =>
     slots.ability.filter((id): id is string => id !== null) as Id<"abilities">[];
   const pickCapstones = (): Id<"capstones">[] =>
     slots.capstone.filter((id): id is string => id !== null) as Id<"capstones">[];
   const pickRunics = (
-    cat: "uncommon_re" | "rare_re" | "epic_re" | "legendary_re",
+    cat: "uncommon_re" | "rare_re" | "legendary_re",
   ): Id<"runicEnhancements">[] =>
     slots[cat].filter((id): id is string => id !== null) as Id<"runicEnhancements">[];
 
@@ -188,7 +173,7 @@ export function slotsToConvexIds(slots: BuildSlots) {
     capstone: pickCapstones(),
     uncommonRes: pickRunics("uncommon_re"),
     rareRes: pickRunics("rare_re"),
-    epicRes: pickRunics("epic_re"),
+    epicRes: pickEpicTalents(),
     legendaryRes: pickRunics("legendary_re"),
   };
 }

@@ -1,12 +1,8 @@
 import { internalMutation } from "../_generated/server";
 import { computeItemTags } from "../lib/tags";
-import type { TalentGridType } from "../lib/talentGridType";
 import talentData from "./data/wotlk-talents.json";
 
-type TalentRow = (typeof talentData.talents)[number] & {
-  spellId?: number;
-  type: TalentGridType;
-};
+type TalentRow = (typeof talentData.talents)[number];
 
 function talentKey(t: Pick<TalentRow, "externalId" | "wotlkClass" | "treeIndex" | "row" | "col">) {
   return t.externalId ?? `${t.wotlkClass}:${t.treeIndex}:${t.row}:${t.col}`;
@@ -15,35 +11,6 @@ function talentKey(t: Pick<TalentRow, "externalId" | "wotlkClass" | "treeIndex" 
 export const seed = internalMutation({
   args: {},
   handler: async (ctx) => {
-    let classesInserted = 0;
-    let classesUpdated = 0;
-
-    const existingClasses = await ctx.db.query("classes").collect();
-    const classBySlug = new Map(
-      existingClasses
-        .filter((c) => c.wotlkClass)
-        .map((c) => [c.wotlkClass!, c._id]),
-    );
-
-    for (const cls of talentData.classes) {
-      const existingId = classBySlug.get(cls.wotlkClass);
-      if (existingId) {
-        await ctx.db.patch(existingId, {
-          name: cls.name,
-          sortOrder: cls.sortOrder,
-          wotlkClass: cls.wotlkClass,
-        });
-        classesUpdated += 1;
-      } else {
-        await ctx.db.insert("classes", {
-          name: cls.name,
-          sortOrder: cls.sortOrder,
-          wotlkClass: cls.wotlkClass,
-        });
-        classesInserted += 1;
-      }
-    }
-
     const existingTalents = await ctx.db.query("talents").collect();
 
     const existingByKey = new Map<string, (typeof existingTalents)[number]>();
@@ -55,8 +22,6 @@ export const seed = internalMutation({
     const incomingTalentKeys = new Set<string>();
     let talentsInserted = 0;
     let talentsUpdated = 0;
-    let talentTypeAbility = 0;
-    let talentTypePassive = 0;
 
     const classNameBySlug = new Map(
       talentData.classes.map((c) => [c.wotlkClass, c.name]),
@@ -77,7 +42,6 @@ export const seed = internalMutation({
         col: talent.col,
         icon: talent.icon,
         externalId: talent.externalId,
-        type: talent.type as TalentGridType,
         tags: computeItemTags({
           name: talent.name,
           description: talent.description,
@@ -87,9 +51,6 @@ export const seed = internalMutation({
           kind: "talent",
         }),
       };
-
-      if (talent.type === "ability") talentTypeAbility += 1;
-      else if (talent.type === "talent") talentTypePassive += 1;
 
       const existing = existingByKey.get(key);
       if (existing) {
@@ -162,14 +123,10 @@ export const seed = internalMutation({
     }
 
     return {
-      classesInserted,
-      classesUpdated,
       talentsInserted,
       talentsUpdated,
       talentsRemoved,
       totalTalents: talentData.talents.length,
-      talentTypeAbility,
-      talentTypePassive,
       capstonesInserted,
       capstonesUpdated,
       capstonesRemoved,

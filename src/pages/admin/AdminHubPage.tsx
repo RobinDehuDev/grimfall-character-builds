@@ -19,16 +19,6 @@ export function AdminHubPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Link to="/admin/classes" className="block no-underline transition-transform hover:-translate-y-0.5">
-          <FantasyCard className="h-full">
-            <CardHeader>
-              <CardTitle className="font-display text-sm text-gold">{t("admin.classesTitle")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-xs text-muted-foreground">{t("admin.classesBody")}</p>
-            </CardContent>
-          </FantasyCard>
-        </Link>
         <Link to="/admin/items" className="block no-underline transition-transform hover:-translate-y-0.5">
           <FantasyCard className="h-full">
             <CardHeader>

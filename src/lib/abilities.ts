@@ -63,7 +63,7 @@ export function groupAbilitiesBySpec(
     const treeIndex =
       skillLineId !== undefined
         ? treeIndexForSkillLine(wotlkClass, skillLineId)
-        : undefined;
+        : ability.treeIndex;
 
     const group =
       treeIndex === undefined

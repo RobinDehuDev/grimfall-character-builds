@@ -4,6 +4,8 @@ import { internal } from "../_generated/api";
 export const run = internalAction({
   args: {},
   handler: async (ctx): Promise<{
+    migrateTalentAbilities: unknown;
+    migrateRemoveClasses: unknown;
     wotlkResult: unknown;
     abilitiesResult: unknown;
     legendaryResult: unknown;
@@ -15,6 +17,15 @@ export const run = internalAction({
       builds: number;
     };
   }> => {
+    const migrateTalentAbilities = await ctx.runMutation(
+      internal.seed.migrateTalentAbilities.run,
+      {},
+    );
+    const migrateRemoveClasses = await ctx.runMutation(
+      internal.seed.migrateRemoveClasses.run,
+      {},
+    );
+
     const wotlkResult = await ctx.runMutation(internal.seed.wotlkTalents.seed, {});
 
     const abilitiesResult = await ctx.runMutation(internal.seed.wotlkAbilities.seed, {});
@@ -24,6 +35,8 @@ export const run = internalAction({
     const counts = await ctx.runQuery(internal.seed.tableCounts.tableCounts, {});
 
     return {
+      migrateTalentAbilities,
+      migrateRemoveClasses,
       wotlkResult,
       abilitiesResult,
       legendaryResult,

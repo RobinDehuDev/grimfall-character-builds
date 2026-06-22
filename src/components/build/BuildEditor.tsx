@@ -21,13 +21,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   FantasyCard,
@@ -44,7 +37,6 @@ interface BuildEditorProps {
 export function BuildEditor({ mode, buildId }: BuildEditorProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const classes = useQuery(api.classes.list);
   const existingBuild = useQuery(
     api.builds.get,
     buildId ? { id: buildId } : "skip",
@@ -56,14 +48,11 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
     setTitle,
     description,
     setDescription,
-    classId,
-    setClassId,
     isPublic,
     setIsPublic,
     slots,
     setSlots,
     clearDraft,
-    resetSlots,
     loadFromBuild,
     hydrated,
   } = draft;
@@ -97,13 +86,12 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
   const convexSlotIds = useMemo(() => slotsToConvexIds(slots), [slots]);
 
   const resolvedItems = useQuery(api.buildItems.resolveBuildItems, {
-    talentIds: convexSlotIds.talents,
+    talentIds: [...convexSlotIds.talents, ...convexSlotIds.epicRes],
     abilityIds: convexSlotIds.abilities,
     capstoneIds: convexSlotIds.capstone,
     runicEnhancementIds: [
       ...convexSlotIds.uncommonRes,
       ...convexSlotIds.rareRes,
-      ...convexSlotIds.epicRes,
       ...convexSlotIds.legendaryRes,
     ],
   });
@@ -131,17 +119,6 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
   if (mode === "edit" && existingBuild === null) {
     return <EmptyState>{t("build.notFound")}</EmptyState>;
   }
-
-  const effectiveClassId = classId || "";
-
-  const handleClassChange = (newClassId: string) => {
-    setClassId(newClassId);
-    if (newClassId !== classId) {
-      resetSlots();
-      setActiveCategory(null);
-      setActiveSlot(null);
-    }
-  };
 
   const handleSlotClick = (category: string, index: number) => {
     setActiveCategory(category);
@@ -218,9 +195,6 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
       const payload = {
         title: title.trim(),
         description: description.trim() || undefined,
-        classId: effectiveClassId
-          ? (effectiveClassId as Id<"classes">)
-          : undefined,
         isPublic,
         ...slotIds,
       };
@@ -243,6 +217,12 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
 
   const getItemById = (id: string) => itemCache.get(id);
 
+  const epicMeta = CATEGORIES.find((c) => c.key === "epic_re")!;
+  const legendaryMeta = CATEGORIES.find((c) => c.key === "legendary_re")!;
+  const lowerRunicCategories = RUNIC_CATEGORIES.filter(
+    (c) => c.key !== "legendary_re",
+  );
+
   return (
     <>
       <PageHeader
@@ -258,7 +238,7 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
         </CardHeader>
         <CardContent className="pt-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="space-y-2">
+            <div className="space-y-2 md:col-span-2">
               <Label htmlFor="build-title">{t("build.titleLabel")}</Label>
               <Input
                 id="build-title"
@@ -267,26 +247,6 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="build-class">{t("build.classLabel")}</Label>
-              <Select
-                value={effectiveClassId || "none"}
-                onValueChange={(v) => handleClassChange(v === "none" ? "" : v)}
-              >
-                <SelectTrigger id="build-class">
-                  <SelectValue placeholder={t("common.noClass")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">{t("common.noClass")}</SelectItem>
-                  {(classes ?? []).map((cls) => (
-                    <SelectItem key={cls._id} value={cls._id}>
-                      {cls.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
 
             <div className="space-y-2 md:col-span-2">
@@ -339,7 +299,6 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
           />
           <CategorySectionWithQuery
             meta={CATEGORIES.find((c) => c.key === "capstone")!}
-            classId={effectiveClassId ? (effectiveClassId as Id<"classes">) : undefined}
             slots={slots.capstone}
             usedItemIds={usedItemIds}
             activeSlot={activeCategory === "capstone" ? activeSlot : null}
@@ -350,11 +309,32 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
           />
         </div>
         <div>
-          {RUNIC_CATEGORIES.map((meta) => (
+          <CategorySectionWithQuery
+            meta={legendaryMeta}
+            slots={slots.legendary_re}
+            usedItemIds={usedItemIds}
+            activeSlot={activeCategory === "legendary_re" ? activeSlot : null}
+            onSlotClick={(index) => handleSlotClick("legendary_re", index)}
+            onItemSelect={(item) => handleItemSelect("legendary_re", item)}
+            onSlotClear={(index) => handleSlotClear("legendary_re", index)}
+            onSlotReorder={(from, to) => handleSlotReorder("legendary_re", from, to)}
+            getItemById={getItemById}
+          />
+          <TalentCategorySection
+            meta={epicMeta}
+            slots={slots.epic_re}
+            activeSlot={activeCategory === "epic_re" ? activeSlot : null}
+            onSlotClick={(index) => handleSlotClick("epic_re", index)}
+            onSlotClear={(index) => handleSlotClear("epic_re", index)}
+            onSlotsChange={(epicSlots) => {
+              setSlots((prev) => ({ ...prev, epic_re: epicSlots }));
+            }}
+            getItemById={getItemById}
+          />
+          {lowerRunicCategories.map((meta) => (
             <CategorySectionWithQuery
               key={meta.key}
               meta={meta}
-              classId={effectiveClassId ? (effectiveClassId as Id<"classes">) : undefined}
               slots={slots[meta.key]}
               usedItemIds={usedItemIds}
               activeSlot={activeCategory === meta.key ? activeSlot : null}
@@ -392,7 +372,6 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
 
 function CategorySectionWithQuery({
   meta,
-  classId,
   slots,
   usedItemIds,
   activeSlot,
@@ -404,7 +383,6 @@ function CategorySectionWithQuery({
   className,
 }: {
   meta: (typeof CATEGORIES)[number];
-  classId?: Id<"classes">;
   slots: (string | null)[];
   usedItemIds: ReadonlySet<string>;
   activeSlot: number | null;
@@ -417,7 +395,6 @@ function CategorySectionWithQuery({
 }) {
   const { t } = useTranslation();
   const items = useQuery(api.slotPicker.listByClassAndCategory, {
-    classId,
     category: meta.key,
   });
 

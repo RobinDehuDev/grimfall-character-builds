@@ -13,6 +13,7 @@ import {
   type ItemType,
   type RunicQuality,
 } from "../../lib/categories";
+import { WOTLK_CLASS_ORDER } from "../../lib/talents";
 import {
   fromConvexAbility,
   fromConvexCapstone,
@@ -52,7 +53,6 @@ type FormState = {
   type: ItemType;
   name: string;
   description: string;
-  classId: Id<"classes"> | "";
   levelRequirement: number;
   wotlkClass: string;
   treeIndex: number;
@@ -87,7 +87,6 @@ const emptyForm = (): FormState => ({
   type: "talent",
   name: "",
   description: "",
-  classId: "",
   levelRequirement: 0,
   wotlkClass: "mage",
   treeIndex: 0,
@@ -119,20 +118,20 @@ function itemColorClass(item: GameItem): string {
 
 export function AdminItemsPage() {
   const { t } = useTranslation();
-  const classes = useQuery(api.classes.list);
-  const [filterClassId, setFilterClassId] = useState<Id<"classes"> | "">("");
+  const talentClasses = useQuery(api.talents.listTalentClasses);
+  const [filterWotlkClass, setFilterWotlkClass] = useState("");
   const [filterType, setFilterType] = useState<ItemType | "">("");
   const [filterQuality, setFilterQuality] = useState<RunicQuality | "">("");
 
   const abilities = useQuery(api.abilities.list, {
-    classId: filterClassId || undefined,
+    wotlkClass: filterWotlkClass || undefined,
   });
   const capstones = useQuery(api.capstones.list, {
-    classId: filterClassId || undefined,
+    wotlkClass: filterWotlkClass || undefined,
   });
   const allAbilities = useQuery(api.abilities.list, {});
   const talents = useQuery(api.talents.list, {
-    classId: filterClassId || undefined,
+    wotlkClass: filterWotlkClass || undefined,
   });
   const runicEnhancements = useQuery(api.runicEnhancements.list, {
     quality: filterQuality || undefined,
@@ -182,7 +181,7 @@ export function AdminItemsPage() {
   }, [abilities, capstones, talents, runicEnhancements, filterType]);
 
   if (
-    classes === undefined ||
+    talentClasses === undefined ||
     items === undefined ||
     allAbilities === undefined
   ) {
@@ -282,7 +281,6 @@ export function AdminItemsPage() {
         type: "runicEnhancement",
         name: item.name,
         description: item.description,
-        classId: "",
         levelRequirement: 0,
         wotlkClass: "mage",
         treeIndex: 0,
@@ -313,7 +311,6 @@ export function AdminItemsPage() {
         type: "talent",
         name: item.name,
         description: item.description,
-        classId: "",
         levelRequirement: item.levelRequirement,
         wotlkClass: item.wotlkClass,
         treeIndex: item.treeIndex,
@@ -344,7 +341,6 @@ export function AdminItemsPage() {
         type: "capstone",
         name: item.name,
         description: item.description,
-        classId: "",
         levelRequirement: 0,
         wotlkClass: item.wotlkClass,
         treeIndex: 0,
@@ -375,7 +371,6 @@ export function AdminItemsPage() {
         type: "ability",
         name: item.name,
         description: item.description,
-        classId: "",
         levelRequirement: item.levelRequirement,
         wotlkClass: item.wotlkClass,
         treeIndex: 0,
@@ -792,21 +787,22 @@ export function AdminItemsPage() {
           </CardTitle>
           <div className="flex flex-wrap gap-2">
             <Select
-              value={filterClassId || "all"}
-              onValueChange={(v) =>
-                setFilterClassId(v === "all" ? "" : (v as Id<"classes">))
-              }
+              value={filterWotlkClass || "all"}
+              onValueChange={(v) => setFilterWotlkClass(v === "all" ? "" : v)}
             >
               <SelectTrigger className="w-[140px]">
                 <SelectValue placeholder={t("admin.allClasses")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{t("admin.allClasses")}</SelectItem>
-                {classes.map((cls) => (
-                  <SelectItem key={cls._id} value={cls._id}>
-                    {cls.name}
-                  </SelectItem>
-                ))}
+                {WOTLK_CLASS_ORDER.map((slug) => {
+                  const cls = talentClasses.find((c) => c.wotlkClass === slug);
+                  return (
+                    <SelectItem key={slug} value={slug}>
+                      {cls?.name ?? slug}
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
 

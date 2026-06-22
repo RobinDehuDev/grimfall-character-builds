@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 /**
  * Fetches WotLK 3.3.5 talent data from OlegKireev/talent-calc mocks
- * and writes data/wotlk-talents.json for seeding Convex.
- *
- * Tree-final talents (bottom row of each tree) are exported as capstones.
+ * and writes data/wotlk-talents.json (passives + capstones only).
+ * Grid actives are merged into data/wotlk-abilities.json.
  */
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUT_PATH = join(__dirname, "../data/wotlk-talents.json");
+const TALENTS_OUT = join(__dirname, "../data/wotlk-talents.json");
+const ABILITIES_PATH = join(__dirname, "../data/wotlk-abilities.json");
 const BASE_URL =
   "https://raw.githubusercontent.com/OlegKireev/talent-calc/master/src/mocks";
 
@@ -74,6 +74,16 @@ function buildTalentRecord(talent, cls, treeIndex, treeName) {
   };
 }
 
+function toPassiveRecord(record) {
+  const { type: _type, ...rest } = record;
+  return rest;
+}
+
+function toGridAbility(record) {
+  const { type: _type, ...rest } = record;
+  return { ...rest, levelRequirement: 0 };
+}
+
 async function fetchClassTalents(cls) {
   const res = await fetch(`${BASE_URL}/${cls.file}.ts`);
   if (!res.ok) {
@@ -93,7 +103,7 @@ async function fetchClassTalents(cls) {
 
     for (const record of records) {
       if (record.row === maxRow) {
-        capstones.push(record);
+        capstones.push(toPassiveRecord(record));
       } else {
         talents.push(record);
       }
@@ -103,6 +113,25 @@ async function fetchClassTalents(cls) {
   return { talents, capstones };
 }
 
+function mergeGridIntoAbilities(abilityData, gridAbilities) {
+  const byExternalId = new Map(
+    abilityData.abilities.map((a) => [a.externalId, a]),
+  );
+  for (const grid of gridAbilities) {
+    const existing = byExternalId.get(grid.externalId);
+    byExternalId.set(
+      grid.externalId,
+      existing ? { ...existing, ...grid } : grid,
+    );
+  }
+  return {
+    ...abilityData,
+    abilities: [...byExternalId.values()].sort((a, b) =>
+      a.name.localeCompare(b.name),
+    ),
+  };
+}
+
 async function main() {
   const classes = WOTLK_CLASSES.map(({ wotlkClass, name, sortOrder }) => ({
     wotlkClass,
@@ -110,27 +139,48 @@ async function main() {
     sortOrder,
   }));
 
-  const allTalents = [];
+  const allRows = [];
   const allCapstones = [];
   let abilityCount = 0;
   let passiveCount = 0;
+
   for (const cls of WOTLK_CLASSES) {
     const { talents, capstones } = await fetchClassTalents(cls);
-    for (const t of talents) {
-      if (t.type === "ability") abilityCount += 1;
-      else passiveCount += 1;
-    }
+    const gridInClass = talents.filter((t) => t.type === "ability").length;
+    const passivesInClass = talents.filter((t) => t.type === "talent").length;
+    abilityCount += gridInClass;
+    passiveCount += passivesInClass;
     console.log(
-      `${cls.name}: ${talents.length} talents (${talents.filter((t) => t.type === "ability").length} abilities), ${capstones.length} capstones`,
+      `${cls.name}: ${passivesInClass} talents, ${gridInClass} grid abilities, ${capstones.length} capstones`,
     );
-    allTalents.push(...talents);
+    allRows.push(...talents);
     allCapstones.push(...capstones);
   }
 
-  const output = { classes, talents: allTalents, capstones: allCapstones };
-  writeFileSync(OUT_PATH, JSON.stringify(output, null, 2) + "\n");
+  const passives = allRows
+    .filter((r) => r.type === "talent")
+    .map(toPassiveRecord);
+  const gridAbilities = allRows
+    .filter((r) => r.type === "ability")
+    .map(toGridAbility);
+
+  const talentOutput = { classes, talents: passives, capstones: allCapstones };
+  writeFileSync(TALENTS_OUT, JSON.stringify(talentOutput, null, 2) + "\n");
   console.log(
-    `Wrote ${allTalents.length} talents (${abilityCount} abilities, ${passiveCount} passives) and ${allCapstones.length} capstones to ${OUT_PATH}`,
+    `Wrote ${passives.length} talents and ${allCapstones.length} capstones to ${TALENTS_OUT}`,
+  );
+
+  let abilityData = { classes, abilities: [] };
+  try {
+    abilityData = JSON.parse(readFileSync(ABILITIES_PATH, "utf8"));
+  } catch {
+    console.warn(`No existing ${ABILITIES_PATH}; creating abilities file with grid actives only`);
+  }
+
+  const merged = mergeGridIntoAbilities(abilityData, gridAbilities);
+  writeFileSync(ABILITIES_PATH, JSON.stringify(merged, null, 2) + "\n");
+  console.log(
+    `Merged ${gridAbilities.length} grid abilities into ${ABILITIES_PATH} (${merged.abilities.length} total)`,
   );
 }
 

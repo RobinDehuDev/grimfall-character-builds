@@ -54,6 +54,7 @@ interface TalentGridCoreProps {
   activeClass?: WotlkClassSlug;
   onActiveClassChange?: (slug: WotlkClassSlug) => void;
   highlightTalentId?: string | null;
+  maxSelections?: number;
 }
 
 export function TalentGridCore({
@@ -66,6 +67,7 @@ export function TalentGridCore({
   activeClass: controlledClass,
   onActiveClassChange,
   highlightTalentId = null,
+  maxSelections = BUILD_SLOTS.talent,
 }: TalentGridCoreProps) {
   const { t } = useTranslation();
   const talentClasses = useQuery(api.talents.listTalentClasses);
@@ -161,7 +163,7 @@ export function TalentGridCore({
     return () => cancelAnimationFrame(timer);
   }, [highlightTalentId, effectiveClass, displayTrees]);
 
-  const maxTalents = BUILD_SLOTS.talent;
+  const maxTalents = maxSelections;
 
   const handleToggle = useCallback(
     (talent: TalentGameItem) => {
@@ -290,11 +292,13 @@ function TalentModalEditor({
   setDraftIds,
   sessionKey,
   hydrateIds,
+  maxSelections,
 }: {
   draftIds: Set<string>;
   setDraftIds: Dispatch<SetStateAction<Set<string>>>;
   sessionKey: number;
   hydrateIds: Id<"talents">[];
+  maxSelections: number;
 }) {
   const [activeClass, setActiveClass] = useState<WotlkClassSlug>("death-knight");
   const [highlightTalentId, setHighlightTalentId] = useState<string | null>(null);
@@ -309,7 +313,7 @@ function TalentModalEditor({
   const handleAddTalent = (talentId: string) => {
     setDraftIds((prev) => {
       const next = new Set(prev);
-      if (next.size >= BUILD_SLOTS.talent) return next;
+      if (next.size >= maxSelections) return next;
       next.add(talentId);
       return next;
     });
@@ -327,6 +331,7 @@ function TalentModalEditor({
           activeClass={activeClass}
           onActiveClassChange={setActiveClass}
           highlightTalentId={highlightTalentId}
+          maxSelections={maxSelections}
         />
       </div>
       <TalentSearchPanel
@@ -343,6 +348,8 @@ interface TalentPickerModalProps {
   onClose: () => void;
   selectedIds: ReadonlySet<string>;
   onSelectionChange: (ids: Set<string>) => void;
+  maxSelections?: number;
+  titleKey?: string;
 }
 
 export function TalentPickerModal({
@@ -350,6 +357,8 @@ export function TalentPickerModal({
   onClose,
   selectedIds,
   onSelectionChange,
+  maxSelections = BUILD_SLOTS.talent,
+  titleKey = "talents.editTalents",
 }: TalentPickerModalProps) {
   const { t } = useTranslation();
   const [draftIds, setDraftIds] = useState<Set<string>>(() => new Set());
@@ -403,7 +412,7 @@ export function TalentPickerModal({
       >
         <div className="talent-modal__header">
           <h2 id="talent-modal-title" className="talent-modal__title">
-            {t("talents.editTalents")}
+            {t(titleKey)}
           </h2>
           <Button
             type="button"
@@ -423,6 +432,7 @@ export function TalentPickerModal({
             setDraftIds={setDraftIds}
             sessionKey={sessionKey}
             hydrateIds={hydrateIds}
+            maxSelections={maxSelections}
           />
         </div>
 

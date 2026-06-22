@@ -1,15 +1,4 @@
-import type { Id } from "../_generated/dataModel";
-
-type ClassDoc = { wotlkClass?: string } | null;
-
-export async function wotlkClassFromClassId(
-  ctx: { db: { get: (id: Id<"classes">) => Promise<ClassDoc> } },
-  classId?: Id<"classes">,
-): Promise<string | undefined> {
-  if (!classId) return undefined;
-  const gameClass = await ctx.db.get(classId);
-  return gameClass?.wotlkClass ?? undefined;
-}
+import { WOTLK_CLASS_NAME_BY_SLUG } from "./wotlkClasses";
 
 export function filterByWotlkClass<T extends { wotlkClass?: string }>(
   rows: T[],
@@ -19,9 +8,6 @@ export function filterByWotlkClass<T extends { wotlkClass?: string }>(
   return rows.filter((row) => !row.wotlkClass || row.wotlkClass === wotlkClass);
 }
 
-export function classNameFromWotlkSlug(
-  wotlkClass: string,
-  classNameBySlug: Map<string, string>,
-): string | undefined {
-  return classNameBySlug.get(wotlkClass);
+export function classNameFromWotlkSlug(wotlkClass: string): string | undefined {
+  return WOTLK_CLASS_NAME_BY_SLUG.get(wotlkClass as never);
 }
