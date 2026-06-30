@@ -6,7 +6,15 @@ import type {
   RunicEnhancementGameItem,
   TalentGameItem,
 } from "./types";
-import { normalizeAbilityWotlkClass } from "./wotlkClasses";
+import {
+  isPlayableWotlkClass,
+  normalizeAbilityWotlkClass,
+} from "./wotlkClasses";
+import {
+  isValidSubclassForClass,
+  specIndexForSubclass,
+  subclassForSpecIndex,
+} from "./abilitySkillLines";
 
 export type AbilityFormState = {
   name: string;
@@ -25,7 +33,6 @@ export type AbilityFormState = {
   range: string;
   schools: string;
   skillLineIds: string;
-  treeIndex: string;
   treeName: string;
   row: string;
   col: string;
@@ -102,7 +109,6 @@ export function emptyAbilityForm(wotlkClass = "mage"): AbilityFormState {
     range: "",
     schools: "",
     skillLineIds: "",
-    treeIndex: "",
     treeName: "",
     row: "",
     col: "",
@@ -122,6 +128,15 @@ export function abilityToForm(
       ? normalizeAbilityWotlkClass(fallbackClass)
       : slug;
 
+  let treeName = item.treeName ?? "";
+  if (
+    isPlayableWotlkClass(wotlkClass) &&
+    !treeName.trim() &&
+    item.treeIndex !== undefined
+  ) {
+    treeName = subclassForSpecIndex(wotlkClass, item.treeIndex) ?? "";
+  }
+
   return {
     name: item.name,
     description: item.description,
@@ -139,8 +154,7 @@ export function abilityToForm(
     range: item.range ?? "",
     schools: item.schools?.toString() ?? "",
     skillLineIds: item.skillLineIds?.join(", ") ?? "",
-    treeIndex: item.treeIndex?.toString() ?? "",
-    treeName: item.treeName ?? "",
+    treeName,
     row: item.row?.toString() ?? "",
     col: item.col?.toString() ?? "",
     hidden: item.hidden ?? false,
@@ -150,10 +164,13 @@ export function abilityToForm(
 }
 
 export function formToAbilityArgs(form: AbilityFormState) {
-  return {
+  const wotlkClass = normalizeAbilityWotlkClass(form.wotlkClass);
+  const treeName = form.treeName.trim() || undefined;
+
+  const base = {
     name: form.name.trim(),
     description: form.description.trim(),
-    wotlkClass: normalizeAbilityWotlkClass(form.wotlkClass),
+    wotlkClass,
     levelRequirement: form.levelRequirement,
     order: form.order,
     externalId: form.externalId.trim() || undefined,
@@ -167,8 +184,7 @@ export function formToAbilityArgs(form: AbilityFormState) {
     range: form.range.trim() || undefined,
     schools: parseOptionalNumber(form.schools),
     skillLineIds: parseSkillLineIds(form.skillLineIds),
-    treeIndex: parseOptionalNumber(form.treeIndex),
-    treeName: form.treeName.trim() || undefined,
+    treeName,
     row: parseOptionalNumber(form.row),
     col: parseOptionalNumber(form.col),
     hidden: form.hidden,
@@ -176,6 +192,25 @@ export function formToAbilityArgs(form: AbilityFormState) {
     probablyTalent: form.probablyTalent,
     tags: [] as string[],
   };
+
+  if (!isPlayableWotlkClass(wotlkClass)) {
+    return base;
+  }
+
+  return {
+    ...base,
+    treeIndex: treeName
+      ? specIndexForSubclass(wotlkClass, treeName)
+      : undefined,
+  };
+}
+
+export function resolveAbilitySubclassOnClassChange(
+  wotlkClass: string,
+  treeName: string,
+): string {
+  if (!isValidSubclassForClass(wotlkClass, treeName)) return "";
+  return treeName;
 }
 
 export function emptyTalentForm(wotlkClass = "mage"): TalentFormState {

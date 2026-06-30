@@ -7,6 +7,7 @@ import {
   groupAbilitiesBySpec,
   sortAbilitiesByLevel,
 } from "./abilities";
+import { specIndexForSubclass } from "./abilitySkillLines";
 import type { AbilityGameItem } from "./types";
 import { fromConvexAbility } from "./types";
 
@@ -57,13 +58,13 @@ describe("sortAbilitiesByLevel", () => {
 });
 
 describe("groupAbilitiesBySpec", () => {
-  it("prefers treeIndex over misleading skillLineIds for druid Feral", () => {
+  it("places abilities by treeName even when treeIndex and skillLineIds disagree", () => {
     const groups = groupAbilitiesBySpec(
       [
         ability({
           name: "Mangle",
-          treeIndex: 1,
-          treeName: "Feral Combat",
+          treeIndex: 0,
+          treeName: "Feral",
           skillLineIds: [134],
         }),
       ],
@@ -75,13 +76,13 @@ describe("groupAbilitiesBySpec", () => {
     expect(groups[0].abilities[0].name).toBe("Mangle");
   });
 
-  it("prefers treeIndex over misleading skillLineIds for priest Shadow", () => {
+  it("normalizes legacy subclass aliases via treeName", () => {
     const groups = groupAbilitiesBySpec(
       [
         ability({
           name: "Shadow Word: Pain",
           wotlkClass: "priest",
-          treeIndex: 2,
+          treeIndex: 0,
           treeName: "Shadow Magic",
           skillLineIds: [56],
         }),
@@ -93,12 +94,13 @@ describe("groupAbilitiesBySpec", () => {
     expect(groups[0].name).toBe("Shadow");
   });
 
-  it("falls back to skillLineIds when treeIndex is missing", () => {
+  it("falls back to skillLineIds when treeName is missing", () => {
     const groups = groupAbilitiesBySpec(
       [
         ability({
           name: "Wrath",
-          treeIndex: undefined,
+          treeIndex: 2,
+          treeName: undefined,
           skillLineIds: [573],
         }),
       ],
@@ -108,20 +110,67 @@ describe("groupAbilitiesBySpec", () => {
     expect(groups).toHaveLength(1);
     expect(groups[0].name).toBe("Balance");
   });
+
+  it("places abilities with empty subclass in General", () => {
+    const groups = groupAbilitiesBySpec(
+      [
+        ability({
+          name: "Bear Form",
+          treeIndex: 1,
+          treeName: undefined,
+          skillLineIds: undefined,
+        }),
+      ],
+      "druid",
+    );
+
+    expect(groups).toHaveLength(1);
+    expect(groups[0].name).toBe("General");
+  });
+
+  it("orders hunter columns as Marksmanship, Survival, Beast Mastery", () => {
+    const groups = groupAbilitiesBySpec(
+      [
+        ability({ name: "BM", wotlkClass: "hunter", treeName: "Beast Mastery" }),
+        ability({ name: "MM", wotlkClass: "hunter", treeName: "Marksmanship" }),
+        ability({ name: "SV", wotlkClass: "hunter", treeName: "Survival" }),
+      ],
+      "hunter",
+    );
+
+    expect(groups.map((g) => g.name)).toEqual([
+      "Marksmanship",
+      "Survival",
+      "Beast Mastery",
+    ]);
+  });
+
+  it("orders mage columns as Frost, Fire, Arcane", () => {
+    const groups = groupAbilitiesBySpec(
+      [
+        ability({ name: "Arc", wotlkClass: "mage", treeName: "Arcane" }),
+        ability({ name: "Fire", wotlkClass: "mage", treeName: "Fire" }),
+        ability({ name: "Frost", wotlkClass: "mage", treeName: "Frost" }),
+      ],
+      "mage",
+    );
+
+    expect(groups.map((g) => g.name)).toEqual(["Frost", "Fire", "Arcane"]);
+  });
 });
 
 describe("abilitySpecLabel", () => {
-  it("prefers treeIndex over skillLineIds", () => {
-    expect(abilitySpecLabel("druid", [134], 1)).toBe("Feral");
+  it("prefers treeName over skillLineIds", () => {
+    expect(abilitySpecLabel("druid", [134], "Feral")).toBe("Feral");
   });
 
-  it("falls back to skillLineIds when treeIndex is missing", () => {
+  it("falls back to skillLineIds when treeName is missing", () => {
     expect(abilitySpecLabel("druid", [573])).toBe("Balance");
   });
 });
 
 describe("grimfall seed data", () => {
-  it("places every playable ability in the column matching stored treeIndex", () => {
+  it("places every playable ability in the column matching stored treeName", () => {
     const playableClasses = [
       ...new Set(
         grimfallAbilities
@@ -149,7 +198,13 @@ describe("grimfall seed data", () => {
       for (const group of groups) {
         if (group.treeIndex == null) continue;
         for (const row of group.abilities) {
-          if (row.treeIndex !== group.treeIndex) mismatches += 1;
+          const subclass = row.treeName?.trim();
+          if (!subclass) continue;
+          const specIndex = specIndexForSubclass(
+            cls as Parameters<typeof specIndexForSubclass>[0],
+            subclass,
+          );
+          if (specIndex !== group.treeIndex) mismatches += 1;
         }
       }
     }

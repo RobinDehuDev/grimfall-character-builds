@@ -30,6 +30,7 @@ import type * as lib_talentGridType from "../lib/talentGridType.js";
 import type * as lib_wotlkClass from "../lib/wotlkClass.js";
 import type * as lib_wotlkClasses from "../lib/wotlkClasses.js";
 import type * as runicEnhancements from "../runicEnhancements.js";
+import type * as seed_fixAbilitySubclass from "../seed/fixAbilitySubclass.js";
 import type * as seed_fixAbilityWotlkClass from "../seed/fixAbilityWotlkClass.js";
 import type * as seed_fixCapstoneIcons from "../seed/fixCapstoneIcons.js";
 import type * as seed_flagProbablyTalents from "../seed/flagProbablyTalents.js";
@@ -77,6 +78,7 @@ declare const fullApi: ApiFromModules<{
   "lib/wotlkClass": typeof lib_wotlkClass;
   "lib/wotlkClasses": typeof lib_wotlkClasses;
   runicEnhancements: typeof runicEnhancements;
+  "seed/fixAbilitySubclass": typeof seed_fixAbilitySubclass;
   "seed/fixAbilityWotlkClass": typeof seed_fixAbilityWotlkClass;
   "seed/fixCapstoneIcons": typeof seed_fixCapstoneIcons;
   "seed/flagProbablyTalents": typeof seed_flagProbablyTalents;

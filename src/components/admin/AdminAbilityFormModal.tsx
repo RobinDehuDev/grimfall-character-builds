@@ -7,10 +7,15 @@ import {
   abilityToForm,
   emptyAbilityForm,
   formToAbilityArgs,
+  resolveAbilitySubclassOnClassChange,
   type AbilityFormState,
 } from "@/lib/adminItemForms";
 import type { AbilityGameItem } from "@/lib/types";
-import { normalizeAbilityWotlkClass } from "@/lib/wotlkClasses";
+import { playableSubclassOptions } from "@/lib/abilitySkillLines";
+import {
+  isPlayableWotlkClass,
+  normalizeAbilityWotlkClass,
+} from "@/lib/wotlkClasses";
 import { AdminFormModalShell } from "./AdminFormModalShell";
 import { AdminHiddenField } from "./AdminHiddenField";
 import { Button } from "@/components/ui/button";
@@ -53,6 +58,10 @@ export function AdminAbilityFormModal({
       : emptyAbilityForm(defaultWotlkClass),
   );
   const [saving, setSaving] = useState(false);
+
+  const wotlkClassSlug = normalizeAbilityWotlkClass(form.wotlkClass);
+  const isPlayableClass = isPlayableWotlkClass(wotlkClassSlug);
+  const subclassOptions = playableSubclassOptions(wotlkClassSlug);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,8 +138,14 @@ export function AdminAbilityFormModal({
         <div className="space-y-2 md:col-span-2">
           <Label>{t("admin.wotlkClass")}</Label>
           <Select
-            value={normalizeAbilityWotlkClass(form.wotlkClass)}
-            onValueChange={(v) => setForm({ ...form, wotlkClass: v })}
+            value={wotlkClassSlug}
+            onValueChange={(v) =>
+              setForm((prev) => ({
+                ...prev,
+                wotlkClass: v,
+                treeName: resolveAbilitySubclassOnClassChange(v, prev.treeName),
+              }))
+            }
           >
             <SelectTrigger>
               <SelectValue
@@ -173,22 +188,29 @@ export function AdminAbilityFormModal({
 
         <div className="space-y-2">
           <Label>{t("admin.subclass")}</Label>
-          <Input
-            value={form.treeName}
-            onChange={(e) => setForm({ ...form, treeName: e.target.value })}
-            placeholder="Blood"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label>{t("admin.treeIndex")}</Label>
-          <Input
-            type="number"
-            min={0}
-            max={2}
-            value={form.treeIndex}
-            onChange={(e) => setForm({ ...form, treeIndex: e.target.value })}
-          />
+          {isPlayableClass ? (
+            <Select
+              value={form.treeName || undefined}
+              onValueChange={(v) => setForm({ ...form, treeName: v })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder={t("admin.subclass")} />
+              </SelectTrigger>
+              <SelectContent>
+                {subclassOptions.map((spec) => (
+                  <SelectItem key={spec} value={spec}>
+                    {spec}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ) : (
+            <Input
+              value={form.treeName}
+              onChange={(e) => setForm({ ...form, treeName: e.target.value })}
+              placeholder="Blood"
+            />
+          )}
         </div>
 
         <div className="space-y-2">

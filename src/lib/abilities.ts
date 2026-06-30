@@ -2,7 +2,9 @@ import { BUILD_SLOTS } from "./buildSlots";
 import type { AbilityGameItem } from "./types";
 import {
   CLASS_SPEC_NAMES,
+  playableSpecColumnOrder,
   primarySkillLineId,
+  specIndexForSubclass,
   treeIndexForSkillLine,
 } from "./abilitySkillLines";
 import {
@@ -20,11 +22,13 @@ export type AbilitySpecGroup = {
   abilities: AbilityGameItem[];
 };
 
-function resolvePlayableTreeIndex(
+function resolveSpecIndexFromSubclass(
   ability: AbilityGameItem,
   wotlkClass: PlayableWotlkClassSlug,
 ): number | undefined {
-  if (ability.treeIndex !== undefined) return ability.treeIndex;
+  const fromSubclass = specIndexForSubclass(wotlkClass, ability.treeName);
+  if (fromSubclass !== undefined) return fromSubclass;
+
   const skillLineId = primarySkillLineId(ability.skillLineIds);
   return skillLineId !== undefined
     ? treeIndexForSkillLine(wotlkClass, skillLineId)
@@ -51,6 +55,7 @@ export function groupAbilitiesBySpec(
   wotlkClass: PlayableWotlkClassSlug,
 ): AbilitySpecGroup[] {
   const specNames = CLASS_SPEC_NAMES[wotlkClass];
+  const columnOrder = playableSpecColumnOrder(wotlkClass);
   const buckets = new Map<string, AbilitySpecGroup>();
 
   const ensureGroup = (
@@ -72,23 +77,23 @@ export function groupAbilitiesBySpec(
 
   ensureGroup("general", null, "General");
 
-  for (let i = 0; i < specNames.length; i += 1) {
-    ensureGroup(`spec-${i}`, i, specNames[i]);
+  for (const specIndex of columnOrder) {
+    ensureGroup(`spec-${specIndex}`, specIndex, specNames[specIndex]);
   }
 
   for (const ability of abilities) {
-    const treeIndex = resolvePlayableTreeIndex(ability, wotlkClass);
+    const specIndex = resolveSpecIndexFromSubclass(ability, wotlkClass);
 
     const group =
-      treeIndex === undefined
+      specIndex === undefined
         ? buckets.get("general")!
-        : buckets.get(`spec-${treeIndex}`)!;
+        : buckets.get(`spec-${specIndex}`)!;
     group.abilities.push(ability);
   }
 
   const orderedKeys = [
     "general",
-    ...specNames.map((_, index) => `spec-${index}`),
+    ...columnOrder.map((specIndex) => `spec-${specIndex}`),
   ];
 
   return orderedKeys
@@ -170,16 +175,22 @@ export function groupAbilitiesForClass(
 export function abilitySpecLabel(
   wotlkClass: string | undefined,
   skillLineIds: number[] | undefined,
-  treeIndex?: number,
+  treeName?: string,
 ): string | undefined {
   if (!wotlkClass || !isPlayableWotlkClass(wotlkClass)) return undefined;
-  let resolvedTreeIndex = treeIndex;
-  if (resolvedTreeIndex === undefined) {
-    const skillLineId = primarySkillLineId(skillLineIds);
-    if (skillLineId !== undefined) {
-      resolvedTreeIndex = treeIndexForSkillLine(wotlkClass, skillLineId);
+
+  const fromSubclass = specIndexForSubclass(wotlkClass, treeName);
+  if (fromSubclass !== undefined) {
+    return CLASS_SPEC_NAMES[wotlkClass][fromSubclass];
+  }
+
+  const skillLineId = primarySkillLineId(skillLineIds);
+  if (skillLineId !== undefined) {
+    const fromSkillLine = treeIndexForSkillLine(wotlkClass, skillLineId);
+    if (fromSkillLine !== undefined) {
+      return CLASS_SPEC_NAMES[wotlkClass][fromSkillLine];
     }
   }
-  if (resolvedTreeIndex === undefined) return "General";
-  return CLASS_SPEC_NAMES[wotlkClass][resolvedTreeIndex];
+
+  return "General";
 }
