@@ -3,7 +3,7 @@ import { emptyBuildSlots, BUILD_SLOTS, type BuildSlots } from "../lib/buildSlots
 import { CATEGORIES } from "../lib/categories";
 import type { Id } from "../../convex/_generated/dataModel";
 
-const DRAFT_KEY = "gimfall-build-draft";
+const DRAFT_KEY = "grimfall-build-draft";
 /** Bump when slot ID tables or draft shape changes. */
 const DRAFT_VERSION = 2;
 

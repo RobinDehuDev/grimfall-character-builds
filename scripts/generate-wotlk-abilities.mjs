@@ -11,7 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = join(__dirname, "../data/wotlk-abilities.json");
 const WOWHEAD_BASE = "https://www.wowhead.com/wotlk/spells/abilities";
 const TOOLTIP_BASE = "https://nether.wowhead.com/wotlk/tooltip/spell";
-const USER_AGENT = "Mozilla/5.0 (compatible; gimfall-character-builds/1.0)";
+const USER_AGENT = "Mozilla/5.0 (compatible; grimfall-character-builds/1.0)";
 
 const WOTLK_CLASSES = [
   { wotlkClass: "death-knight", name: "Death Knight", sortOrder: 1 },

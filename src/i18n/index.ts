@@ -8,7 +8,7 @@ import elf from "./locales/elf.json";
 export const SUPPORTED_LANGUAGES = ["en", "orc", "troll", "elf"] as const;
 export type AppLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
-const STORAGE_KEY = "gimfall-language";
+const STORAGE_KEY = "grimfall-language";
 
 function getInitialLanguage(): AppLanguage {
   const stored = localStorage.getItem(STORAGE_KEY);
