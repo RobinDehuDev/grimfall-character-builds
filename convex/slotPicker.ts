@@ -1,7 +1,9 @@
 import { query } from "./_generated/server";
 import { v } from "convex/values";
 import { runicQualityForSlot, type SlotCategory } from "./lib/slots";
-import { filterByWotlkClass } from "./lib/wotlkClass";
+import { filterByWotlkClass, filterHiddenWotlkClasses } from "./lib/wotlkClass";
+import { filterHiddenItems } from "./lib/itemVisibility";
+import { isViewerAdmin } from "./lib/auth";
 
 const slotCategoryValidator = v.union(
   v.literal("talent"),
@@ -21,26 +23,40 @@ export const listByClassAndCategory = query({
   handler: async (ctx, args) => {
     const category = args.category as SlotCategory;
     const wotlkClass = args.wotlkClass;
+    const includeHidden = await isViewerAdmin(ctx);
 
     if (category === "talent" || category === "epic_re") {
       const talents = await ctx.db.query("talents").collect();
-      return filterByWotlkClass(talents, wotlkClass);
+      return filterHiddenItems(
+        filterByWotlkClass(talents, wotlkClass),
+        false,
+      );
     }
 
     if (category === "ability") {
       const abilities = await ctx.db.query("abilities").collect();
-      return filterByWotlkClass(abilities, wotlkClass);
+      return filterHiddenItems(
+        filterHiddenWotlkClasses(
+          filterByWotlkClass(abilities, wotlkClass),
+          includeHidden,
+        ),
+        false,
+      );
     }
 
     if (category === "capstone") {
       const capstones = await ctx.db.query("capstones").collect();
-      return filterByWotlkClass(capstones, wotlkClass);
+      return filterHiddenItems(
+        filterByWotlkClass(capstones, wotlkClass),
+        false,
+      );
     }
 
     const quality = runicQualityForSlot(category)!;
-    return await ctx.db
+    const runicEnhancements = await ctx.db
       .query("runicEnhancements")
       .withIndex("by_quality", (q) => q.eq("quality", quality))
       .collect();
+    return filterHiddenItems(runicEnhancements, false);
   },
 });

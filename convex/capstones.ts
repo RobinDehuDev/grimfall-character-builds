@@ -1,13 +1,31 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
-import { requireAdmin } from "./lib/auth";
+import { requireAdmin, isViewerAdmin } from "./lib/auth";
+import { filterHiddenItems } from "./lib/itemVisibility";
 import { filterByWotlkClass } from "./lib/wotlkClass";
 
+const includeHiddenItemsArg = { includeHiddenItems: v.optional(v.boolean()) };
+
+async function resolveIncludeHiddenItems(
+  ctx: Parameters<typeof isViewerAdmin>[0],
+  requested?: boolean,
+) {
+  const isAdmin = await isViewerAdmin(ctx);
+  return isAdmin && (requested ?? false);
+}
+
 export const list = query({
-  args: { wotlkClass: v.optional(v.string()) },
+  args: { wotlkClass: v.optional(v.string()), ...includeHiddenItemsArg },
   handler: async (ctx, args) => {
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
     const capstones = await ctx.db.query("capstones").collect();
-    return filterByWotlkClass(capstones, args.wotlkClass);
+    return filterHiddenItems(
+      filterByWotlkClass(capstones, args.wotlkClass),
+      includeHiddenItems,
+    );
   },
 });
 
@@ -32,6 +50,7 @@ export const create = mutation({
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
+    hidden: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
@@ -41,6 +60,7 @@ export const create = mutation({
       wotlkClass: args.wotlkClass,
       externalId: args.externalId,
       icon: args.icon,
+      hidden: args.hidden ?? false,
       tags: args.tags ?? [],
     });
   },
@@ -55,12 +75,14 @@ export const update = mutation({
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
+    hidden: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
     const { id, ...fields } = args;
     await ctx.db.patch(id, {
       ...fields,
+      hidden: fields.hidden ?? false,
       tags: fields.tags ?? [],
     });
   },

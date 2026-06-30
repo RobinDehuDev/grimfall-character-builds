@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
-import { Check, Crosshair, Plus } from "lucide-react";
+import { Check, Crosshair, Pencil, Plus } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
 import { BUILD_SLOTS } from "@/lib/buildSlots";
 import { Input } from "@/components/ui/input";
@@ -28,12 +28,16 @@ interface TalentSearchPanelProps {
   selectedIds: ReadonlySet<string>;
   onFindTalent: (result: SpellSearchResult) => void;
   onAddTalent: (talentId: string) => void;
+  onEditItem?: (result: SpellSearchResult) => void;
+  includeHiddenItems?: boolean;
 }
 
 export function TalentSearchPanel({
   selectedIds,
   onFindTalent,
   onAddTalent,
+  onEditItem,
+  includeHiddenItems = false,
 }: TalentSearchPanelProps) {
   const { t } = useTranslation();
   const [searchInput, setSearchInput] = useState("");
@@ -47,7 +51,12 @@ export function TalentSearchPanel({
   const results = useQuery(
     api.talents.searchSpellItems,
     debouncedQuery.trim().length >= 2
-      ? { query: debouncedQuery.trim(), limit: 60, kinds: ["talent"] as const }
+      ? {
+          query: debouncedQuery.trim(),
+          limit: 60,
+          kinds: ["talent"] as const,
+          includeHiddenItems,
+        }
       : "skip",
   );
 
@@ -98,23 +107,32 @@ export function TalentSearchPanel({
                             <Crosshair className="size-3.5" strokeWidth={2} />
                           </SpellSearchIconButton>
                         )}
-                        <SpellSearchIconButton
-                          label={
-                            isSelected
-                              ? t("talents.alreadySelected")
-                              : atCap
-                                ? t("talents.atCap")
-                                : t("talents.addToSelection")
-                          }
-                          onClick={() => onAddTalent(result._id)}
-                          disabled={!canAdd}
-                        >
-                          {isSelected ? (
-                            <Check className="size-3.5" strokeWidth={2} />
-                          ) : (
-                            <Plus className="size-3.5" strokeWidth={2} />
-                          )}
-                        </SpellSearchIconButton>
+                        {onEditItem ? (
+                          <SpellSearchIconButton
+                            label={t("admin.editTalent")}
+                            onClick={() => onEditItem(result)}
+                          >
+                            <Pencil className="size-3.5" strokeWidth={2} />
+                          </SpellSearchIconButton>
+                        ) : (
+                          <SpellSearchIconButton
+                            label={
+                              isSelected
+                                ? t("talents.alreadySelected")
+                                : atCap
+                                  ? t("talents.atCap")
+                                  : t("talents.addToSelection")
+                            }
+                            onClick={() => onAddTalent(result._id)}
+                            disabled={!canAdd}
+                          >
+                            {isSelected ? (
+                              <Check className="size-3.5" strokeWidth={2} />
+                            ) : (
+                              <Plus className="size-3.5" strokeWidth={2} />
+                            )}
+                          </SpellSearchIconButton>
+                        )}
                       </>
                     }
                   />

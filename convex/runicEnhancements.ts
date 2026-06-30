@@ -1,12 +1,23 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import type { Doc, Id } from "./_generated/dataModel";
-import { requireAdmin } from "./lib/auth";
+import { requireAdmin, isViewerAdmin } from "./lib/auth";
+import { filterHiddenItems } from "./lib/itemVisibility";
 import { RUNIC_QUALITIES, type RunicQuality } from "./lib/slots";
 
 const runicQualityValidator = v.union(
   ...RUNIC_QUALITIES.map((q) => v.literal(q)),
 );
+
+const includeHiddenItemsArg = { includeHiddenItems: v.optional(v.boolean()) };
+
+async function resolveIncludeHiddenItems(
+  ctx: Parameters<typeof isViewerAdmin>[0],
+  requested?: boolean,
+) {
+  const isAdmin = await isViewerAdmin(ctx);
+  return isAdmin && (requested ?? false);
+}
 
 async function assertAbilityReferences(
   ctx: { db: { get: (id: Id<"abilities">) => Promise<Doc<"abilities"> | null> } },
@@ -23,15 +34,19 @@ async function assertAbilityReferences(
 }
 
 export const list = query({
-  args: { quality: v.optional(runicQualityValidator) },
+  args: { quality: v.optional(runicQualityValidator), ...includeHiddenItemsArg },
   handler: async (ctx, args) => {
-    if (args.quality) {
-      return await ctx.db
-        .query("runicEnhancements")
-        .withIndex("by_quality", (q) => q.eq("quality", args.quality as RunicQuality))
-        .collect();
-    }
-    return await ctx.db.query("runicEnhancements").collect();
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
+    const rows = args.quality
+      ? await ctx.db
+          .query("runicEnhancements")
+          .withIndex("by_quality", (q) => q.eq("quality", args.quality as RunicQuality))
+          .collect()
+      : await ctx.db.query("runicEnhancements").collect();
+    return filterHiddenItems(rows, includeHiddenItems);
   },
 });
 
@@ -55,6 +70,7 @@ export const create = mutation({
     description: v.string(),
     mainAbility: v.optional(v.union(v.id("abilities"), v.null())),
     otherAbilities: v.optional(v.array(v.id("abilities"))),
+    hidden: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
@@ -67,6 +83,7 @@ export const create = mutation({
       description: args.description,
       mainAbility,
       otherAbilities,
+      hidden: args.hidden ?? false,
     });
   },
 });
@@ -79,6 +96,7 @@ export const update = mutation({
     description: v.string(),
     mainAbility: v.optional(v.union(v.id("abilities"), v.null())),
     otherAbilities: v.optional(v.array(v.id("abilities"))),
+    hidden: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
@@ -92,6 +110,7 @@ export const update = mutation({
       description: rest.description,
       mainAbility,
       otherAbilities,
+      hidden: rest.hidden ?? false,
     });
   },
 });

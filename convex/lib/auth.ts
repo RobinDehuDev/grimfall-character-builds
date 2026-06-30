@@ -30,3 +30,13 @@ export async function requireRole(ctx: Ctx, role: string) {
 export async function requireAdmin(ctx: Ctx) {
   return requireRole(ctx, "admin");
 }
+
+export async function isViewerAdmin(ctx: Ctx): Promise<boolean> {
+  const identity = await ctx.auth.getUserIdentity();
+  if (!identity) return false;
+  const user = await ctx.db
+    .query("users")
+    .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+    .unique();
+  return user ? hasRole(user.roles, "admin") : false;
+}

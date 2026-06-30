@@ -1,5 +1,6 @@
 import { useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 import { getItemSlotCategory, type GameItem } from "@/lib/types";
@@ -135,6 +136,7 @@ interface ItemPickerOptionProps {
 }
 
 export function ItemPickerOption({ item, onClick }: ItemPickerOptionProps) {
+  const { t } = useTranslation();
   const [showTip, setShowTip] = useState(false);
   const [tipPos, setTipPos] = useState({ x: 0, y: 0 });
   const rowRef = useRef<HTMLButtonElement>(null);
@@ -154,6 +156,7 @@ export function ItemPickerOption({ item, onClick }: ItemPickerOptionProps) {
           "w-full rounded px-2.5 py-1.5 text-left text-sm font-semibold transition-colors",
           "hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
           itemColorClass(item),
+          item.hidden && "item-picker-option--hidden",
         )}
         onClick={onClick}
         onMouseEnter={() => {
@@ -167,7 +170,10 @@ export function ItemPickerOption({ item, onClick }: ItemPickerOptionProps) {
         }}
         onBlur={() => setShowTip(false)}
       >
-        <span className="block truncate">{item.name}</span>
+        <span className="block truncate">
+          {item.name}
+          {item.hidden ? ` · ${t("admin.hiddenItemBadge")}` : ""}
+        </span>
       </button>
 
       {showTip &&

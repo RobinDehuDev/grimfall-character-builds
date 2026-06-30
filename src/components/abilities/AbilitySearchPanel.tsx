@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
-import { Check, Crosshair, Plus } from "lucide-react";
+import { Check, Crosshair, Pencil, Plus } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
 import { BUILD_SLOTS } from "@/lib/buildSlots";
 import { Input } from "@/components/ui/input";
@@ -16,12 +16,16 @@ interface AbilitySearchPanelProps {
   selectedIds: ReadonlySet<string>;
   onFindAbility: (result: SpellSearchResult) => void;
   onAddAbility: (abilityId: string) => void;
+  onEditItem?: (result: SpellSearchResult) => void;
+  includeHiddenItems?: boolean;
 }
 
 export function AbilitySearchPanel({
   selectedIds,
   onFindAbility,
   onAddAbility,
+  onEditItem,
+  includeHiddenItems = false,
 }: AbilitySearchPanelProps) {
   const { t } = useTranslation();
   const [searchInput, setSearchInput] = useState("");
@@ -35,7 +39,7 @@ export function AbilitySearchPanel({
   const results = useQuery(
     api.talents.searchSpellItems,
     debouncedQuery.trim().length >= 2
-      ? { query: debouncedQuery.trim(), limit: 60, kinds: ["ability"] as const }
+      ? { query: debouncedQuery.trim(), limit: 60, kinds: ["ability"] as const, includeHiddenItems }
       : "skip",
   );
 
@@ -86,23 +90,32 @@ export function AbilitySearchPanel({
                             <Crosshair className="size-3.5" strokeWidth={2} />
                           </SpellSearchIconButton>
                         )}
-                        <SpellSearchIconButton
-                          label={
-                            isSelected
-                              ? t("abilities.alreadySelected")
-                              : atCap
-                                ? t("abilities.atCap")
-                                : t("abilities.addToSelection")
-                          }
-                          onClick={() => onAddAbility(result._id)}
-                          disabled={!canAdd}
-                        >
-                          {isSelected ? (
-                            <Check className="size-3.5" strokeWidth={2} />
-                          ) : (
-                            <Plus className="size-3.5" strokeWidth={2} />
-                          )}
-                        </SpellSearchIconButton>
+                        {onEditItem ? (
+                          <SpellSearchIconButton
+                            label={t("admin.editAbility")}
+                            onClick={() => onEditItem(result)}
+                          >
+                            <Pencil className="size-3.5" strokeWidth={2} />
+                          </SpellSearchIconButton>
+                        ) : (
+                          <SpellSearchIconButton
+                            label={
+                              isSelected
+                                ? t("abilities.alreadySelected")
+                                : atCap
+                                  ? t("abilities.atCap")
+                                  : t("abilities.addToSelection")
+                            }
+                            onClick={() => onAddAbility(result._id)}
+                            disabled={!canAdd}
+                          >
+                            {isSelected ? (
+                              <Check className="size-3.5" strokeWidth={2} />
+                            ) : (
+                              <Plus className="size-3.5" strokeWidth={2} />
+                            )}
+                          </SpellSearchIconButton>
+                        )}
                       </>
                     }
                   />

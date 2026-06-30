@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import type { TalentGameItem } from "@/lib/types";
 import { talentIconUrl } from "@/lib/talents";
@@ -11,6 +12,7 @@ interface TalentIconProps {
   highlighted?: boolean;
   readOnly?: boolean;
   onToggle?: () => void;
+  onItemClick?: () => void;
 }
 
 export function TalentIcon({
@@ -19,7 +21,9 @@ export function TalentIcon({
   highlighted = false,
   readOnly = false,
   onToggle,
+  onItemClick,
 }: TalentIconProps) {
+  const { t } = useTranslation();
   const [showTip, setShowTip] = useState(false);
   const [tipPos, setTipPos] = useState({ x: 0, y: 0 });
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -44,13 +48,14 @@ export function TalentIcon({
           selected && "talent-icon--selected",
           highlighted && "talent-icon--highlighted",
           readOnly && "talent-icon--readonly",
+          talent.hidden && "talent-icon--hidden",
         )}
         style={{
           gridRow: talent.row,
           gridColumn: talent.col,
         }}
-        disabled={readOnly}
-        onClick={() => onToggle?.()}
+        disabled={readOnly && !onItemClick}
+        onClick={() => (onItemClick ? onItemClick() : onToggle?.())}
         onMouseEnter={() => {
           updateTipPosition();
           setShowTip(true);
@@ -87,6 +92,9 @@ export function TalentIcon({
             role="tooltip"
           >
             <p className="talent-tooltip__name">{talent.name}</p>
+            {talent.hidden && (
+              <p className="talent-tooltip__level">{t("admin.hiddenItemBadge")}</p>
+            )}
             {talent.description && (
               <p className="talent-tooltip__desc">{talent.description}</p>
             )}

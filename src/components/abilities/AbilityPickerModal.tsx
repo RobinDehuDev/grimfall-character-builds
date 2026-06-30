@@ -9,17 +9,22 @@ import { BUILD_SLOTS } from "@/lib/buildSlots";
 import type { AbilityGameItem } from "@/lib/types";
 import { fromConvexAbility } from "@/lib/types";
 import {
-  groupAbilitiesBySpec,
+  groupAbilitiesForClass,
   type AbilitySpecGroup,
 } from "@/lib/abilities";
 import {
+  abilityClassTabRows,
   WOTLK_CLASS_COLORS,
-  WOTLK_CLASS_ORDER,
-  type WotlkClassSlug,
-} from "@/lib/talents";
-import { isWotlkClassSlug } from "@/lib/abilitySkillLines";
+  normalizeAbilityWotlkClass,
+  type AbilityClassSlug,
+} from "@/lib/wotlkClasses";
 import { cn } from "@/lib/utils";
+import {
+  type AbilityDisplayMode,
+  useAbilityDisplayMode,
+} from "@/lib/abilityDisplayMode";
 import { Button } from "@/components/ui/button";
+import { AbilityDisplayModeToggle } from "./AbilityDisplayModeToggle";
 import { AbilitySpecColumn } from "./AbilitySpecColumn";
 import { AbilitySearchPanel } from "./AbilitySearchPanel";
 import type { SpellSearchResult } from "../talents/TalentSearchPanel";
@@ -31,9 +36,12 @@ interface AbilityGridCoreProps {
   showSelectedStrip?: boolean;
   sessionKey?: number;
   hydrateIds?: Id<"abilities">[];
-  activeClass?: WotlkClassSlug;
-  onActiveClassChange?: (slug: WotlkClassSlug) => void;
+  activeClass?: AbilityClassSlug;
+  onActiveClassChange?: (slug: AbilityClassSlug) => void;
   highlightAbilityId?: string | null;
+  onItemClick?: (ability: AbilityGameItem) => void;
+  includeHiddenItems?: boolean;
+  displayMode: AbilityDisplayMode;
 }
 
 export function AbilityGridCore({
@@ -46,14 +54,18 @@ export function AbilityGridCore({
   activeClass: controlledClass,
   onActiveClassChange,
   highlightAbilityId = null,
+  onItemClick,
+  includeHiddenItems = false,
+  displayMode,
 }: AbilityGridCoreProps) {
   const { t } = useTranslation();
+  const manageMode = !!onItemClick;
   const abilityClasses = useQuery(api.abilities.listAbilityClasses);
-  const [internalClass, setInternalClass] = useState<WotlkClassSlug>("death-knight");
+  const [internalClass, setInternalClass] = useState<AbilityClassSlug>("death-knight");
   const [nameById, setNameById] = useState<Map<string, string>>(() => new Map());
 
   const activeClass = controlledClass ?? internalClass;
-  const setActiveClass = (slug: WotlkClassSlug) => {
+  const setActiveClass = (slug: AbilityClassSlug) => {
     if (onActiveClassChange) onActiveClassChange(slug);
     else setInternalClass(slug);
   };
@@ -61,25 +73,37 @@ export function AbilityGridCore({
   const classGroupsCache = useRef<Map<string, AbilitySpecGroup[]>>(new Map());
   const namesHydratedForSession = useRef(-1);
 
-  const classTabs = useMemo(() => {
-    if (!abilityClasses) return [];
-    const bySlug = new Map(
-      abilityClasses
-        .filter((c) => c.wotlkClass)
-        .map((c) => [c.wotlkClass!, { slug: c.wotlkClass!, name: c.name }]),
-    );
-    return WOTLK_CLASS_ORDER.filter((slug) => bySlug.has(slug)).map(
-      (slug) => bySlug.get(slug)!,
-    );
-  }, [abilityClasses]);
+  const { playableClassTabs, hiddenClassTabs } = useMemo(() => {
+    if (!abilityClasses) return { playableClassTabs: [], hiddenClassTabs: [] };
+    const bySlug = new Map<string, { slug: string; name: string }>();
+    for (const c of abilityClasses) {
+      if (!c.wotlkClass) continue;
+      bySlug.set(c.wotlkClass, { slug: c.wotlkClass, name: c.name });
+    }
+    const rows = abilityClassTabRows(manageMode);
+    const toTabs = (slugs: string[]) =>
+      slugs.filter((slug) => bySlug.has(slug)).map((slug) => bySlug.get(slug)!);
+    return {
+      playableClassTabs: toTabs(rows.playable),
+      hiddenClassTabs: toTabs(rows.hidden),
+    };
+  }, [abilityClasses, manageMode]);
+
+  const classTabs = useMemo(
+    () => [...playableClassTabs, ...hiddenClassTabs],
+    [playableClassTabs, hiddenClassTabs],
+  );
 
   const effectiveClass =
-    classTabs.find((c) => c.slug === activeClass)?.slug ??
+    classTabs.find(
+      (c) => c.slug === normalizeAbilityWotlkClass(activeClass),
+    )?.slug ??
     classTabs[0]?.slug ??
-    activeClass;
+    normalizeAbilityWotlkClass(activeClass);
 
   const abilities = useQuery(api.abilities.listByWotlkClass, {
     wotlkClass: effectiveClass,
+    includeHiddenItems,
   });
 
   const gameAbilities = useMemo(
@@ -87,10 +111,10 @@ export function AbilityGridCore({
     [abilities],
   );
 
-  const specGroups = useMemo(() => {
-    if (!isWotlkClassSlug(effectiveClass)) return [];
-    return groupAbilitiesBySpec(gameAbilities, effectiveClass);
-  }, [gameAbilities, effectiveClass]);
+  const specGroups = useMemo(
+    () => groupAbilitiesForClass(gameAbilities, effectiveClass),
+    [gameAbilities, effectiveClass],
+  );
 
   useEffect(() => {
     if (specGroups.length > 0) {
@@ -147,6 +171,10 @@ export function AbilityGridCore({
 
   const handleToggle = useCallback(
     (ability: AbilityGameItem) => {
+      if (manageMode) {
+        onItemClick!(ability);
+        return;
+      }
       if (readOnly) return;
       const next = new Set(selectedIds);
       if (next.has(ability.id)) {
@@ -158,7 +186,7 @@ export function AbilityGridCore({
       }
       onSelectionChange(next);
     },
-    [readOnly, selectedIds, maxAbilities, onSelectionChange],
+    [manageMode, onItemClick, readOnly, selectedIds, maxAbilities, onSelectionChange],
   );
 
   const selectedList = useMemo(
@@ -170,38 +198,67 @@ export function AbilityGridCore({
     [selectedIds, nameById],
   );
 
+  const renderClassTab = (cls: { slug: string; name: string }) => (
+    <button
+      key={cls.slug}
+      type="button"
+      role="tab"
+      aria-selected={effectiveClass === cls.slug}
+      className={cn(
+        "talent-class-tab",
+        effectiveClass === cls.slug && "talent-class-tab--active",
+      )}
+      style={
+        effectiveClass === cls.slug
+          ? {
+              borderBottomColor: WOTLK_CLASS_COLORS[cls.slug] ?? "var(--gold)",
+            }
+          : undefined
+      }
+      onClick={() => setActiveClass(cls.slug as AbilityClassSlug)}
+    >
+      {cls.name}
+    </button>
+  );
+
   return (
     <div className="ability-grid">
       <div className="ability-grid__toolbar">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="talent-class-tabs flex-1" role="tablist" aria-busy={isLoadingClasses}>
-            {classTabs.map((cls) => (
-            <button
-              key={cls.slug}
-              type="button"
-              role="tab"
-              aria-selected={effectiveClass === cls.slug}
-              className={cn(
-                "talent-class-tab",
-                effectiveClass === cls.slug && "talent-class-tab--active",
-              )}
-              style={
-                effectiveClass === cls.slug
-                  ? {
-                      borderBottomColor:
-                        WOTLK_CLASS_COLORS[cls.slug] ?? "var(--gold)",
-                    }
-                  : undefined
-              }
-              onClick={() => setActiveClass(cls.slug as WotlkClassSlug)}
+          {manageMode ? (
+            <div className="flex min-w-0 flex-1 flex-col gap-0">
+              <div
+                className="talent-class-tabs"
+                role="tablist"
+                aria-busy={isLoadingClasses}
+              >
+                {playableClassTabs.map(renderClassTab)}
+              </div>
+              <div
+                className="talent-class-tabs talent-class-tabs--admin-hidden"
+                role="tablist"
+                aria-label={t("admin.hiddenClasses")}
+              >
+                {hiddenClassTabs.map(renderClassTab)}
+              </div>
+            </div>
+          ) : (
+            <div
+              className="talent-class-tabs flex-1"
+              role="tablist"
+              aria-busy={isLoadingClasses}
             >
-              {cls.name}
-            </button>
-          ))}
-        </div>
-        <span className="shrink-0 font-mono text-xs text-muted-foreground">
-          {t("abilities.counter", { count: selectedIds.size, max: maxAbilities })}
-        </span>
+              {playableClassTabs.map(renderClassTab)}
+            </div>
+          )}
+          {!manageMode && (
+            <span className="shrink-0 font-mono text-xs text-muted-foreground">
+              {t("abilities.counter", {
+                count: selectedIds.size,
+                max: maxAbilities,
+              })}
+            </span>
+          )}
         </div>
       </div>
 
@@ -212,6 +269,9 @@ export function AbilityGridCore({
         <div
           className={cn(
             "ability-spec-columns",
+            displayMode === "game"
+              ? "ability-spec-columns--game"
+              : "ability-spec-columns--compact",
             (abilities === undefined && cachedGroups) || isLoadingClass
               ? "ability-spec-columns--stale"
               : undefined,
@@ -223,14 +283,15 @@ export function AbilityGridCore({
               group={group}
               selectedIds={selectedIds}
               highlightedAbilityId={highlightAbilityId}
-              readOnly={readOnly}
+              readOnly={readOnly && !manageMode}
               onToggle={handleToggle}
+              onItemClick={onItemClick}
             />
           ))}
         </div>
       </div>
 
-      {!readOnly && showSelectedStrip && (
+      {!readOnly && showSelectedStrip && !manageMode && (
         <div
           className={cn(
             "talent-selected-strip",
@@ -269,21 +330,23 @@ function AbilityModalEditor({
   setDraftIds,
   sessionKey,
   hydrateIds,
+  displayMode,
 }: {
   draftIds: Set<string>;
   setDraftIds: Dispatch<SetStateAction<Set<string>>>;
   sessionKey: number;
   hydrateIds: Id<"abilities">[];
+  displayMode: AbilityDisplayMode;
 }) {
-  const [activeClass, setActiveClass] = useState<WotlkClassSlug>("death-knight");
+  const [activeClass, setActiveClass] = useState<AbilityClassSlug>("death-knight");
   const [highlightAbilityId, setHighlightAbilityId] = useState<string | null>(
     null,
   );
 
   const handleFindAbility = (result: SpellSearchResult) => {
-    if (!result.wotlkClass) return;
-    if (!isWotlkClassSlug(result.wotlkClass)) return;
-    setActiveClass(result.wotlkClass);
+    setActiveClass(
+      normalizeAbilityWotlkClass(result.wotlkClass) as AbilityClassSlug,
+    );
     setHighlightAbilityId(result._id);
     window.setTimeout(() => setHighlightAbilityId(null), 2500);
   };
@@ -309,6 +372,7 @@ function AbilityModalEditor({
           activeClass={activeClass}
           onActiveClassChange={setActiveClass}
           highlightAbilityId={highlightAbilityId}
+          displayMode={displayMode}
         />
       </div>
       <AbilitySearchPanel
@@ -334,6 +398,7 @@ export function AbilityPickerModal({
   onSelectionChange,
 }: AbilityPickerModalProps) {
   const { t } = useTranslation();
+  const { displayMode, setDisplayMode } = useAbilityDisplayMode();
   const [draftIds, setDraftIds] = useState<Set<string>>(() => new Set());
   const [sessionKey, setSessionKey] = useState(0);
   const [hydrateIds, setHydrateIds] = useState<Id<"abilities">[]>([]);
@@ -387,16 +452,22 @@ export function AbilityPickerModal({
           <h2 id="ability-modal-title" className="talent-modal__title ability-modal__title">
             {t("abilities.editAbilities")}
           </h2>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 shrink-0"
-            onClick={onClose}
-            aria-label={t("common.close")}
-          >
-            <X className="size-4" />
-          </Button>
+          <div className="flex shrink-0 items-center gap-2">
+            <AbilityDisplayModeToggle
+              mode={displayMode}
+              onChange={setDisplayMode}
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 shrink-0"
+              onClick={onClose}
+              aria-label={t("common.close")}
+            >
+              <X className="size-4" />
+            </Button>
+          </div>
         </div>
 
         <div className="talent-modal__body">
@@ -405,6 +476,7 @@ export function AbilityPickerModal({
             setDraftIds={setDraftIds}
             sessionKey={sessionKey}
             hydrateIds={hydrateIds}
+            displayMode={displayMode}
           />
         </div>
 

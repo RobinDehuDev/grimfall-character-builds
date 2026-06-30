@@ -1,24 +1,66 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
-import { requireAdmin } from "./lib/auth";
+import { requireAdmin, isViewerAdmin } from "./lib/auth";
+import { filterHiddenItems } from "./lib/itemVisibility";
 import { itemMatchesSearch } from "./lib/tags";
-import { classNameFromWotlkSlug, filterByWotlkClass } from "./lib/wotlkClass";
-import { WOTLK_CLASSES } from "./lib/wotlkClasses";
+import {
+  classNameFromWotlkSlug,
+  filterByWotlkClass,
+  filterHiddenWotlkClasses,
+  normalizeAbilityWotlkClass,
+} from "./lib/wotlkClass";
+import { WOTLK_PLAYABLE_CLASSES } from "./lib/wotlkClasses";
+
+function spellItemSearchFields(item: {
+  name: string;
+  description: string;
+  tags: string[];
+  wotlkClass: string;
+}) {
+  const wotlkClass = normalizeAbilityWotlkClass(item.wotlkClass);
+  const className = classNameFromWotlkSlug(wotlkClass);
+  return {
+    name: item.name,
+    description: item.description,
+    tags: [
+      ...item.tags,
+      wotlkClass,
+      wotlkClass.replace(/-/g, " "),
+      ...(className ? [className] : []),
+    ],
+  };
+}
+
+const includeHiddenItemsArg = { includeHiddenItems: v.optional(v.boolean()) };
+
+async function resolveIncludeHiddenItems(
+  ctx: Parameters<typeof isViewerAdmin>[0],
+  requested?: boolean,
+) {
+  const isAdmin = await isViewerAdmin(ctx);
+  return isAdmin && (requested ?? false);
+}
 
 export const listByWotlkClass = query({
-  args: { wotlkClass: v.string() },
+  args: { wotlkClass: v.string(), ...includeHiddenItemsArg },
   handler: async (ctx, args) => {
-    return await ctx.db
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
+    const wotlkClass = normalizeAbilityWotlkClass(args.wotlkClass);
+    const talents = await ctx.db
       .query("talents")
-      .withIndex("by_wotlk_class", (q) => q.eq("wotlkClass", args.wotlkClass))
+      .withIndex("by_wotlk_class", (q) => q.eq("wotlkClass", wotlkClass))
       .collect();
+    return filterHiddenItems(talents, includeHiddenItems);
   },
 });
 
 export const listTalentClasses = query({
   args: {},
   handler: async () => {
-    return WOTLK_CLASSES.map((c) => ({
+    return WOTLK_PLAYABLE_CLASSES.map((c) => ({
       wotlkClass: c.wotlkClass,
       name: c.name,
       sortOrder: c.sortOrder,
@@ -27,10 +69,17 @@ export const listTalentClasses = query({
 });
 
 export const list = query({
-  args: { wotlkClass: v.optional(v.string()) },
+  args: { wotlkClass: v.optional(v.string()), ...includeHiddenItemsArg },
   handler: async (ctx, args) => {
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
     const talents = await ctx.db.query("talents").collect();
-    return filterByWotlkClass(talents, args.wotlkClass);
+    return filterHiddenItems(
+      filterByWotlkClass(talents, args.wotlkClass),
+      includeHiddenItems,
+    );
   },
 });
 
@@ -43,6 +92,7 @@ export const searchSpellItems = query({
         v.union(v.literal("talent"), v.literal("ability"), v.literal("capstone")),
       ),
     ),
+    ...includeHiddenItemsArg,
   },
   handler: async (ctx, args) => {
     const q = args.query.trim();
@@ -53,6 +103,11 @@ export const searchSpellItems = query({
     const wantTalent = kinds.includes("talent");
     const wantAbility = kinds.includes("ability");
     const wantCapstone = kinds.includes("capstone");
+    const includeHiddenClasses = await isViewerAdmin(ctx);
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
 
     const [talents, abilities, capstones] = await Promise.all([
       wantTalent ? ctx.db.query("talents").collect() : Promise.resolve([]),
@@ -61,12 +116,9 @@ export const searchSpellItems = query({
     ]);
 
     const talentResults = wantTalent
-      ? talents
+      ? filterHiddenItems(talents, includeHiddenItems)
           .filter((item) =>
-            itemMatchesSearch(
-              { name: item.name, description: item.description, tags: item.tags },
-              q,
-            ),
+            itemMatchesSearch(spellItemSearchFields(item), q),
           )
           .map((item) => ({
             _id: item._id,
@@ -74,19 +126,19 @@ export const searchSpellItems = query({
             name: item.name,
             description: item.description,
             tags: item.tags,
-            wotlkClass: item.wotlkClass,
+            wotlkClass: normalizeAbilityWotlkClass(item.wotlkClass),
             treeName: item.treeName,
             className: classNameFromWotlkSlug(item.wotlkClass),
           }))
       : [];
 
     const abilityResults = wantAbility
-      ? abilities
+      ? filterHiddenItems(
+          filterHiddenWotlkClasses(abilities, includeHiddenClasses),
+          includeHiddenItems,
+        )
           .filter((item) =>
-            itemMatchesSearch(
-              { name: item.name, description: item.description, tags: item.tags },
-              q,
-            ),
+            itemMatchesSearch(spellItemSearchFields(item), q),
           )
           .map((item) => ({
             _id: item._id,
@@ -94,7 +146,7 @@ export const searchSpellItems = query({
             name: item.name,
             description: item.description,
             tags: item.tags,
-            wotlkClass: item.wotlkClass,
+            wotlkClass: normalizeAbilityWotlkClass(item.wotlkClass),
             className: classNameFromWotlkSlug(item.wotlkClass),
             levelRequirement: item.levelRequirement,
             skillLineIds: item.skillLineIds,
@@ -102,12 +154,9 @@ export const searchSpellItems = query({
       : [];
 
     const capstoneResults = wantCapstone
-      ? capstones
+      ? filterHiddenItems(capstones, includeHiddenItems)
           .filter((item) =>
-            itemMatchesSearch(
-              { name: item.name, description: item.description, tags: item.tags },
-              q,
-            ),
+            itemMatchesSearch(spellItemSearchFields(item), q),
           )
           .map((item) => ({
             _id: item._id,
@@ -115,7 +164,7 @@ export const searchSpellItems = query({
             name: item.name,
             description: item.description,
             tags: item.tags,
-            wotlkClass: item.wotlkClass,
+            wotlkClass: normalizeAbilityWotlkClass(item.wotlkClass),
             className: classNameFromWotlkSlug(item.wotlkClass),
           }))
       : [];
@@ -151,12 +200,15 @@ export const create = mutation({
     spellId: v.optional(v.number()),
     externalId: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
+    hidden: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
+    const { hidden, ...rest } = args;
     return await ctx.db.insert("talents", {
-      ...args,
+      ...rest,
       levelRequirement: args.levelRequirement ?? 0,
+      hidden: hidden ?? false,
       tags: args.tags ?? [],
     });
   },
@@ -177,13 +229,15 @@ export const update = mutation({
     spellId: v.optional(v.number()),
     externalId: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
+    hidden: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { id, ...fields } = args;
+    const { id, hidden, ...fields } = args;
     await ctx.db.patch(id, {
       ...fields,
       levelRequirement: fields.levelRequirement ?? 0,
+      hidden: hidden ?? false,
       tags: fields.tags ?? [],
     });
   },

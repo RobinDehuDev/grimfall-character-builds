@@ -15,6 +15,7 @@ import {
   WOTLK_CLASS_ORDER,
   type WotlkClassSlug,
 } from "@/lib/talents";
+import { normalizeAbilityWotlkClass } from "@/lib/wotlkClasses";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { TalentTreeColumn } from "./TalentTreeColumn";
@@ -55,6 +56,8 @@ interface TalentGridCoreProps {
   onActiveClassChange?: (slug: WotlkClassSlug) => void;
   highlightTalentId?: string | null;
   maxSelections?: number;
+  onItemClick?: (talent: TalentGameItem) => void;
+  includeHiddenItems?: boolean;
 }
 
 export function TalentGridCore({
@@ -68,6 +71,8 @@ export function TalentGridCore({
   onActiveClassChange,
   highlightTalentId = null,
   maxSelections = BUILD_SLOTS.talent,
+  onItemClick,
+  includeHiddenItems = false,
 }: TalentGridCoreProps) {
   const { t } = useTranslation();
   const talentClasses = useQuery(api.talents.listTalentClasses);
@@ -96,12 +101,15 @@ export function TalentGridCore({
   }, [talentClasses]);
 
   const effectiveClass =
-    classTabs.find((c) => c.slug === activeClass)?.slug ??
+    classTabs.find(
+      (c) => c.slug === normalizeAbilityWotlkClass(activeClass),
+    )?.slug ??
     classTabs[0]?.slug ??
-    activeClass;
+    normalizeAbilityWotlkClass(activeClass);
 
   const talents = useQuery(api.talents.listByWotlkClass, {
     wotlkClass: effectiveClass,
+    includeHiddenItems,
   });
 
   const gameTalents = useMemo(
@@ -165,8 +173,14 @@ export function TalentGridCore({
 
   const maxTalents = maxSelections;
 
+  const manageMode = !!onItemClick;
+
   const handleToggle = useCallback(
     (talent: TalentGameItem) => {
+      if (manageMode) {
+        onItemClick!(talent);
+        return;
+      }
       if (readOnly) return;
       const next = new Set(selectedIds);
       if (next.has(talent.id)) {
@@ -178,7 +192,7 @@ export function TalentGridCore({
       }
       onSelectionChange(next);
     },
-    [readOnly, selectedIds, maxTalents, onSelectionChange],
+    [manageMode, onItemClick, readOnly, selectedIds, maxTalents, onSelectionChange],
   );
 
   const selectedList = useMemo(
@@ -220,9 +234,11 @@ export function TalentGridCore({
             </button>
           ))}
         </div>
+        {!manageMode && (
         <span className="shrink-0 font-mono text-xs text-muted-foreground">
           {t("talents.counter", { count: selectedIds.size, max: maxTalents })}
         </span>
+        )}
         </div>
       </div>
 
@@ -247,15 +263,16 @@ export function TalentGridCore({
               gridRows={TALENT_GRID_ROWS}
               gridCols={TALENT_GRID_COLS}
               selectedIds={selectedIds}
-              readOnly={readOnly}
+              readOnly={readOnly && !manageMode}
               highlightedTalentId={highlightTalentId}
               onToggle={handleToggle}
+              onItemClick={onItemClick}
             />
           ))}
         </div>
       </div>
 
-      {!readOnly && showSelectedStrip && (
+      {!readOnly && showSelectedStrip && !manageMode && (
         <div
           className={cn(
             "talent-selected-strip",
@@ -304,8 +321,9 @@ function TalentModalEditor({
   const [highlightTalentId, setHighlightTalentId] = useState<string | null>(null);
 
   const handleFindTalent = (result: SpellSearchResult) => {
-    if (!result.wotlkClass) return;
-    setActiveClass(result.wotlkClass as WotlkClassSlug);
+    setActiveClass(
+      normalizeAbilityWotlkClass(result.wotlkClass) as WotlkClassSlug,
+    );
     setHighlightTalentId(result._id);
     window.setTimeout(() => setHighlightTalentId(null), 2500);
   };

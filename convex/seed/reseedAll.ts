@@ -28,7 +28,10 @@ export const run = internalAction({
 
     const wotlkResult = await ctx.runMutation(internal.seed.wotlkTalents.seed, {});
 
-    const abilitiesResult = await ctx.runMutation(internal.seed.wotlkAbilities.seed, {});
+    const abilitiesResult = await ctx.runMutation(
+      internal.seed.grimfallAbilities.seed,
+      {},
+    );
 
     const legendaryResult = await ctx.runMutation(internal.seed.legendaryRes.seed, {});
 

@@ -35,6 +35,9 @@ export default defineSchema({
     treeName: v.optional(v.string()),
     row: v.optional(v.number()),
     col: v.optional(v.number()),
+    hidden: v.optional(v.boolean()),
+    addedFromWowhead: v.optional(v.boolean()),
+    probablyTalent: v.optional(v.boolean()),
   })
     .index("by_wotlk_class", ["wotlkClass"])
     .index("by_spell_id", ["spellId"]),
@@ -46,6 +49,7 @@ export default defineSchema({
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.array(v.string()),
+    hidden: v.optional(v.boolean()),
   }).index("by_wotlk_class", ["wotlkClass"]),
 
   talents: defineTable({
@@ -62,6 +66,7 @@ export default defineSchema({
     externalId: v.optional(v.string()),
     tags: v.array(v.string()),
     type: v.optional(talentGridTypeValidator),
+    hidden: v.optional(v.boolean()),
   }).index("by_wotlk_class", ["wotlkClass"]),
 
   runicEnhancements: defineTable({
@@ -70,6 +75,7 @@ export default defineSchema({
     description: v.string(),
     mainAbility: v.union(v.id("abilities"), v.null()),
     otherAbilities: v.array(v.id("abilities")),
+    hidden: v.optional(v.boolean()),
   }).index("by_quality", ["quality"]),
 
   builds: defineTable({

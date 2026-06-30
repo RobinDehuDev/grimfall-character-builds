@@ -4,33 +4,11 @@ export function talentIconUrl(icon: string) {
   return `${WOW_ICON_CDN}/${icon}.jpg`;
 }
 
-export const WOTLK_CLASS_COLORS: Record<string, string> = {
-  "death-knight": "#C41E3A",
-  druid: "#FF7C0A",
-  hunter: "#AAD372",
-  mage: "#3FC7EB",
-  paladin: "#F48CBA",
-  priest: "#FFFFFF",
-  rogue: "#FFF468",
-  shaman: "#0070DD",
-  warlock: "#8788EE",
-  warrior: "#C69B6D",
-};
-
-export const WOTLK_CLASS_ORDER = [
-  "death-knight",
-  "druid",
-  "hunter",
-  "mage",
-  "paladin",
-  "priest",
-  "rogue",
-  "shaman",
-  "warlock",
-  "warrior",
-] as const;
-
-export type WotlkClassSlug = (typeof WOTLK_CLASS_ORDER)[number];
+export {
+  WOTLK_PLAYABLE_CLASS_ORDER as WOTLK_CLASS_ORDER,
+  WOTLK_CLASS_COLORS,
+  type PlayableWotlkClassSlug as WotlkClassSlug,
+} from "./wotlkClasses";
 
 /** WoWhead-style grid dimensions per talent tree (excludes tree capstone row) */
 export const TALENT_GRID_ROWS = 10;

@@ -11,7 +11,10 @@ interface AbilityIconProps {
   selected: boolean;
   highlighted?: boolean;
   readOnly?: boolean;
+  showWowheadHighlight?: boolean;
+  showAdminHighlights?: boolean;
   onToggle?: () => void;
+  onItemClick?: () => void;
 }
 
 export function AbilityIcon({
@@ -19,7 +22,10 @@ export function AbilityIcon({
   selected,
   highlighted = false,
   readOnly = false,
+  showWowheadHighlight = false,
+  showAdminHighlights = false,
   onToggle,
+  onItemClick,
 }: AbilityIconProps) {
   const { t } = useTranslation();
   const [showTip, setShowTip] = useState(false);
@@ -46,9 +52,16 @@ export function AbilityIcon({
           selected && "talent-icon--selected",
           highlighted && "talent-icon--highlighted",
           readOnly && "talent-icon--readonly",
+          ability.hidden && "talent-icon--hidden",
+          showWowheadHighlight &&
+            ability.addedFromWowhead &&
+            "talent-icon--wowhead",
+          showAdminHighlights &&
+            ability.probablyTalent &&
+            "talent-icon--probably-talent",
         )}
-        disabled={readOnly}
-        onClick={() => onToggle?.()}
+        disabled={readOnly && !onItemClick}
+        onClick={() => (onItemClick ? onItemClick() : onToggle?.())}
         onMouseEnter={() => {
           updateTipPosition();
           setShowTip(true);
@@ -91,6 +104,15 @@ export function AbilityIcon({
             role="tooltip"
           >
             <p className="talent-tooltip__name">{ability.name}</p>
+            {ability.hidden && (
+              <p className="talent-tooltip__level">{t("admin.hiddenItemBadge")}</p>
+            )}
+            {ability.addedFromWowhead && (
+              <p className="talent-tooltip__level">{t("admin.addedFromWowhead")}</p>
+            )}
+            {ability.probablyTalent && (
+              <p className="talent-tooltip__level">{t("admin.probablyTalent")}</p>
+            )}
             {ability.levelRequirement > 0 && (
               <p className="talent-tooltip__level">
                 {t("common.requiresLevel", { level: ability.levelRequirement })}

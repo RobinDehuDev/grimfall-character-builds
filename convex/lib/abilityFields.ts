@@ -14,4 +14,6 @@ export const abilityMetadataArgs = {
   treeName: v.optional(v.string()),
   row: v.optional(v.number()),
   col: v.optional(v.number()),
+  addedFromWowhead: v.optional(v.boolean()),
+  probablyTalent: v.optional(v.boolean()),
 };

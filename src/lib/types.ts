@@ -4,6 +4,7 @@ import {
   type RunicQuality,
   type SlotCategory,
 } from "./categories";
+import { normalizeAbilityWotlkClass } from "./wotlkClasses";
 
 interface BaseGameItem {
   id: string;
@@ -31,6 +32,9 @@ export interface AbilityGameItem extends BaseGameItem {
   treeName?: string;
   row?: number;
   col?: number;
+  hidden?: boolean;
+  addedFromWowhead?: boolean;
+  probablyTalent?: boolean;
 }
 
 export interface CapstoneGameItem extends BaseGameItem {
@@ -39,6 +43,7 @@ export interface CapstoneGameItem extends BaseGameItem {
   externalId?: string;
   icon?: string;
   tags: string[];
+  hidden?: boolean;
 }
 
 export interface TalentGameItem extends BaseGameItem {
@@ -53,6 +58,7 @@ export interface TalentGameItem extends BaseGameItem {
   spellId?: number;
   externalId?: string;
   tags: string[];
+  hidden?: boolean;
 }
 
 export interface RunicEnhancementGameItem extends BaseGameItem {
@@ -60,6 +66,7 @@ export interface RunicEnhancementGameItem extends BaseGameItem {
   quality: RunicQuality;
   mainAbility: string | null;
   otherAbilities: string[];
+  hidden?: boolean;
 }
 
 export type GameItem =
@@ -78,7 +85,7 @@ export function fromConvexAbility(item: Doc<"abilities">): AbilityGameItem {
     type: "ability",
     name: item.name,
     description: item.description,
-    wotlkClass: item.wotlkClass,
+    wotlkClass: normalizeAbilityWotlkClass(item.wotlkClass),
     levelRequirement: item.levelRequirement,
     externalId: item.externalId,
     icon: item.icon,
@@ -96,6 +103,9 @@ export function fromConvexAbility(item: Doc<"abilities">): AbilityGameItem {
     treeName: item.treeName,
     row: item.row,
     col: item.col,
+    hidden: item.hidden,
+    addedFromWowhead: item.addedFromWowhead,
+    probablyTalent: item.probablyTalent,
   };
 }
 
@@ -109,6 +119,7 @@ export function fromConvexCapstone(item: Doc<"capstones">): CapstoneGameItem {
     externalId: item.externalId,
     icon: item.icon,
     tags: item.tags,
+    hidden: item.hidden,
   };
 }
 
@@ -128,6 +139,7 @@ export function fromConvexTalent(item: Doc<"talents">): TalentGameItem {
     spellId: item.spellId,
     externalId: item.externalId,
     tags: item.tags,
+    hidden: item.hidden,
   };
 }
 
@@ -142,6 +154,7 @@ export function fromConvexRunicEnhancement(
     quality: item.quality,
     mainAbility: item.mainAbility,
     otherAbilities: item.otherAbilities,
+    hidden: item.hidden,
   };
 }
 

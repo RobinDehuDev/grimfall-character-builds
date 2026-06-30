@@ -8,6 +8,7 @@ interface AbilitySpecColumnProps {
   highlightedAbilityId?: string | null;
   readOnly?: boolean;
   onToggle: (ability: AbilityGameItem) => void;
+  onItemClick?: (ability: AbilityGameItem) => void;
 }
 
 export function AbilitySpecColumn({
@@ -16,6 +17,7 @@ export function AbilitySpecColumn({
   highlightedAbilityId = null,
   readOnly = false,
   onToggle,
+  onItemClick,
 }: AbilitySpecColumnProps) {
   return (
     <section className="ability-spec-column" aria-label={group.name}>
@@ -27,8 +29,11 @@ export function AbilitySpecColumn({
             ability={ability}
             selected={selectedIds.has(ability.id)}
             highlighted={highlightedAbilityId === ability.id}
-            readOnly={readOnly}
+            readOnly={readOnly && !onItemClick}
+            showWowheadHighlight={!!onItemClick}
+            showAdminHighlights={!!onItemClick}
             onToggle={() => onToggle(ability)}
+            onItemClick={onItemClick ? () => onItemClick(ability) : undefined}
           />
         ))}
       </div>

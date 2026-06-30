@@ -12,6 +12,7 @@ interface TalentTreeColumnProps {
   readOnly?: boolean;
   highlightedTalentId?: string | null;
   onToggle?: (talent: TalentGameItem) => void;
+  onItemClick?: (talent: TalentGameItem) => void;
 }
 
 export function TalentTreeColumn({
@@ -24,6 +25,7 @@ export function TalentTreeColumn({
   readOnly = false,
   highlightedTalentId = null,
   onToggle,
+  onItemClick,
 }: TalentTreeColumnProps) {
   const maxRow = Math.max(gridRows, ...talents.map((t) => t.row));
   const maxCol = Math.max(gridCols, ...talents.map((t) => t.col));
@@ -44,8 +46,9 @@ export function TalentTreeColumn({
             talent={talent}
             selected={selectedIds.has(talent.id)}
             highlighted={highlightedTalentId === talent.id}
-            readOnly={readOnly}
+            readOnly={readOnly && !onItemClick}
             onToggle={() => onToggle?.(talent)}
+            onItemClick={onItemClick ? () => onItemClick(talent) : undefined}
           />
         ))}
       </div>

@@ -1,3 +1,5 @@
+import { classNameFromWotlkSlug, normalizeAbilityWotlkClass } from "./wotlkClass";
+
 const SCHOOL_KEYWORDS = [
   "arcane",
   "fire",
@@ -43,8 +45,11 @@ export function computeItemTags(opts: {
 }): string[] {
   const tags = new Set<string>([opts.kind]);
   if (opts.wotlkClass) {
-    tags.add(opts.wotlkClass);
-    tags.add(opts.wotlkClass.replace(/-/g, " "));
+    const slug = normalizeAbilityWotlkClass(opts.wotlkClass);
+    tags.add(slug);
+    tags.add(slug.replace(/-/g, " "));
+    const displayName = classNameFromWotlkSlug(slug);
+    if (displayName) tags.add(displayName.toLowerCase());
   }
   if (opts.className) tags.add(opts.className.toLowerCase());
   if (opts.treeName) tags.add(opts.treeName.toLowerCase());

@@ -1,32 +1,80 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { abilityMetadataArgs } from "./lib/abilityFields";
-import { requireAdmin } from "./lib/auth";
-import { filterByWotlkClass } from "./lib/wotlkClass";
-import { WOTLK_CLASSES } from "./lib/wotlkClasses";
+import { isViewerAdmin, requireAdmin } from "./lib/auth";
+import { filterHiddenItems } from "./lib/itemVisibility";
+import {
+  filterHiddenWotlkClasses,
+  normalizeAbilityWotlkClass,
+} from "./lib/wotlkClass";
+import {
+  HIDDEN_WOTLK_CLASSES,
+  isHiddenWotlkClass,
+  WOTLK_PLAYABLE_CLASSES,
+} from "./lib/wotlkClasses";
+
+const includeHiddenItemsArg = { includeHiddenItems: v.optional(v.boolean()) };
+
+async function resolveIncludeHiddenItems(
+  ctx: Parameters<typeof isViewerAdmin>[0],
+  requested?: boolean,
+) {
+  const isAdmin = await isViewerAdmin(ctx);
+  return isAdmin && (requested ?? false);
+}
 
 export const list = query({
-  args: { wotlkClass: v.optional(v.string()) },
+  args: includeHiddenItemsArg,
   handler: async (ctx, args) => {
+    const includeHiddenClasses = await isViewerAdmin(ctx);
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
     const abilities = await ctx.db.query("abilities").collect();
-    return filterByWotlkClass(abilities, args.wotlkClass);
+    return filterHiddenItems(
+      filterHiddenWotlkClasses(abilities, includeHiddenClasses),
+      includeHiddenItems,
+    );
   },
 });
 
 export const listByWotlkClass = query({
-  args: { wotlkClass: v.string() },
+  args: { wotlkClass: v.string(), ...includeHiddenItemsArg },
   handler: async (ctx, args) => {
-    return await ctx.db
-      .query("abilities")
-      .withIndex("by_wotlk_class", (q) => q.eq("wotlkClass", args.wotlkClass))
-      .collect();
+    const includeHiddenClasses = await isViewerAdmin(ctx);
+    const includeHiddenItems = await resolveIncludeHiddenItems(
+      ctx,
+      args.includeHiddenItems,
+    );
+    const wotlkClass = normalizeAbilityWotlkClass(args.wotlkClass);
+    if (isHiddenWotlkClass(wotlkClass) && !includeHiddenClasses) {
+      return [];
+    }
+    const abilities =
+      wotlkClass === "unknown"
+        ? (await ctx.db.query("abilities").collect()).filter(
+            (ability) =>
+              normalizeAbilityWotlkClass(ability.wotlkClass) === "unknown",
+          )
+        : await ctx.db
+            .query("abilities")
+            .withIndex("by_wotlk_class", (q) =>
+              q.eq("wotlkClass", wotlkClass),
+            )
+            .collect();
+    return filterHiddenItems(abilities, includeHiddenItems);
   },
 });
 
 export const listAbilityClasses = query({
   args: {},
-  handler: async () => {
-    return WOTLK_CLASSES.map((c) => ({
+  handler: async (ctx) => {
+    const includeHidden = await isViewerAdmin(ctx);
+    const classes = includeHidden
+      ? [...WOTLK_PLAYABLE_CLASSES, ...HIDDEN_WOTLK_CLASSES]
+      : WOTLK_PLAYABLE_CLASSES;
+    return classes.map((c) => ({
       wotlkClass: c.wotlkClass,
       name: c.name,
       sortOrder: c.sortOrder,
@@ -56,14 +104,19 @@ export const create = mutation({
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
+    hidden: v.optional(v.boolean()),
     ...abilityMetadataArgs,
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { tags, levelRequirement, ...rest } = args;
+    const { tags, levelRequirement, hidden, addedFromWowhead, probablyTalent, wotlkClass, ...rest } = args;
     return await ctx.db.insert("abilities", {
       ...rest,
+      wotlkClass: normalizeAbilityWotlkClass(wotlkClass),
       levelRequirement: levelRequirement ?? 0,
+      hidden: hidden ?? false,
+      addedFromWowhead: addedFromWowhead ?? false,
+      probablyTalent: probablyTalent ?? false,
       tags: tags ?? [],
     });
   },
@@ -79,14 +132,19 @@ export const update = mutation({
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
+    hidden: v.optional(v.boolean()),
     ...abilityMetadataArgs,
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { id, tags, levelRequirement, ...rest } = args;
+    const { id, tags, levelRequirement, hidden, addedFromWowhead, probablyTalent, wotlkClass, ...rest } = args;
     await ctx.db.patch(id, {
       ...rest,
+      wotlkClass: normalizeAbilityWotlkClass(wotlkClass),
       levelRequirement: levelRequirement ?? 0,
+      hidden: hidden ?? false,
+      addedFromWowhead: addedFromWowhead ?? false,
+      probablyTalent: probablyTalent ?? false,
       tags: tags ?? [],
     });
   },

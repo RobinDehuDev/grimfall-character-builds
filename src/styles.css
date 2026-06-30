@@ -237,6 +237,10 @@
     @apply flex flex-wrap gap-1 border-b border-border pb-1;
   }
 
+  .talent-class-tabs--admin-hidden {
+    @apply border-b border-border border-t border-border/60 pt-1;
+  }
+
   .talent-class-tab {
     @apply rounded-t px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors;
     color: var(--muted-foreground);
@@ -345,6 +349,33 @@
 
   .talent-icon--readonly {
     @apply cursor-default;
+  }
+
+  .talent-icon--hidden {
+    opacity: 0.55;
+    filter: grayscale(0.35);
+  }
+
+  .talent-icon--wowhead {
+    background: oklch(0.92 0.22 98 / 0.72);
+    border-color: oklch(0.96 0.24 102);
+    box-shadow:
+      0 0 0 2px oklch(0.96 0.24 102 / 0.95),
+      0 0 14px oklch(0.93 0.23 100 / 0.9),
+      inset 0 0 10px oklch(0.98 0.2 102 / 0.35);
+  }
+
+  .talent-icon--probably-talent {
+    background: oklch(0.72 0.2 250 / 0.55);
+    border-color: oklch(0.78 0.22 250);
+    box-shadow:
+      0 0 0 2px oklch(0.78 0.22 250 / 0.95),
+      0 0 14px oklch(0.72 0.2 250 / 0.85);
+  }
+
+  .item-picker-option--hidden {
+    opacity: 0.55;
+    font-style: italic;
   }
 
   .talent-icon__img {
@@ -585,9 +616,17 @@
   }
 
   .ability-spec-column {
-    @apply min-w-[9rem] flex-1 shrink-0 rounded-md border p-2;
+    @apply flex-1 shrink-0 rounded-md border p-2;
     border-color: oklch(1 0 0 / 0.1);
     background: oklch(0 0 0 / 0.2);
+  }
+
+  .ability-spec-columns--compact .ability-spec-column {
+    @apply min-w-[9rem];
+  }
+
+  .ability-spec-columns--game .ability-spec-column {
+    @apply min-w-[14rem];
   }
 
   .ability-spec-column__title {
@@ -597,8 +636,65 @@
   }
 
   .ability-spec-grid {
-    @apply grid gap-1;
+    @apply grid;
+  }
+
+  .ability-spec-columns--compact .ability-spec-grid {
+    @apply gap-1;
     grid-template-columns: repeat(auto-fill, minmax(2.25rem, 1fr));
+  }
+
+  .ability-spec-columns--compact .ability-spec-grid .talent-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ability-spec-columns--compact .ability-spec-grid .talent-icon__img,
+  .ability-spec-columns--compact .ability-spec-grid .ability-icon__fallback {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ability-spec-columns--game .ability-spec-grid {
+    @apply gap-2;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  .ability-spec-columns--game .ability-spec-grid .talent-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .ability-spec-columns--game .ability-spec-grid .talent-icon__img,
+  .ability-spec-columns--game .ability-spec-grid .ability-icon__fallback {
+    width: 58px;
+    height: 58px;
+  }
+
+  .ability-spec-columns--game .ability-spec-grid .ability-icon__fallback {
+    @apply text-sm;
+  }
+
+  .ability-display-mode-toggle {
+    @apply inline-flex overflow-hidden rounded-md border;
+    border-color: oklch(1 0 0 / 0.15);
+  }
+
+  .ability-display-mode-toggle__btn {
+    @apply px-2.5 py-1 text-xs font-medium transition-colors;
+    color: var(--muted-foreground);
+    background: oklch(0 0 0 / 0.25);
+  }
+
+  .ability-display-mode-toggle__btn:hover {
+    color: var(--foreground);
+    background: oklch(1 0 0 / 0.08);
+  }
+
+  .ability-display-mode-toggle__btn--active {
+    color: var(--foreground);
+    background: oklch(1 0 0 / 0.12);
   }
 
   .ability-icon {
