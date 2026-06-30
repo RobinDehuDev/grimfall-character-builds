@@ -54,6 +54,7 @@ export const run = internalMutation({
         description: talent.description,
         wotlkClass: talent.wotlkClass,
         levelRequirement: 0,
+        order: 0,
         externalId: talent.externalId,
         icon: talent.icon,
         treeIndex: talent.treeIndex,

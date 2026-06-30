@@ -23,6 +23,7 @@ export const seed = internalMutation({
         description: ability.description,
         wotlkClass: ability.wotlkClass,
         levelRequirement: ability.levelRequirement ?? 0,
+        order: 0,
         externalId: ability.externalId,
         spellId: ability.spellId,
         icon: ability.icon,

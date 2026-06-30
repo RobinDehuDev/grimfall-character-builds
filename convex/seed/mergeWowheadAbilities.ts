@@ -50,6 +50,7 @@ function wotlkToDoc(row: WotlkAbilityRow) {
     description: row.description,
     wotlkClass,
     levelRequirement: row.levelRequirement ?? 0,
+    order: 0,
     externalId: row.externalId,
     icon: row.icon,
     spellId: row.spellId,

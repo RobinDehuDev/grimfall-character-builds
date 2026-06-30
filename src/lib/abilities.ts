@@ -38,6 +38,9 @@ export function sortAbilitiesByLevel(
   if (a.levelRequirement !== b.levelRequirement) {
     return a.levelRequirement - b.levelRequirement;
   }
+  if (a.order !== b.order) {
+    return a.order - b.order;
+  }
   const nameCmp = a.name.localeCompare(b.name);
   if (nameCmp !== 0) return nameCmp;
   return (a.spellId ?? 0) - (b.spellId ?? 0);

@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   abilitySpecLabel,
   groupAbilitiesBySpec,
+  sortAbilitiesByLevel,
 } from "./abilities";
 import type { AbilityGameItem } from "./types";
 import { fromConvexAbility } from "./types";
@@ -33,10 +34,27 @@ function ability(
     description: "",
     wotlkClass: overrides.wotlkClass ?? "druid",
     levelRequirement: overrides.levelRequirement ?? 1,
+    order: overrides.order ?? 0,
     tags: [],
     ...overrides,
   };
 }
+
+describe("sortAbilitiesByLevel", () => {
+  it("sorts by level, then order, then name", () => {
+    const abilities = [
+      ability({ name: "Beta", levelRequirement: 10, order: 1 }),
+      ability({ name: "Alpha", levelRequirement: 10, order: 0 }),
+      ability({ name: "Gamma", levelRequirement: 20, order: 0 }),
+    ];
+
+    expect([...abilities].sort(sortAbilitiesByLevel).map((a) => a.name)).toEqual([
+      "Alpha",
+      "Beta",
+      "Gamma",
+    ]);
+  });
+});
 
 describe("groupAbilitiesBySpec", () => {
   it("prefers treeIndex over misleading skillLineIds for druid Feral", () => {

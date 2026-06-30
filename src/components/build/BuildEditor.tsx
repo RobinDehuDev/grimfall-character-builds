@@ -9,6 +9,7 @@ import { buildItemMap, fromSlotPickerRow } from "../../lib/types";
 import { CategorySection } from "./CategorySection";
 import { TalentCategorySection } from "../talents/TalentCategorySection";
 import { AbilityCategorySection } from "../abilities/AbilityCategorySection";
+import { CapstoneCategorySection } from "../capstones/CapstoneCategorySection";
 import {
   slotsToConvexIds,
   stripUnresolvedSlotIds,
@@ -297,14 +298,15 @@ export function BuildEditor({ mode, buildId }: BuildEditorProps) {
             }}
             getItemById={getItemById}
           />
-          <CategorySectionWithQuery
+          <CapstoneCategorySection
             meta={CATEGORIES.find((c) => c.key === "capstone")!}
             slots={slots.capstone}
-            usedItemIds={usedItemIds}
             activeSlot={activeCategory === "capstone" ? activeSlot : null}
             onSlotClick={(index) => handleSlotClick("capstone", index)}
-            onItemSelect={(item) => handleItemSelect("capstone", item)}
             onSlotClear={(index) => handleSlotClear("capstone", index)}
+            onSlotsChange={(capstoneSlots) => {
+              setSlots((prev) => ({ ...prev, capstone: capstoneSlots }));
+            }}
             getItemById={getItemById}
           />
         </div>

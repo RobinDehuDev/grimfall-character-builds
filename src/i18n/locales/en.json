@@ -192,6 +192,17 @@
     "displayModeCompact": "Compact",
     "displayModeGame": "Game"
   },
+  "capstones": {
+    "editCapstone": "Edit capstone",
+    "searchLabel": "Search capstones",
+    "searchPlaceholder": "Name, description, or tag…",
+    "searchHint": "Type at least 2 characters to search capstones.",
+    "searchNoResults": "No matches found.",
+    "findInGrid": "Show in capstone grid",
+    "addToSelection": "Select capstone",
+    "alreadySelected": "Already selected",
+    "atCap": "Capstone slot filled"
+  },
   "compare": {
     "title": "Compare Builds",
     "description": "Comparing <strong>{{title}}</strong> against your current draft.",
@@ -282,6 +293,7 @@
     "allQualities": "All qualities",
     "details": "Details",
     "levelRequirement": "Level Requirement (0 = hidden)",
+    "abilityOrder": "Order (within same level)",
     "itemsCount": "Items ({{count}})",
     "allClasses": "All classes",
     "allCategories": "All categories",

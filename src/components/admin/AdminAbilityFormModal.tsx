@@ -160,6 +160,18 @@ export function AdminAbilityFormModal({
         </div>
 
         <div className="space-y-2">
+          <Label>{t("admin.abilityOrder")}</Label>
+          <Input
+            type="number"
+            min={0}
+            value={form.order}
+            onChange={(e) =>
+              setForm({ ...form, order: Number(e.target.value) })
+            }
+          />
+        </div>
+
+        <div className="space-y-2">
           <Label>{t("admin.subclass")}</Label>
           <Input
             value={form.treeName}

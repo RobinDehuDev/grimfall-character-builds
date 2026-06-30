@@ -16,6 +16,7 @@ export interface AbilityGameItem extends BaseGameItem {
   type: "ability";
   wotlkClass: string;
   levelRequirement: number;
+  order: number;
   externalId?: string;
   icon?: string;
   tags: string[];
@@ -87,6 +88,7 @@ export function fromConvexAbility(item: Doc<"abilities">): AbilityGameItem {
     description: item.description,
     wotlkClass: normalizeAbilityWotlkClass(item.wotlkClass),
     levelRequirement: item.levelRequirement,
+    order: item.order ?? 0,
     externalId: item.externalId,
     icon: item.icon,
     tags: item.tags,
@@ -200,6 +202,7 @@ export function toCreateAbilityArgs(item: Omit<AbilityGameItem, "id">) {
     description: item.description,
     wotlkClass: item.wotlkClass,
     levelRequirement: item.levelRequirement,
+    order: item.order,
     externalId: item.externalId,
     icon: item.icon,
     tags: item.tags,

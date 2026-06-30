@@ -681,6 +681,83 @@
     border-color: oklch(1 0 0 / 0.15);
   }
 
+  .capstone-grid__loading,
+  .capstone-grid__empty {
+    @apply py-8 text-center text-sm;
+    color: var(--muted-foreground);
+  }
+
+  .capstone-class-columns-area {
+    @apply min-h-[200px];
+  }
+
+  .capstone-class-columns-area--loading {
+    opacity: 0.65;
+  }
+
+  .capstone-class-columns {
+    @apply flex gap-4 overflow-x-auto pb-2;
+  }
+
+  .capstone-class-column {
+    @apply flex shrink-0 flex-col overflow-hidden rounded-md border p-0;
+    min-width: 4.5rem;
+    border-color: oklch(1 0 0 / 0.1);
+    background: oklch(0 0 0 / 0.2);
+  }
+
+  .capstone-class-column__title {
+    @apply border-b px-2 pb-1 pt-2 text-center font-display text-[11px] tracking-widest uppercase;
+    border-color: oklch(1 0 0 / 0.08);
+    color: var(--muted-foreground);
+  }
+
+  .capstone-class-column__icons {
+    @apply flex flex-col items-center gap-2 p-2.5;
+  }
+
+  .capstone-class-column__icons .talent-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .capstone-class-column__icons .talent-icon__img,
+  .capstone-class-column__icons .ability-icon__fallback {
+    width: 44px;
+    height: 44px;
+  }
+
+  .capstone-modal-layout {
+    @apply min-h-[min(68vh,640px)];
+  }
+
+  .capstone-admin-layout {
+    @apply gap-3;
+  }
+
+  .capstone-admin-layout .talent-search-panel {
+    @apply w-44 shrink-0 pl-3;
+  }
+
+  .capstone-admin-layout .capstone-class-columns {
+    @apply gap-3;
+  }
+
+  .capstone-admin-layout .capstone-class-column {
+    min-width: 3.5rem;
+  }
+
+  .capstone-admin-layout .capstone-class-column__icons .talent-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .capstone-admin-layout .capstone-class-column__icons .talent-icon__img,
+  .capstone-admin-layout .capstone-class-column__icons .ability-icon__fallback {
+    width: 38px;
+    height: 38px;
+  }
+
   .ability-display-mode-toggle__btn {
     @apply px-2.5 py-1 text-xs font-medium transition-colors;
     color: var(--muted-foreground);

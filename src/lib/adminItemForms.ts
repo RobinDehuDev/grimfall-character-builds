@@ -13,6 +13,7 @@ export type AbilityFormState = {
   description: string;
   wotlkClass: string;
   levelRequirement: number;
+  order: number;
   externalId: string;
   icon: string;
   spellId: string;
@@ -89,6 +90,7 @@ export function emptyAbilityForm(wotlkClass = "mage"): AbilityFormState {
     description: "",
     wotlkClass,
     levelRequirement: 0,
+    order: 0,
     externalId: "",
     icon: "",
     spellId: "",
@@ -125,6 +127,7 @@ export function abilityToForm(
     description: item.description,
     wotlkClass,
     levelRequirement: item.levelRequirement,
+    order: item.order,
     externalId: item.externalId ?? "",
     icon: item.icon ?? "",
     spellId: item.spellId?.toString() ?? "",
@@ -152,6 +155,7 @@ export function formToAbilityArgs(form: AbilityFormState) {
     description: form.description.trim(),
     wotlkClass: normalizeAbilityWotlkClass(form.wotlkClass),
     levelRequirement: form.levelRequirement,
+    order: form.order,
     externalId: form.externalId.trim() || undefined,
     icon: form.icon.trim() || undefined,
     spellId: parseOptionalNumber(form.spellId),

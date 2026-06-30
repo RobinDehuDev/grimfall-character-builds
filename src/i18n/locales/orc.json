@@ -151,6 +151,17 @@
     "selected": "Selected",
     "clickToRemove": "Click to remove"
   },
+  "capstones": {
+    "editCapstone": "Edit capstone",
+    "searchLabel": "Search capstones",
+    "searchPlaceholder": "Name, description, or tag…",
+    "searchHint": "Type at least 2 characters to search capstones.",
+    "searchNoResults": "No matches found.",
+    "findInGrid": "Show in capstone grid",
+    "addToSelection": "Select capstone",
+    "alreadySelected": "Already selected",
+    "atCap": "Capstone slot filled"
+  },
   "compare": {
     "title": "Face Off",
     "description": "Facin' off <strong>{{title}}</strong> against yer draft.",
@@ -241,6 +252,7 @@
     "allQualities": "All shines",
     "details": "Details",
     "levelRequirement": "Level Need (0 = hidden)",
+    "abilityOrder": "Order (within same level)",
     "itemsCount": "Loot ({{count}})",
     "allClasses": "All clans",
     "allCategories": "All categories",

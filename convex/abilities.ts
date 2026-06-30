@@ -101,6 +101,7 @@ export const create = mutation({
     description: v.string(),
     wotlkClass: v.string(),
     levelRequirement: v.optional(v.number()),
+    order: v.optional(v.number()),
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
@@ -109,11 +110,21 @@ export const create = mutation({
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { tags, levelRequirement, hidden, addedFromWowhead, probablyTalent, wotlkClass, ...rest } = args;
+    const {
+      tags,
+      levelRequirement,
+      order,
+      hidden,
+      addedFromWowhead,
+      probablyTalent,
+      wotlkClass,
+      ...rest
+    } = args;
     return await ctx.db.insert("abilities", {
       ...rest,
       wotlkClass: normalizeAbilityWotlkClass(wotlkClass),
       levelRequirement: levelRequirement ?? 0,
+      order: order ?? 0,
       hidden: hidden ?? false,
       addedFromWowhead: addedFromWowhead ?? false,
       probablyTalent: probablyTalent ?? false,
@@ -129,6 +140,7 @@ export const update = mutation({
     description: v.string(),
     wotlkClass: v.string(),
     levelRequirement: v.optional(v.number()),
+    order: v.optional(v.number()),
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
@@ -137,11 +149,22 @@ export const update = mutation({
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { id, tags, levelRequirement, hidden, addedFromWowhead, probablyTalent, wotlkClass, ...rest } = args;
+    const {
+      id,
+      tags,
+      levelRequirement,
+      order,
+      hidden,
+      addedFromWowhead,
+      probablyTalent,
+      wotlkClass,
+      ...rest
+    } = args;
     await ctx.db.patch(id, {
       ...rest,
       wotlkClass: normalizeAbilityWotlkClass(wotlkClass),
       levelRequirement: levelRequirement ?? 0,
+      order: order ?? 0,
       hidden: hidden ?? false,
       addedFromWowhead: addedFromWowhead ?? false,
       probablyTalent: probablyTalent ?? false,

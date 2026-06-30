@@ -19,6 +19,7 @@ export default defineSchema({
     description: v.string(),
     wotlkClass: v.string(),
     levelRequirement: v.number(),
+    order: v.optional(v.number()),
     externalId: v.optional(v.string()),
     icon: v.optional(v.string()),
     tags: v.array(v.string()),
