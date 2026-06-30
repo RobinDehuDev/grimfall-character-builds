@@ -26,10 +26,12 @@ import type * as lib_resolveAbilityWotlkClass from "../lib/resolveAbilityWotlkCl
 import type * as lib_roles from "../lib/roles.js";
 import type * as lib_slots from "../lib/slots.js";
 import type * as lib_tags from "../lib/tags.js";
+import type * as lib_talentEffect from "../lib/talentEffect.js";
 import type * as lib_talentGridType from "../lib/talentGridType.js";
 import type * as lib_wotlkClass from "../lib/wotlkClass.js";
 import type * as lib_wotlkClasses from "../lib/wotlkClasses.js";
 import type * as runicEnhancements from "../runicEnhancements.js";
+import type * as seed_backfillTalentEffects from "../seed/backfillTalentEffects.js";
 import type * as seed_fixAbilitySubclass from "../seed/fixAbilitySubclass.js";
 import type * as seed_fixAbilityWotlkClass from "../seed/fixAbilityWotlkClass.js";
 import type * as seed_fixCapstoneIcons from "../seed/fixCapstoneIcons.js";
@@ -74,10 +76,12 @@ declare const fullApi: ApiFromModules<{
   "lib/roles": typeof lib_roles;
   "lib/slots": typeof lib_slots;
   "lib/tags": typeof lib_tags;
+  "lib/talentEffect": typeof lib_talentEffect;
   "lib/talentGridType": typeof lib_talentGridType;
   "lib/wotlkClass": typeof lib_wotlkClass;
   "lib/wotlkClasses": typeof lib_wotlkClasses;
   runicEnhancements: typeof runicEnhancements;
+  "seed/backfillTalentEffects": typeof seed_backfillTalentEffects;
   "seed/fixAbilitySubclass": typeof seed_fixAbilitySubclass;
   "seed/fixAbilityWotlkClass": typeof seed_fixAbilityWotlkClass;
   "seed/fixCapstoneIcons": typeof seed_fixCapstoneIcons;

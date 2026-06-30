@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+import { talentEffectValidator } from "./lib/talentEffect";
 import { talentGridTypeValidator } from "./lib/talentGridType";
 import { RUNIC_QUALITIES } from "./lib/slots";
 
@@ -68,6 +69,7 @@ export default defineSchema({
     tags: v.array(v.string()),
     type: v.optional(talentGridTypeValidator),
     hidden: v.optional(v.boolean()),
+    effects: v.optional(v.array(talentEffectValidator)),
   }).index("by_wotlk_class", ["wotlkClass"]),
 
   runicEnhancements: defineTable({

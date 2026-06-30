@@ -3,6 +3,7 @@ import { v } from "convex/values";
 import { requireAdmin, isViewerAdmin } from "./lib/auth";
 import { filterHiddenItems } from "./lib/itemVisibility";
 import { itemMatchesSearch } from "./lib/tags";
+import { talentEffectValidator } from "./lib/talentEffect";
 import {
   classNameFromWotlkSlug,
   filterByWotlkClass,
@@ -201,15 +202,17 @@ export const create = mutation({
     externalId: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
     hidden: v.optional(v.boolean()),
+    effects: v.optional(v.array(talentEffectValidator)),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { hidden, ...rest } = args;
+    const { hidden, effects, ...rest } = args;
     return await ctx.db.insert("talents", {
       ...rest,
       levelRequirement: args.levelRequirement ?? 0,
       hidden: hidden ?? false,
       tags: args.tags ?? [],
+      ...(effects !== undefined ? { effects } : {}),
     });
   },
 });
@@ -230,15 +233,17 @@ export const update = mutation({
     externalId: v.optional(v.string()),
     tags: v.optional(v.array(v.string())),
     hidden: v.optional(v.boolean()),
+    effects: v.optional(v.array(talentEffectValidator)),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx);
-    const { id, hidden, ...fields } = args;
+    const { id, hidden, effects, ...fields } = args;
     await ctx.db.patch(id, {
       ...fields,
       levelRequirement: fields.levelRequirement ?? 0,
       hidden: hidden ?? false,
       tags: fields.tags ?? [],
+      ...(effects !== undefined ? { effects } : {}),
     });
   },
 });

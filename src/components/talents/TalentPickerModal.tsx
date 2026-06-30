@@ -23,6 +23,12 @@ import {
   TalentSearchPanel,
   type SpellSearchResult,
 } from "./TalentSearchPanel";
+import { TalentPickerAdvancedView } from "./TalentPickerAdvancedView";
+import { TalentSelectedStrip } from "./TalentSelectedStrip";
+import {
+  TalentPickerViewToggle,
+  type TalentPickerViewMode,
+} from "./TalentPickerViewToggle";
 
 type TreeGroup = {
   treeIndex: number;
@@ -77,7 +83,9 @@ export function TalentGridCore({
   const { t } = useTranslation();
   const talentClasses = useQuery(api.talents.listTalentClasses);
   const [internalClass, setInternalClass] = useState<WotlkClassSlug>("death-knight");
-  const [nameById, setNameById] = useState<Map<string, string>>(() => new Map());
+  const [talentById, setTalentById] = useState<Map<string, TalentGameItem>>(
+    () => new Map(),
+  );
 
   const activeClass = controlledClass ?? internalClass;
   const setActiveClass = (slug: WotlkClassSlug) => {
@@ -122,11 +130,11 @@ export function TalentGridCore({
   useEffect(() => {
     if (trees.length > 0) {
       classTreesCache.current.set(effectiveClass, trees);
-      setNameById((prev) => {
+      setTalentById((prev) => {
         const next = new Map(prev);
         for (const tree of trees) {
           for (const talent of tree.talents) {
-            next.set(talent.id, talent.name);
+            next.set(talent.id, talent);
           }
         }
         return next;
@@ -146,14 +154,36 @@ export function TalentGridCore({
   useEffect(() => {
     if (!hydratedItems || namesHydratedForSession.current === sessionKey) return;
     namesHydratedForSession.current = sessionKey;
-    setNameById((prev) => {
+    setTalentById((prev) => {
       const next = new Map(prev);
       for (const item of hydratedItems) {
-        next.set(item._id, item.name);
+        next.set(item._id, fromConvexTalent(item));
       }
       return next;
     });
   }, [hydratedItems, sessionKey]);
+
+  const missingSelectedIds = useMemo(
+    () =>
+      [...selectedIds].filter((id) => !talentById.has(id)) as Id<"talents">[],
+    [selectedIds, talentById],
+  );
+
+  const missingSelectedTalents = useQuery(
+    api.talents.getMany,
+    missingSelectedIds.length > 0 ? { ids: missingSelectedIds } : "skip",
+  );
+
+  useEffect(() => {
+    if (!missingSelectedTalents) return;
+    setTalentById((prev) => {
+      const next = new Map(prev);
+      for (const item of missingSelectedTalents) {
+        next.set(item._id, fromConvexTalent(item));
+      }
+      return next;
+    });
+  }, [missingSelectedTalents]);
 
   const cachedTrees = classTreesCache.current.get(effectiveClass);
   const isLoadingClass = talents === undefined && !cachedTrees;
@@ -188,20 +218,19 @@ export function TalentGridCore({
       } else {
         if (next.size >= maxTalents) return;
         next.add(talent.id);
-        setNameById((prev) => new Map(prev).set(talent.id, talent.name));
+        setTalentById((prev) => new Map(prev).set(talent.id, talent));
       }
       onSelectionChange(next);
     },
     [manageMode, onItemClick, readOnly, selectedIds, maxTalents, onSelectionChange],
   );
 
-  const selectedList = useMemo(
+  const selectedTalents = useMemo(
     () =>
-      [...selectedIds].map((id) => ({
-        id,
-        name: nameById.get(id) ?? "…",
-      })),
-    [selectedIds, nameById],
+      [...selectedIds]
+        .map((id) => talentById.get(id))
+        .filter((talent): talent is TalentGameItem => talent !== undefined),
+    [selectedIds, talentById],
   );
 
   return (
@@ -273,32 +302,14 @@ export function TalentGridCore({
       </div>
 
       {!readOnly && showSelectedStrip && !manageMode && (
-        <div
-          className={cn(
-            "talent-selected-strip",
-            selectedList.length === 0 && "talent-selected-strip--empty",
-          )}
-        >
-          <span className="talent-selected-strip__label">{t("talents.selected")}</span>
-          <div className="talent-selected-strip__items">
-            {selectedList.map((talent) => (
-              <button
-                key={talent.id}
-                type="button"
-                className="talent-selected-chip"
-                onClick={() => {
-                  const next = new Set(selectedIds);
-                  next.delete(talent.id);
-                  onSelectionChange(next);
-                }}
-                title={t("talents.clickToRemove")}
-              >
-                {talent.name}
-                <span aria-hidden>×</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <TalentSelectedStrip
+          selected={selectedTalents}
+          onRemove={(id) => {
+            const next = new Set(selectedIds);
+            next.delete(id);
+            onSelectionChange(next);
+          }}
+        />
       )}
     </div>
   );
@@ -310,12 +321,16 @@ function TalentModalEditor({
   sessionKey,
   hydrateIds,
   maxSelections,
+  viewMode,
+  onViewModeChange,
 }: {
   draftIds: Set<string>;
   setDraftIds: Dispatch<SetStateAction<Set<string>>>;
   sessionKey: number;
   hydrateIds: Id<"talents">[];
   maxSelections: number;
+  viewMode: TalentPickerViewMode;
+  onViewModeChange: (mode: TalentPickerViewMode) => void;
 }) {
   const [activeClass, setActiveClass] = useState<WotlkClassSlug>("death-knight");
   const [highlightTalentId, setHighlightTalentId] = useState<string | null>(null);
@@ -336,6 +351,27 @@ function TalentModalEditor({
       return next;
     });
   };
+
+  if (viewMode === "advanced") {
+    return (
+      <div className="talent-modal-layout talent-picker-modal-layout">
+        <div className="talent-modal-layout__grid talent-picker-modal-layout__grid talent-picker-advanced__main">
+          <TalentPickerAdvancedView
+            selectedIds={draftIds}
+            onSelectionChange={setDraftIds}
+            maxSelections={maxSelections}
+            collapsibleBuilder
+            showSelectedStrip
+          />
+        </div>
+        <TalentSearchPanel
+          selectedIds={draftIds}
+          onFindTalent={() => onViewModeChange("grid")}
+          onAddTalent={handleAddTalent}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="talent-modal-layout talent-picker-modal-layout">
@@ -361,6 +397,13 @@ function TalentModalEditor({
   );
 }
 
+function advancedTalentModalTitleKey(titleKey: string): string {
+  if (titleKey === "talents.editEpicTalents") {
+    return "talents.editEpicTalentsExperimental";
+  }
+  return "talents.editTalentsExperimental";
+}
+
 interface TalentPickerModalProps {
   open: boolean;
   onClose: () => void;
@@ -382,6 +425,7 @@ export function TalentPickerModal({
   const [draftIds, setDraftIds] = useState<Set<string>>(() => new Set());
   const [sessionKey, setSessionKey] = useState(0);
   const [hydrateIds, setHydrateIds] = useState<Id<"talents">[]>([]);
+  const [viewMode, setViewMode] = useState<TalentPickerViewMode>("grid");
   const selectedIdsRef = useRef(selectedIds);
   selectedIdsRef.current = selectedIds;
 
@@ -391,6 +435,7 @@ export function TalentPickerModal({
       setDraftIds(ids);
       setHydrateIds([...ids] as Id<"talents">[]);
       setSessionKey((k) => k + 1);
+      setViewMode("grid");
     }
   }, [open]);
 
@@ -430,18 +475,28 @@ export function TalentPickerModal({
       >
         <div className="talent-modal__header">
           <h2 id="talent-modal-title" className="talent-modal__title">
-            {t(titleKey)}
+            {t(
+              viewMode === "advanced"
+                ? advancedTalentModalTitleKey(titleKey)
+                : titleKey,
+            )}
           </h2>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 shrink-0"
-            onClick={onClose}
-            aria-label={t("common.close")}
-          >
-            <X className="size-4" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <TalentPickerViewToggle
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 shrink-0"
+              onClick={onClose}
+              aria-label={t("common.close")}
+            >
+              <X className="size-4" />
+            </Button>
+          </div>
         </div>
 
         <div className="talent-modal__body">
@@ -451,6 +506,8 @@ export function TalentPickerModal({
             sessionKey={sessionKey}
             hydrateIds={hydrateIds}
             maxSelections={maxSelections}
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
           />
         </div>
 

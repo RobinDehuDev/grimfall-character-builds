@@ -1,8 +1,16 @@
 import { internalMutation } from "../_generated/server";
+import type { TalentEffect } from "../lib/talentEffect";
 import { computeItemTags } from "../lib/tags";
 import talentData from "./data/wotlk-talents.json";
+import effectData from "./data/talent-effects.json";
 
 type TalentRow = (typeof talentData.talents)[number];
+
+type EffectSeedFile = {
+  effectsByExternalId: Record<string, TalentEffect[]>;
+};
+
+const { effectsByExternalId } = effectData as EffectSeedFile;
 
 function talentKey(t: Pick<TalentRow, "externalId" | "wotlkClass" | "treeIndex" | "row" | "col">) {
   return t.externalId ?? `${t.wotlkClass}:${t.treeIndex}:${t.row}:${t.col}`;
@@ -50,6 +58,9 @@ export const seed = internalMutation({
           treeName: talent.treeName,
           kind: "talent",
         }),
+        ...(talent.externalId && effectsByExternalId[talent.externalId]
+          ? { effects: effectsByExternalId[talent.externalId] }
+          : {}),
       };
 
       const existing = existingByKey.get(key);

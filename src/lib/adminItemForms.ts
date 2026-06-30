@@ -15,6 +15,12 @@ import {
   specIndexForSubclass,
   subclassForSpecIndex,
 } from "./abilitySkillLines";
+import type { TalentEffect } from "../../convex/lib/talentEffect";
+import {
+  cloneTalentEffects,
+  sanitizeTalentEffects,
+  type TalentEffect as TalentEffectForm,
+} from "./talentEffectForm";
 
 export type AbilityFormState = {
   name: string;
@@ -54,6 +60,7 @@ export type TalentFormState = {
   spellId: string;
   externalId: string;
   hidden: boolean;
+  effects: TalentEffectForm[];
 };
 
 export type REFormState = {
@@ -227,6 +234,7 @@ export function emptyTalentForm(wotlkClass = "mage"): TalentFormState {
     spellId: "",
     externalId: "",
     hidden: false,
+    effects: [],
   };
 }
 
@@ -244,6 +252,7 @@ export function talentToForm(item: TalentGameItem): TalentFormState {
     spellId: item.spellId?.toString() ?? "",
     externalId: item.externalId ?? "",
     hidden: item.hidden ?? false,
+    effects: cloneTalentEffects(item.effects),
   };
 }
 
@@ -262,6 +271,7 @@ export function formToTalentArgs(form: TalentFormState) {
     externalId: form.externalId.trim() || undefined,
     hidden: form.hidden,
     tags: [] as string[],
+    effects: sanitizeTalentEffects(form.effects) as TalentEffect[],
   };
 }
 

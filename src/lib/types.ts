@@ -5,6 +5,7 @@ import {
   type SlotCategory,
 } from "./categories";
 import { normalizeAbilityWotlkClass } from "./wotlkClasses";
+import type { TalentEffect } from "../../convex/lib/talentEffect";
 
 interface BaseGameItem {
   id: string;
@@ -60,6 +61,7 @@ export interface TalentGameItem extends BaseGameItem {
   externalId?: string;
   tags: string[];
   hidden?: boolean;
+  effects?: TalentEffect[];
 }
 
 export interface RunicEnhancementGameItem extends BaseGameItem {
@@ -142,6 +144,7 @@ export function fromConvexTalent(item: Doc<"talents">): TalentGameItem {
     externalId: item.externalId,
     tags: item.tags,
     hidden: item.hidden,
+    effects: item.effects,
   };
 }
 

@@ -1,0 +1,5282 @@
+{
+  "generatedAt": "2026-06-30T16:00:08.024Z",
+  "talentCount": 685,
+  "suspiciousCount": 258,
+  "suspicious": [
+    {
+      "externalId": "deathknight_blood_death_rune_mastery",
+      "name": "Death Rune Mastery",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_blood_vendetta",
+      "name": "Vendetta",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Heals you for up to 6% of your maximum health whenever you kill a target that yields experience or honor"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_blood_bloody_strikes",
+      "name": "Bloody Strikes",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_blood_bloody_vengeance",
+      "name": "Bloody Vengeance",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_blood_bloodworms",
+      "name": "Bloodworms",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your weapon hits have a 9% chance to cause the target to spawn 2-4 Bloodworms"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_blood_sudden_doom",
+      "name": "Sudden Doom",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your Blood Strikes and Heart Strikes have a 15% chance to launch a free Death Coil at your target"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_blood_blood_gorged",
+      "name": "Blood Gorged",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you deal 10% more damage"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_improved_icy_touch",
+      "name": "Improved Icy Touch",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Icy Touch does an additional 15% damage"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_annihilation",
+      "name": "Annihilation",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "there is a 100% chance that your Obliterate will do its damage without consuming diseases"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_killing_machine",
+      "name": "Killing Machine",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your melee attacks have a chance to make your next Icy Touch, Howling Blast or Frost Strike a critical strike"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_endless_winter",
+      "name": "Endless Winter",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_glacier_rot",
+      "name": "Glacier Rot",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Diseased enemies take 20% more damage from your Icy Touch, Howling Blast and Frost Strike"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_merciless_combat",
+      "name": "Merciless Combat",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Icy Touch, Howling Blast, Obliterate and Frost Strike do an additional 12% damage when striking targets with less than 35% health"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_rime",
+      "name": "Rime",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_improved_frost_presence",
+      "name": "Improved Frost Presence",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you retain 8% stamina from Frost Presence,"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_threat_of_thassarian",
+      "name": "Threat of Thassarian",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "When dual-wielding, your Death Strikes, Obliterates, Plague Strikes, Rune Strikes, Blood Strikes and Frost Strikes have a 100% chance to also deal damage wit…"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_acclimation",
+      "name": "Acclimation",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_tundra_stalker",
+      "name": "Tundra Stalker",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your spells and abilities deal 15% more damage to targets infected with Frost Fever"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_necrosis",
+      "name": "Necrosis",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your auto attacks deal an additional 20% Shadow damage"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_blood_caked_blade",
+      "name": "Blood-Caked Blade",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your auto attacks have a 30% chance to cause a Blood-Caked Strike, which hits for 25% weapon damage plus 12.5% for each of your diseases on the target"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_unholy_blight",
+      "name": "Unholy Blight",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Causes the victims of your Death Coil to be surrounded by a vile swarm of unholy insects, taking 10% of the damage done by the Death Coil over 10 sec, and pr…"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_desecration",
+      "name": "Desecration",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_magic_suppression",
+      "name": "Magic Suppression",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Anti-Magic Shell absorbs an additional 25% of spell damage"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_reaping",
+      "name": "Reaping",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_desolation",
+      "name": "Desolation",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Blood Strikes cause you to deal 5% additional damage with all attacks for the next 20 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_improved_unholy_presence",
+      "name": "Improved Unholy Presence",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you retain 15% increased movement speed from Unholy Presence,"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your runes finish their cooldowns 10% faster in Unholy Presence"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_wandering_plague",
+      "name": "Wandering Plague",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "there is a chance equal to your melee critical strike chance that they will cause 100% additional damage to the target"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Ignores any target under the effect of a spell that is cancelled by taking damage"
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_rage_of_rivendare",
+      "name": "Rage of Rivendare",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your spells and abilities deal 10% more damage to targets infected with Blood Plague"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_natures_grace",
+      "name": "Nature's Grace",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "All non-periodic spell criticals have a 100% chance to grace you with a blessing of nature, increasing your spell casting speed by 20% for 3 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_natures_splendor",
+      "name": "Nature's Splendor",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_celestial_focus",
+      "name": "Celestial Focus",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the pushback suffered from damaging attacks , Hibernate and Hurricane by 70%"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_dreamstate",
+      "name": "Dreamstate",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Regenerate mana equal to 10% of your Intellect every 5 sec, even while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_improved_faerie_fire",
+      "name": "Improved Faerie Fire",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Faerie Fire spell also increases the chance the target will be hit by spell attacks by 3%,"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_owlkin_frenzy",
+      "name": "Owlkin Frenzy",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_wrath_of_cenarius",
+      "name": "Wrath of Cenarius",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Wrath gains an additional 10% of your bonus damage effects"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_balance_eclipse",
+      "name": "Eclipse",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 3
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_feral_instinct",
+      "name": "Feral Instinct",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "reduces the chance enemies have to detect you while Prowling"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_predatory_strikes",
+      "name": "Predatory Strikes",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 3
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "20% of any attack power on your equipped weapon"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your finishing moves have a 20% chance per combo point to make your next Nature spell with a base casting time less than 10 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_heart_of_the_wild",
+      "name": "Heart of the Wild",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_leader_of_the_pack",
+      "name": "Leader of the Pack",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Bear or Dire Bear Form, the Leader of the Pack increases ranged and melee critical chance of all party and raid members within 100 yards by 5%"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_improved_leader_of_the_pack",
+      "name": "Improved Leader of the Pack",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Leader of the Pack ability also causes affected targets to heal themselves for 4% of their total health when they critically hit with a melee or ranged …"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "The healing effect cannot occur more than once every 6 sec"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you gain 8% of your maximum mana when you benefit from this heal"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_infected_wounds",
+      "name": "Infected Wounds",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_king_of_the_jungle",
+      "name": "King of the Jungle",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Tiger's Fury ability also instantly restores 60 energy"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_feral_primal_gore",
+      "name": "Primal Gore",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Grants the periodic damage from your Lacerate and Rip abilities the ability to critically hit"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_improved_mark_of_the_wild",
+      "name": "Improved Mark of the Wild",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_intensity",
+      "name": "Intensity",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Allows 50% of your Mana regeneration to continue while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_omen_of_clarity",
+      "name": "Omen of Clarity",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Each of the Druid's damage spells, healing spells, and auto attacks has a chance of causing the caster to enter a Clearcasting state"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_master_shapeshifter",
+      "name": "Master Shapeshifter",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 5,
+          "effectCount": 4
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_empowered_touch",
+      "name": "Empowered Touch",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Healing Touch spell gains an additional 40%"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Nourish spell gains an additional 20% of your bonus healing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_natural_erfection",
+      "name": "Natural Perfection",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_living_seed",
+      "name": "Living Seed",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Regrowth, Nourish or Healing Touch spell you have a 100% chance to plant a Living Seed on the target for 30% of the amount healed"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_revitalize",
+      "name": "Revitalize",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Rejuvenation and Wild Growth spells have a 15% chance to restore 8 Energy, 4 Rage, 1% Mana or 16 Runic Power per tick"
+        }
+      ]
+    },
+    {
+      "externalId": "druid_restoration_improved_tree_of_life",
+      "name": "Improved Tree of Life",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your armor contribution from items ,"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_pathfinding",
+      "name": "Pathfinding",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "The mounted movement speed increase does not stack with other effects"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_aspect_mastery",
+      "name": "Aspect Mastery",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 3
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_improved_mend_pet",
+      "name": "Improved Mend Pet",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "gives the Mend Pet spell a 50% chance of cleansing 1 Curse, Disease, Magic or Poison effect from the pet each tick"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_spirit_bond",
+      "name": "Spirit Bond",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you will regenerate 2% of total health every 10 sec."
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your pet will regenerate 2% of total health every 10 sec."
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_invigoration",
+      "name": "Invigoration",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you have a 100% chance to instantly regenerate 1% mana"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_cobra_strikes",
+      "name": "Cobra Strikes",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Steady Shot or Kill Shot to cause your pet's next 2 special attacks to critically hit"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_kindred_spirits",
+      "name": "Kindred Spirits",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This does not stack with other movement speed increasing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_focused_aim",
+      "name": "Focused Aim",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the pushback suffered from damaging attacks ,"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_careful_aim",
+      "name": "Careful Aim",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your ranged attack power by an amount equal to 100% of your total Intellect"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_rapid_killing",
+      "name": "Rapid Killing",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "after killing an opponent that yields experience or honor, your next Aimed Shot, Arcane Shot or Chimera Shot causes 20% additional damage"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_piercing_shots",
+      "name": "Piercing Shots",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your critical Aimed, Steady and Chimera Shots cause the target to bleed for 30% of the damage dealt over 8 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_wild_quiver",
+      "name": "Wild Quiver",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "You have a 12% chance to shoot an additional shot when doing damage with your auto shot, dealing 80% weapon nature damage"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_marked_for_death",
+      "name": "Marked for Death",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your damage done by your shots"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_trap_mastery",
+      "name": "Trap Mastery",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_deflection",
+      "name": "Deflection",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This does not stack with other Disarm duration reducing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_survival_tactics",
+      "name": "Survival Tactics",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Reduces the chance your Feign Death ability"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_lock_and_load",
+      "name": "Lock and Load",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Freezing Arrow or Frost Trap and a 6% chance when you deal periodic damage with your Immolation Trap, Explosive Trap or Black Arrow to cause your next 2 Arca…"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This effect has a 22 sec cooldown"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_hunter_vs_wild",
+      "name": "Hunter vs. Wild",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases you and your pet's attack power and ranged attack power equal to 30% of your total Stamina"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_expose_weakness",
+      "name": "Expose Weakness",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your ranged criticals have a 100% chance to grant you Expose Weakness"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_noxious_stings",
+      "name": "Noxious Stings",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "If Wyvern Sting is dispelled, the dispeller is also afflicted by Wyvern Sting lasting 50% of the duration remaining,"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_hunting_party",
+      "name": "Hunting Party",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_focus",
+      "name": "Arcane Focus",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your chance to hit"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_stability",
+      "name": "Arcane Stability",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the pushback suffered from damaging attacks while casting Arcane Missiles and Arcane Blast by 100%"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_fortitude",
+      "name": "Arcane Fortitude",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your armor by an amount equal to 150% of your Intellect"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_magic_absorption",
+      "name": "Magic Absorption",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "causes all spells you fully resist to restore 2% of your total mana"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "1 sec cooldown"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_concentration",
+      "name": "Arcane Concentration",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a 10% chance of entering a Clearcasting state after any damage spell hits a target"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_magic_attunement",
+      "name": "Magic Attunement",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_meditation",
+      "name": "Arcane Meditation",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Allows 50% of your mana regeneration to continue while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_torment_the_weak",
+      "name": "Torment the Weak",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Frostbolt, Fireball, Frostfire Bolt, Pyroblast, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 12% more damage to snared or slowed tar…"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_improved_blink",
+      "name": "Improved Blink",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "for 4 sec after casting your chance to be hit by all attacks and spells is reduced by 30%"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_prismatic_cloak",
+      "name": "Prismatic Cloak",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_instability",
+      "name": "Arcane Instability",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage done by your spells"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_arcane_empowerment",
+      "name": "Arcane Empowerment",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage of your Arcane Missiles spell by an amount equal to 45% of your spell power"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_missile_barrage",
+      "name": "Missile Barrage",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives your Arcane Blast a 40% chance,"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_ignite",
+      "name": "Ignite",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your critical strikes from Fire damage spells cause the target to burn for an additional 40% of your spell's damage over 4 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_burning_determination",
+      "name": "Burning Determination",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "When Interrupted or Silenced you have a 100% chance to become immune to the next Interrupt or Silence mechanic"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_burning_soul",
+      "name": "Burning Soul",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the pushback suffered from damaging attacks while casting Fire spells by 70%"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_molten_shields",
+      "name": "Molten Shields",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Causes your Fire Ward and Frost Ward spells to have a 30% chance to reflect the warded spell while active"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Molten Armor has a 100% chance to affect ranged and spell attacks"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_master_of_elements",
+      "name": "Master of Elements",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your spell criticals will refund 30% of their base mana cost"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_blazing_speed",
+      "name": "Blazing Speed",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_pyromaniac",
+      "name": "Pyromaniac",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "allows 50% of your mana regeneration to continue while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_empowered_fire",
+      "name": "Empowered Fire",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage of your Fireball, Frostfire Bolt and Pyroblast spells by an amount equal to 15% of your spell power"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "each time your Ignite talent causes damage, you have a 100% chance to regain 2% of your base mana"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_firestarter",
+      "name": "Firestarter",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your damaging Blast Wave and Dragon's Breath spells have a 100% chance to make your next Flamestrike spell instant cast and cost no mana"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_hot_streak",
+      "name": "Hot Streak",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Any time you score 2 non-periodic spell criticals in a row using Fireball, Fire Blast, Scorch, Living Bomb, or Frostfire Bolt, you have a 100% chance the nex…"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_frostbite",
+      "name": "Frostbite",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives your Chill effects a 15% chance to freeze the target for 5 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_precision",
+      "name": "Precision",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the mana cost"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_improved_blizzard",
+      "name": "Improved Blizzard",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_arctic_reach",
+      "name": "Arctic Reach",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the range of your Frostbolt, Ice Lance, Deep Freeze and Blizzard spells"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_winters_chill",
+      "name": "Winter's Chill",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_shattered_barrier",
+      "name": "Shattered Barrier",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives your Ice Barrier spell a 100% chance to freeze all enemies within 10 yds for 8 sec when it is destroyed"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_emprowered_frostbolt",
+      "name": "Empowered Frostbolt",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage of your Frostbolt spell by an amount equal to 10% of your spell power"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_fingers_of_frost",
+      "name": "Fingers of Frost",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives your Chill effects a 15% chance to grant you the Fingers of Frost effect, which treats your next 2 spells cast as if the target were Frozen"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_brainfreeze",
+      "name": "Brain Freeze",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Frost damage spells with chilling effects have a 15% chance to cause your next Fireball or Frostfire Bolt spell to be instant cast and cost no mana"
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_enduring_winter",
+      "name": "Enduring Winter",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_spiritual_focus",
+      "name": "Spiritual Focus",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the pushback suffered from damaging attacks while casting Flash of Light and Holy Light by 70%"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_seals_of_the_pure",
+      "name": "Seals of the Pure",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage done by your Seal of Righteousness, Seal of Vengeance and Seal of Corruption"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_healing_light",
+      "name": "Healing Light",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the amount healed by your Holy Light, Flash of Light"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_illumination",
+      "name": "Illumination",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "After getting a critical effect from your Flash of Light, Holy Light, or Holy Shock heal spell you have a 100% chance to gain mana equal to 30% of the base c…"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_improved_concentration_aura",
+      "name": "Improved Concentration Aura",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "The duration reduction does not stack with any other effects"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_blessed_hands",
+      "name": "Blessed Hands",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_lights_grace",
+      "name": "Light's Grace",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_blessed_life",
+      "name": "Blessed Life",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "All attacks against you have a 10% chance to cause half damage"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_holy_infusion_of_light",
+      "name": "Infusion of Light",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "causes your Flash of Light to heal targets with Sacred Shield for an additional 100% over 12 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_divinity",
+      "name": "Divinity",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases all healing done by you"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_divine_guardian",
+      "name": "Divine Guardian",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_reckoning",
+      "name": "Reckoning",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a 10% chance after blocking or being hit by any damaging attack that the next 4 weapon swings within 8 sec will generate an additional attack"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_spiritual_attunement",
+      "name": "Spiritual Attunement",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "A passive ability that gives the Paladin mana when healed by other friendly targets' spells"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "The amount of mana gained is equal to 10% of the amount healed"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_ardent_defender",
+      "name": "Ardent Defender",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This healing effect cannot occur more often than once every 2 min"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_touched_by_the_light",
+      "name": "Touched by the Light",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your spell power by an amount equal to 60% of your Strength"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_guarded_by_the_light",
+      "name": "Guarded by the Light",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "gives a 100% chance to refresh the duration of your Divine Plea when you hit an enemy"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_conviction",
+      "name": "Conviction",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your chance to get a critical strike with all spells and attacks by 5%"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_pursuit_of_justice",
+      "name": "Pursuit of Justice",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This does not stack with other movement speed increasing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_eye_for_an_eye",
+      "name": "Eye for an Eye",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "All criticals against you cause 10% of the damage taken to the attacker as well"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "The damage caused by Eye for an Eye will not exceed 100% of the Paladin's total health"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_vengeance",
+      "name": "Vengeance",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_divine_purpose",
+      "name": "Divine Purpose",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces your chance to be hit by spells and ranged attacks by 4%"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_sheath_of_light",
+      "name": "Sheath of Light",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your spell power by an amount equal to 30% of your attack power"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your critical healing spells heal the target for 60% of the healed amount over 12 seconds"
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_righteous_vengeance",
+      "name": "Righteous Vengeance",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Crusader Strike and Divine Storm spells deal a critical strike, your target will take 30% additional damage over 8 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_martyrdom",
+      "name": "Martyrdom",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a 100% chance to gain the Focused Casting effect that lasts for 6 sec after being the victim of a melee or ranged critical strike"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "The Focused Casting effect reduces the pushback suffered from damaging attacks while casting Priest spells"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_meditation",
+      "name": "Meditation",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Allows 50% of your mana regeneration to continue while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_reflective_shield",
+      "name": "Reflective Shield",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Causes 45% of the damage you absorb with Power Word: Shield to reflect back at the attacker"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This damage causes no threat"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_focused_will",
+      "name": "Focused Will",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 5,
+          "effectCount": 3
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_renewed_hope",
+      "name": "Renewed Hope",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This effect has a 2 sec cooldown"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_rapture",
+      "name": "Rapture",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": ".5% of your total mana,"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you have a 100% chance to energize your shielded target with 2% total mana, 8 rage, 16 energy or 32 runic power"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_divine_aegis",
+      "name": "Divine Aegis",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Critical heals create a protective shield on the target, absorbing 30% of the amount healed"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_grace",
+      "name": "Grace",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_borrowed_time",
+      "name": "Borrowed Time",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Grants 25% spell haste for your next spell after casting Power Word: Shield,"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "increases the amount absorbed by your Power Word: Shield equal to 40% of your spell power"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_blessed_recovery",
+      "name": "Blessed Recovery",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "After being struck by a melee or ranged critical hit, Blessed Recovery heals you for 5% of the damage taken over 6 sec"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Additional critical hits taken during the effect increase the healing received"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_holy_reach",
+      "name": "Holy Reach",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the range of your Smite and Holy Fire spells"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_spirit_of_redemption",
+      "name": "Spirit of Redemption",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_surge_of_light",
+      "name": "Surge of Light",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your spell criticals have a 50% chance to cause your next Smite or Flash Heal spell to be instant cast, cost no mana but be incapable of a critical hit"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_body_and_soul",
+      "name": "Body and Soul",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_empowered_healing",
+      "name": "Empowered Healing",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Flash Heal and Binding Heal gain an additional 20% of your bonus healing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_serendipity",
+      "name": "Serendipity",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "priest_holy_empowered_renew",
+      "name": "Empowered Renew",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Renew spell gains an additional 15% of your bonus healing effects,"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_shadow_spirit_tap",
+      "name": "Spirit Tap",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Gives you a 100% chance to gain a 100% bonus to your Spirit after killing a target that yields experience or honor"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "For the duration, your mana will regenerate at a 83% rate while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_shadow_improved_spirit_tap",
+      "name": "Improved Spirit Tap",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 3
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your Mind Blast and Shadow Word: Death critical strikes have a 100% chance"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "For the duration, your mana will regenerate at a 33% rate while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_shadow_shadow_weaving",
+      "name": "Shadow Weaving",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "priest_shadow_misery",
+      "name": "Misery",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Shadow Word: Pain, Mind Flay and Vampiric Touch spells also increase the chance for harmful spells to hit by 3% lasting 24 sec,"
+        }
+      ]
+    },
+    {
+      "externalId": "priest_shadow_pain_and_suffering",
+      "name": "Pain and Suffering",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Mind Flay has a 100% chance to refresh the duration of your Shadow Word: Pain on the target,"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_remorseless_attacks",
+      "name": "Remorseless Attacks",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "After killing an opponent that yields experience or honor, gives you a 40% increased critical strike chance on your next Sinister Strike, Hemorrhage, Backsta…"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_ruthlessness",
+      "name": "Ruthlessness",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives your melee finishing moves a 60% chance to add a combo point to your target"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_improved_poisons",
+      "name": "Improved Poisons",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the chance to apply Deadly Poison to your target by 20%"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_fleet_footed",
+      "name": "Fleet Footed",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This does not stack with other movement speed increasing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_improved_kidney_shot",
+      "name": "Improved Kidney Shot",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "the target receives an additional 9% damage from all sources"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_quick_recovery",
+      "name": "Quick Recovery",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your finishing moves refund 80% of their Energy cost when they fail to hit"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_seal_fate",
+      "name": "Seal Fate",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your critical strikes from abilities that add combo points have a 100% chance to add an additional combo point"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_deadly_brew",
+      "name": "Deadly Brew",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Wound or Mind-Numbing poison to a target, you have a 100% chance to apply Crippling poison"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_focused_attacks",
+      "name": "Focused Attacks",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your melee critical strikes have a 100% chance to give you 2 energy"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_master_poisoner",
+      "name": "Master Poisoner",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "gives Envenom a 100% chance not to consume Deadly Poison"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_assasination_cut_to_the_chase",
+      "name": "Cut to the Chase",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Eviscerate and Envenom abilities have a 100% chance to refresh your Slice and Dice duration to its 5 combo point maximum"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_combat_lightning_reflexes",
+      "name": "Lightning Reflexes",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "gives you 10% melee haste"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_combat_hack_and_slash",
+      "name": "Hack and Slash",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a 5% chance to get an extra attack on the same target after hitting your target with your Sword or Axe"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_combat_throwing_specialization",
+      "name": "Throwing Specialization",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "gives your Deadly Throw a 100% chance to interrupt the target for 3 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_combat_unfair_advantage",
+      "name": "Unfair Advantage",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you gain an Unfair Advantage, striking back for 100% of your main hand weapon's damage"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_spirit_tap",
+      "name": "Relentless Strikes",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your finishing moves have a 20% chance per combo point to restore 25 energy"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_master_of_deception",
+      "name": "Master of Deception",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Reduces the chance enemies have to detect you while in Stealth mode"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_camouflage",
+      "name": "Camouflage",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_elusiveness",
+      "name": "Elusiveness",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_serrated_blades",
+      "name": "Serrated Blades",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Causes your attacks to ignore up to 9% of your target's Armor"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_setup",
+      "name": "Setup",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a 100% chance to add a combo point to your target after dodging their attack or fully resisting one of their spells"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_initiative",
+      "name": "Initiative",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Gives you a 100% chance to add an additional combo point to your target when using your Ambush, Garrote, or Cheap Shot ability"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_heightened_senses",
+      "name": "Heightened Senses",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "reduces the chance you are hit by spells and ranged attacks by 4%"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_dirty_deeds",
+      "name": "Dirty Deeds",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Additionally, your special abilities cause 20% more damage against targets below 35% health"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_cheat_death",
+      "name": "Cheat Death",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you will instead reduce you to 10% of your maximum health"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_waylay",
+      "name": "Waylay",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Ambush and Backstab hits have a 100% chance to unbalance a target, increasing the time between their melee and ranged attacks by 20%,"
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_honor_among_thieves",
+      "name": "Honor Among Thieves",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "When anyone in your group critically hits with a damage or healing spell or ability, you have a 100% chance to gain a combo point on your current target"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_elemental_devastation",
+      "name": "Elemental Devastation",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your non-periodic offensive spell crits will increase your chance to get a critical strike with melee attacks by 9% for 10 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_elemental_focus",
+      "name": "Elemental Focus",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "After landing a non-periodic critical strike with a Fire, Frost, or Nature damage spell, you enter a Clearcasting state"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_elemental_fury",
+      "name": "Elemental Fury",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the critical strike damage bonus of your Searing and Magma Totems"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_eye_of_the_storm",
+      "name": "Eye of the Storm",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the pushback suffered from damaging attacks , Chain Lightning, Lava Burst and Hex spells by 70%"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_unrelenting_storm",
+      "name": "Unrelenting Storm",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Regenerate mana equal to 12% of your Intellect every 5 sec, even while casting"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_booming_echoes",
+      "name": "Booming Echoes",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the cooldown of your Flame Shock and Frost Shock spells by an additional 2 sec.,"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_elemental_oath",
+      "name": "Elemental Oath",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you deal 10% more spell damage"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "party and raid members within 100 yards receive a 5% bonus to their spell critical strike chance"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_shamanism",
+      "name": "Shamanism",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Lava Burst gains an additional 25% of your bonus damage effects"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_earths_grasp",
+      "name": "Earth's Grasp",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_thundering_strikes",
+      "name": "Thundering Strikes",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Improves your chance to get a critical strike with all spells and attacks by 5%"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_anticipation",
+      "name": "Anticipation",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This does not stack with other Disarm duration reducing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_spirit_weapons",
+      "name": "Spirit Weapons",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives a chance to parry enemy melee attacks"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_frozen_power",
+      "name": "Frozen Power",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_static_shock",
+      "name": "Static Shock",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "You have a 6% chance to hit your target with a Lightning Shield orb charge when you deal damage with melee attacks and abilities,"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_improved_stormstrike",
+      "name": "Improved Stormstrike",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you have a 100% chance to immediately grant you 20% of your base mana"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_mental_quickness",
+      "name": "Mental Quickness",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "increases your spell power by an amount equal to 30% of your attack power"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_earthen_power",
+      "name": "Earthen Power",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Your Earthbind Totem's pulses have a 100% chance to also remove all snare effects from you and nearby friendly targets,"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_maelstrom_weapon",
+      "name": "Maelstrom Weapon",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_improved_water_shield",
+      "name": "Improved Water Shield",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "You have a 100% chance to instantly gain mana as if you consumed a Water Shield Orb when you gain a critical effect from your Healing Wave or Riptide spells,…"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_focused_mind",
+      "name": "Focused Mind",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_natures_guardian",
+      "name": "Nature's Guardian",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your threat level towards the attacker is reduced"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "30 second cooldown"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_natures_blessing",
+      "name": "Nature's Blessing",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your healing by an amount equal to 15% of your Intellect"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_ancestral_awakening",
+      "name": "Ancestral Awakening",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Lesser Healing Wave or Riptide you summon an Ancestral spirit to aid you, instantly healing the lowest percentage health friendly party or raid target within…"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_tidal_waves",
+      "name": "Tidal Waves",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Healing Wave gains an additional 20% of your bonus healing effects"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Lesser Healing Wave gains an additional 10% of your bonus healing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_improved_drain_soul",
+      "name": "Improved Drain Soul",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Returns 15% of your maximum mana if the target is killed by you while you drain its soul"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_improved_fear",
+      "name": "Improved Fear",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Causes your Fear spell to inflict a Nightmare on the target when the fear effect ends"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_empowered_corruption",
+      "name": "Empowered Corruption",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage of your Corruption spell by an amount equal to 36% of your spell power"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_shadow_embrace",
+      "name": "Shadow Embrace",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 4,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_siphon_life",
+      "name": "Siphon Life",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you are instantly healed for % of the damage done"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_improved_felhunter",
+      "name": "Improved Felhunter",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Felhunter regains 8% of its maximum mana each time it hits with its Shadow Bite ability"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_shadow_mastery",
+      "name": "Shadow Mastery",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage dealt or life drained by your Shadow spells"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_eradication",
+      "name": "Eradication",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you have 6% chance to increase your spell casting speed by 20% for 10 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_pandemic",
+      "name": "Pandemic",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Grants the periodic damage from your Corruption and Unstable Affliction spells the ability to critically hit for 100% increased damage,"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_everlasting_affliction",
+      "name": "Everlasting Affliction",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Corruption and Unstable Affliction spells gain an additional 5% of your bonus spell damage,"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "your Drain Life, Drain Soul, Shadow Bolt, and Haunt spells have a 100% chance to reset the duration of your Corruption spell on the target"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_fel_synergy",
+      "name": "Fel Synergy",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "You have a 100% chance to heal your pet for 15% of the amount of spell damage done by you"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_unholy_power",
+      "name": "Unholy Power",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the damage done by your Voidwalker, Succubus, Incubus, Felhunter and Felguard's melee attacks"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_master_conjuror",
+      "name": "Master Conjuror",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the combat ratings gained from your conjured Firestone and Spellstone by 300%"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_master_demonologist",
+      "name": "Master Demonologist",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 10,
+          "effectCount": 8
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_molten_core",
+      "name": "Molten Core",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 7,
+          "effectCount": 6
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you have a 12% chance to gain the Molten Core effect when your Corruption deals damage"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_demonic_knowledge",
+      "name": "Demonic Knowledge",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your spell damage by an amount equal to 12% of the total of your active demon's Stamina plus Intellect"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_demonic_tactics",
+      "name": "Demonic Tactics",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases melee and spell critical strike chance for you"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_decimation",
+      "name": "Decimation",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_improved_demonic_tactics",
+      "name": "Improved Demonic Tactics",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your summoned demon's critical strike chance equal to 30% of your critical strike chance"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_demonic_pact",
+      "name": "Demonic Pact",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 5,
+          "effectCount": 3
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This effect has a 5 sec cooldown"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_improved_shadow_bolt",
+      "name": "Improved Shadow Bolt",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_bane",
+      "name": "Bane",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the casting time of your Shadow Bolt"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_ruin",
+      "name": "Ruin",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the critical strike damage bonus of your Destruction spells"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_backlash",
+      "name": "Backlash",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_shadow_and_flame",
+      "name": "Shadow and Flame",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Shadow Bolt, Shadowburn, Chaos Bolt and Incinerate spells gain an additional 20% of your bonus spell damage effects"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_improved_soul_leech",
+      "name": "Improved Soul Leech",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Soul Leech effect also restores mana to you"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_backdraft",
+      "name": "Backdraft",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_empowered_imp",
+      "name": "Empowered Imp",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_tactical_mastery",
+      "name": "Tactical Mastery",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "You retain up to an additional 15 of your rage points when you change stances"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Also greatly increases the threat generated by your Bloodthirst and Mortal Strike abilities when you are in Defensive Stance (More effective than Rank 2)"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_deep_wounds",
+      "name": "Deep Wounds",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your critical strikes cause the opponent to bleed, dealing 48% of your melee weapon's average damage over 6 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_taste_for_blood",
+      "name": "Taste for Blood",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you have a 100% chance of allowing the use of your Overpower ability for 9 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_poleaxe_specialization",
+      "name": "Poleaxe Specialization",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "low",
+          "sourcePhrase": "Increases your chance to get a critical strike"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_sword_specialization",
+      "name": "Sword Specialization",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a 10% chance to get an extra attack on the same target after hitting your target with your Sword"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_weapon_mastery",
+      "name": "Weapon Mastery",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "This does not stack with other Disarm duration reducing effects"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_improved_hamstring",
+      "name": "Improved Hamstring",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives your Hamstring ability a 15% chance to immobilize the target for 5 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_second_wind",
+      "name": "Second Wind",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "10% of your total health over 10 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_juggernaut",
+      "name": "Juggernaut",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Following a Charge, your next Slam or Mortal Strike has an additional 25% chance to critically hit if used within 10 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_sudden_death",
+      "name": "Sudden Death",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your melee hits have a 9% chance of allowing the use of Execute regardless of the target's health state"
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you keep at least 10 rage after using Execute"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_arms_wrecking_crew",
+      "name": "Wrecking Crew",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_cruelty",
+      "name": "Cruelty",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases your chance to get a critical strike with melee weapons by 5%"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_unbridled_wrath",
+      "name": "Unbridled Wrath",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        },
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Gives you a chance to generate an additional rage point when you deal melee damage with a weapon"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_blood_craze",
+      "name": "Blood Craze",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Regenerates 6% of your total Health over 6 sec after being the victim of a critical strike"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_commanding_presence",
+      "name": "Commanding Presence",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Increases the melee attack power bonus of your Battle Shout"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_enrage",
+      "name": "Enrage",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_furious_attacks",
+      "name": "Furious Attacks",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_improved_berserker_stance",
+      "name": "Improved Berserker Stance",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_fury_bloodsurge",
+      "name": "Bloodsurge",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your Heroic Strike, Bloodthirst, and Whirlwind hits have a 20% chance of making your next Slam instant for 5 sec"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_improved_thunder_clap",
+      "name": "Improved Thunder Clap",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 3,
+          "effectCount": 2
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_improved_revenge",
+      "name": "Improved Revenge",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_improved_spell_reflection",
+      "name": "Improved Spell Reflection",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Reduces the chance you'll be hit by spells by 4% and when the ability is used it will reflect the first spell cast against the 4 closest party members within…"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_improved_disarm",
+      "name": "Improved Disarm",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "causes the target to take an additional 10% damage while disarmed"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_improved_defensive_stance",
+      "name": "Improved Defensive Stance",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_critical_block",
+      "name": "Critical Block",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "Your successful blocks have a 60% chance to block double the normal amount"
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_sword_and_board",
+      "name": "Sword and Board",
+      "issues": [
+        {
+          "type": "clause_effect_mismatch",
+          "clauseCount": 2,
+          "effectCount": 1
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_damage_shield",
+      "name": "Damage Shield",
+      "issues": [
+        {
+          "type": "low_confidence",
+          "confidence": "medium",
+          "sourcePhrase": "you cause damage equal to 20% of your block value"
+        }
+      ]
+    }
+  ],
+  "diffCount": 48,
+  "diff": [
+    {
+      "externalId": "deathknight_frost_improved_icy_touch",
+      "name": "Improved Icy Touch",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "ranged"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "percentage",
+          "value": 6,
+          "scope": {
+            "attackType": "ranged"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_improved_icy_talons",
+      "name": "Improved Icy Talons",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "haste",
+          "typeOfEffect": "percentage",
+          "value": 20
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "haste",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "haste",
+          "typeOfEffect": "percentage",
+          "value": 20
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "haste",
+          "typeOfEffect": "percentage",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_frost_improved_frost_presence",
+      "name": "Improved Frost Presence",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "stamina",
+          "typeOfEffect": "boolean",
+          "condition": "While in Blood Presence or Unholy Presence"
+        },
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "school": "frost"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "stamina",
+          "typeOfEffect": "boolean",
+          "condition": "While in Blood Presence or Unholy Presence"
+        },
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 2,
+          "scope": {
+            "school": "frost"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "deathknight_unholy_ravenous_dead",
+      "name": "Ravenous Dead",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "attackPower",
+          "stat": "strength",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "stamina",
+          "typeOfEffect": "percentage",
+          "value": 60
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "attackPower",
+          "stat": "strength",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "petAttackPower",
+          "typeOfEffect": "percentage",
+          "value": 60
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_improved_revive_pet",
+      "name": "Improved Revive Pet",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "cost",
+          "stat": "manaCost",
+          "typeOfEffect": "percentage",
+          "value": -40
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petHealth",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "resource",
+          "subcategory": "cost",
+          "stat": "manaCost",
+          "typeOfEffect": "percentage",
+          "value": -40
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petHealth",
+          "typeOfEffect": "percentage",
+          "value": 30
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_improved_mend_pet",
+      "name": "Improved Mend Pet",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "cost",
+          "stat": "manaCost",
+          "typeOfEffect": "percentage",
+          "value": -10,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Mend Pet spell",
+            "Mend Pet"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "procMechanic",
+          "stat": "procChance",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "spell"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "resource",
+          "subcategory": "cost",
+          "stat": "manaCost",
+          "typeOfEffect": "percentage",
+          "value": -10,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Mend Pet spell",
+            "Mend Pet"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "spell"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_spirit_bond",
+      "name": "Spirit Bond",
+      "before": [
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petHealth",
+          "typeOfEffect": "boolean",
+          "condition": "While your pet is active, you"
+        },
+        {
+          "category": "heal",
+          "subcategory": "healingReceived",
+          "stat": "healingReceived",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "health",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petHealth",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "heal",
+          "subcategory": "healingReceived",
+          "stat": "healingReceived",
+          "typeOfEffect": "percentage",
+          "value": 10
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petHealth",
+          "typeOfEffect": "percentage",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_ferocious_inspiration",
+      "name": "Ferocious Inspiration",
+      "before": [
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 9,
+          "scope": {
+            "school": "arcane"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 9,
+          "scope": {
+            "school": "arcane"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_catlike_reflexes",
+      "name": "Catlike Reflexes",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "dodgeChance",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "dodgeChance",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 30,
+          "spellNames": [
+            "Kill Command ability",
+            "Kill Command"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "dodgeChance",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "dodgeChance",
+          "typeOfEffect": "percentage",
+          "value": 9
+        },
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 30,
+          "spellNames": [
+            "Kill Command ability",
+            "Kill Command"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_serpents_swiftness",
+      "name": "Serpent's Swiftness",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "percentage",
+          "value": 20
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "percentage",
+          "value": 20,
+          "scope": {
+            "attackType": "melee"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "percentage",
+          "value": 20
+        },
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "haste",
+          "typeOfEffect": "percentage",
+          "value": 20,
+          "scope": {
+            "attackType": "melee"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_cobra_strikes",
+      "name": "Cobra Strikes",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "condition": "You have a 60% chance when you critically hit with Arcane Shot"
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "condition": "You have a 60% chance when you critically hit with Arcane Shot"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_beast_mastery_kindred_spirits",
+      "name": "Kindred Spirits",
+      "before": [
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "percentage",
+          "value": 20
+        },
+        {
+          "category": "utility",
+          "subcategory": "movement",
+          "stat": "movementSpeed",
+          "typeOfEffect": "percentage",
+          "value": 10
+        },
+        {
+          "category": "utility",
+          "subcategory": "movement",
+          "stat": "movementSpeed",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "percentage",
+          "value": 20
+        },
+        {
+          "category": "utility",
+          "subcategory": "movement",
+          "stat": "movementSpeed",
+          "typeOfEffect": "percentage",
+          "value": 10
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "movementSpeed",
+          "typeOfEffect": "percentage",
+          "value": 10
+        },
+        {
+          "category": "utility",
+          "subcategory": "movement",
+          "stat": "movementSpeed",
+          "typeOfEffect": "boolean"
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_marksmanship_go_for_the_throat",
+      "name": "Go for the Throat",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "focus",
+          "stat": "focus",
+          "typeOfEffect": "flat",
+          "value": 50,
+          "scope": {
+            "attackType": "ranged"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "critChance",
+          "typeOfEffect": "flat",
+          "value": 50,
+          "scope": {
+            "attackType": "ranged"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_hunter_vs_wild",
+      "name": "Hunter vs. Wild",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "stamina",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "ranged"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "petAttackPower",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "ranged"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "hunter_survival_hunting_party",
+      "name": "Hunting Party",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "attackPower",
+          "stat": "agility",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "resource",
+          "subcategory": "regen",
+          "stat": "manaRegen",
+          "typeOfEffect": "flat",
+          "value": 10,
+          "recurrence": true,
+          "recurrenceInSeconds": 5,
+          "scope": {
+            "school": "arcane"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "attackPower",
+          "stat": "agility",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "resource",
+          "subcategory": "regen",
+          "stat": "manaRegen",
+          "typeOfEffect": "flat",
+          "value": 10,
+          "recurrence": true,
+          "recurrenceInSeconds": 5,
+          "scope": {
+            "school": "arcane"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "mage_arcane_spell_impact",
+      "name": "Spell Impact",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "spell",
+            "school": "fire"
+          },
+          "spellNames": [
+            "Arcane Explosion",
+            "your Arcane Explosion",
+            "Arcane Blast",
+            "Blast Wave",
+            "Fire Blast",
+            "Scorch",
+            "Fireball",
+            "Ice Lance",
+            "Cone of Cold spells"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 6,
+          "scope": {
+            "attackType": "spell",
+            "school": "fire"
+          },
+          "spellNames": [
+            "Arcane Explosion",
+            "your Arcane Explosion",
+            "Arcane Blast",
+            "Blast Wave",
+            "Fire Blast",
+            "Scorch",
+            "Fireball",
+            "Ice Lance",
+            "Cone of Cold spells"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "mage_fire_improved_scorch",
+      "name": "Improved Scorch",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "damaging Scorch",
+            "target to be vulnerable to"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 3,
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "damaging Scorch",
+            "target to be vulnerable to"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_permafrost",
+      "name": "Permafrost",
+      "before": [
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "effectDuration",
+          "typeOfEffect": "flat",
+          "value": 2,
+          "spellNames": [
+            "Chill effects",
+            "Chill"
+          ]
+        },
+        {
+          "category": "heal",
+          "subcategory": "healingReceived",
+          "stat": "healingReceived",
+          "typeOfEffect": "percentage",
+          "value": 20
+        }
+      ],
+      "after": [
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "effectDuration",
+          "typeOfEffect": "percentage",
+          "value": 10,
+          "spellNames": [
+            "Chill effects",
+            "Chill"
+          ]
+        },
+        {
+          "category": "heal",
+          "subcategory": "healingReceived",
+          "stat": "healingReceived",
+          "typeOfEffect": "percentage",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_winters_chill",
+      "name": "Winter's Chill",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 1,
+          "scope": {
+            "school": "frost"
+          },
+          "spellNames": [
+            "Frost damage"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 3,
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 1,
+          "scope": {
+            "school": "frost"
+          },
+          "spellNames": [
+            "Frost damage"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "mage_frost_chilled_to_the_bone",
+      "name": "Chilled to the Bone",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "utility",
+          "subcategory": "movement",
+          "stat": "movementSpeed",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "utility",
+          "subcategory": "movement",
+          "stat": "movementSpeed",
+          "typeOfEffect": "percentage",
+          "value": -10
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_protection_stoicism",
+      "name": "Stoicism",
+      "before": [
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "all Stun effects"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "dispel",
+          "stat": "dispelChance",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "helpful spells and damage over time"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "percentage",
+          "value": 30,
+          "spellNames": [
+            "all Stun effects"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "dispel",
+          "stat": "dispelChance",
+          "typeOfEffect": "percentage",
+          "value": 30,
+          "spellNames": [
+            "helpful spells and damage over time"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_heart_of_the_crusader",
+      "name": "Heart of the Crusader",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "all attacks made against that target",
+            "Judgement"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 3,
+          "spellNames": [
+            "all attacks made against that target",
+            "Judgement"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "paladin_retribution_crusade",
+      "name": "Crusade",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "externalId": "priest_discipline_unbreakable_will",
+      "name": "Unbreakable Will",
+      "before": [
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Stun"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "percentage",
+          "value": 30,
+          "spellNames": [
+            "Stun"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "rogue_subtlety_sinister_calling",
+      "name": "Sinister Calling",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "attackPower",
+          "stat": "agility",
+          "typeOfEffect": "percentage",
+          "value": 15
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Backstab",
+            "Hemorrhage"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "attackPower",
+          "stat": "agility",
+          "typeOfEffect": "percentage",
+          "value": 15
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 10,
+          "spellNames": [
+            "Backstab",
+            "Hemorrhage"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_call_of_thunder",
+      "name": "Call of Thunder",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Lightning Bolt",
+            "your Lightning Bolt",
+            "Chain Lightning",
+            "Thunderstorm spells"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "spellNames": [
+            "Lightning Bolt",
+            "your Lightning Bolt",
+            "Chain Lightning",
+            "Thunderstorm spells"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_elemental_booming_echoes",
+      "name": "Booming Echoes",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Flame Shock",
+            "Frost Shock spells",
+            "Flame Shock and Frost Shock"
+          ]
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "school": "frost"
+          },
+          "spellNames": [
+            "Flame Shock and Frost Shock"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Flame Shock",
+            "Frost Shock spells",
+            "Flame Shock and Frost Shock"
+          ]
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 20,
+          "scope": {
+            "school": "frost"
+          },
+          "spellNames": [
+            "Flame Shock and Frost Shock"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_anticipation",
+      "name": "Anticipation",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "dodgeChance",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "percentage",
+          "value": 50,
+          "spellNames": [
+            "all Disarm effects used against you"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "dodgeChance",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "percentage",
+          "value": 50,
+          "spellNames": [
+            "all Disarm effects used against you"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "duration",
+          "stat": "debuffDuration",
+          "typeOfEffect": "boolean"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_dual_wield_specialization",
+      "name": "Dual Wield Specialization",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "weaponSpecialization",
+          "stat": "weaponDamage",
+          "typeOfEffect": "boolean",
+          "condition": "while dual wielding"
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "weaponSpecialization",
+          "stat": "weaponDamage",
+          "typeOfEffect": "percentage",
+          "value": 6,
+          "condition": "while dual wielding"
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_enhancement_earthen_power",
+      "name": "Earthen Power",
+      "before": [
+        {
+          "category": "utility",
+          "subcategory": "procMechanic",
+          "stat": "procChance",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "utility",
+          "subcategory": "procMechanic",
+          "stat": "procChance",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "damage",
+          "subcategory": "haste",
+          "stat": "attackSpeed",
+          "typeOfEffect": "percentage",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "externalId": "shaman_restoration_improved_reincarnation",
+      "name": "Improved Reincarnation",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 15,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Reincarnation spell",
+            "Reincarnation"
+          ]
+        },
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "health",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 15,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Reincarnation spell",
+            "Reincarnation"
+          ]
+        },
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "health",
+          "typeOfEffect": "percentage",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_soul_siphon",
+      "name": "Soul Siphon",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "dotPeriodic",
+          "stat": "dotDamage",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Affliction effects on the target",
+            "Drain Life and Drain Soul",
+            "Affliction"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "dotPeriodic",
+          "stat": "dotDamage",
+          "typeOfEffect": "percentage",
+          "value": 6,
+          "spellNames": [
+            "Affliction effects on the target",
+            "Drain Life and Drain Soul",
+            "Affliction"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_improved_felhunter",
+      "name": "Improved Felhunter",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "mana",
+          "stat": "mana",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 4
+        },
+        {
+          "category": "utility",
+          "subcategory": "procMechanic",
+          "stat": "grantsBuff",
+          "typeOfEffect": "percentage",
+          "value": 10,
+          "spellNames": [
+            "Felhunter's Fel Intelligence"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 4
+        },
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "percentage",
+          "value": 10,
+          "spellNames": [
+            "Felhunter's Fel Intelligence"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_shadow_mastery",
+      "name": "Shadow Mastery",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "school": "shadow"
+          },
+          "spellNames": [
+            "Shadow"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "school": "shadow"
+          },
+          "spellNames": [
+            "Shadow"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "percentage",
+          "value": 15
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_affliction_contagion",
+      "name": "Contagion",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "spellNames": [
+            "Curse of Agony",
+            "Corruption",
+            "Seed of Corruption"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "dispel",
+          "stat": "dispelChance",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "helpful Affliction spells and damage over time"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "spellNames": [
+            "Curse of Agony",
+            "Corruption",
+            "Seed of Corruption"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "dispel",
+          "stat": "dispelChance",
+          "typeOfEffect": "percentage",
+          "value": 30,
+          "spellNames": [
+            "helpful Affliction spells and damage over time"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_improved_imp",
+      "name": "Improved Imp",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "shield",
+          "stat": "shieldAbsorb",
+          "typeOfEffect": "percentage",
+          "value": 30,
+          "spellNames": [
+            "Imp's Firebolt"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "percentage",
+          "value": 30,
+          "spellNames": [
+            "Imp's Firebolt"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_fel_vitality",
+      "name": "Fel Vitality",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "stamina",
+          "typeOfEffect": "percentage",
+          "value": 15,
+          "spellNames": [
+            "Imp"
+          ]
+        },
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "health",
+          "typeOfEffect": "percentage",
+          "value": 3
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "petAttackPower",
+          "typeOfEffect": "percentage",
+          "value": 15,
+          "spellNames": [
+            "Imp"
+          ]
+        },
+        {
+          "category": "defense",
+          "subcategory": "health",
+          "stat": "health",
+          "typeOfEffect": "percentage",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_unholy_power",
+      "name": "Unholy Power",
+      "before": [
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "melee"
+          }
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "melee"
+          }
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "percentage",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_mana_feed",
+      "name": "Mana Feed",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "mana",
+          "stat": "mana",
+          "typeOfEffect": "flat",
+          "value": 10
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "flat",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_master_demonologist",
+      "name": "Master Demonologist",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "fire"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "fire"
+          },
+          "spellNames": [
+            "Fire spells",
+            "your Fire spells",
+            "Fire"
+          ]
+        },
+        {
+          "category": "defense",
+          "subcategory": "damageReduction",
+          "stat": "damageTaken",
+          "typeOfEffect": "percentage",
+          "value": -10,
+          "scope": {
+            "school": "physical"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "shadow"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "shadow"
+          },
+          "spellNames": [
+            "Shadow spells",
+            "your Shadow spells",
+            "Shadow"
+          ]
+        },
+        {
+          "category": "defense",
+          "subcategory": "damageReduction",
+          "stat": "magicDamageTaken",
+          "typeOfEffect": "percentage",
+          "value": -10,
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "percentage",
+          "value": 5
+        },
+        {
+          "category": "defense",
+          "subcategory": "damageReduction",
+          "stat": "damageTaken",
+          "typeOfEffect": "percentage",
+          "value": -5
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "fire"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "fire"
+          },
+          "spellNames": [
+            "Fire spells",
+            "your Fire spells",
+            "Fire"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petDamageTaken",
+          "typeOfEffect": "percentage",
+          "value": -10,
+          "scope": {
+            "school": "physical"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "schoolDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "shadow"
+          }
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 5,
+          "scope": {
+            "school": "shadow"
+          },
+          "spellNames": [
+            "Shadow spells",
+            "your Shadow spells",
+            "Shadow"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petDamageTaken",
+          "typeOfEffect": "percentage",
+          "value": -10,
+          "scope": {
+            "attackType": "spell"
+          }
+        },
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "percentage",
+          "value": 5
+        },
+        {
+          "category": "defense",
+          "subcategory": "damageReduction",
+          "stat": "damageTaken",
+          "typeOfEffect": "percentage",
+          "value": -5
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_demonic_resilience",
+      "name": "Demonic Resilience",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 15
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 3
+        },
+        {
+          "category": "pet",
+          "subcategory": "defense",
+          "stat": "petDamageTaken",
+          "typeOfEffect": "percentage",
+          "value": -15
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_demonology_improved_demonic_tactics",
+      "name": "Improved Demonic Tactics",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean"
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "statIncrease",
+          "stat": "critChance",
+          "typeOfEffect": "boolean"
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_demonic_power",
+      "name": "Demonic Power",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 6,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Succubus' Lash of Pain spell"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "castTime",
+          "stat": "castTime",
+          "typeOfEffect": "flat",
+          "value": 0.5,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Imp's Firebolt spell"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "resource",
+          "subcategory": "cooldown",
+          "stat": "cooldownReduction",
+          "typeOfEffect": "flat",
+          "value": 6,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Succubus' Lash of Pain spell"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "flat",
+          "value": 0.5,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "Imp's Firebolt spell"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_ruin",
+      "name": "Ruin",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critDamage",
+          "stat": "critDamageBonus",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Destruction"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critDamage",
+          "stat": "critDamageBonus",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Destruction"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "percentage",
+          "value": 100,
+          "scope": {
+            "attackType": "spell"
+          }
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_backlash",
+      "name": "Backlash",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "critical strike chance with"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "castTime",
+          "stat": "castTime",
+          "typeOfEffect": "percentage",
+          "value": -100,
+          "scope": {
+            "attackType": "spell",
+            "school": "shadow"
+          },
+          "spellNames": [
+            "next Shadow Bolt or Incinerate"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 3,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "critical strike chance with"
+          ]
+        },
+        {
+          "category": "utility",
+          "subcategory": "castTime",
+          "stat": "castTime",
+          "typeOfEffect": "percentage",
+          "value": -100,
+          "scope": {
+            "attackType": "spell",
+            "school": "shadow"
+          },
+          "spellNames": [
+            "next Shadow Bolt or Incinerate"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_improved_soul_leech",
+      "name": "Improved Soul Leech",
+      "before": [
+        {
+          "category": "resource",
+          "subcategory": "mana",
+          "stat": "mana",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Soul Leech"
+          ]
+        },
+        {
+          "category": "resource",
+          "subcategory": "regen",
+          "stat": "manaRegen",
+          "typeOfEffect": "flat",
+          "value": 10,
+          "recurrence": true,
+          "recurrenceInSeconds": 5
+        }
+      ],
+      "after": [
+        {
+          "category": "resource",
+          "subcategory": "mana",
+          "stat": "mana",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "Soul Leech"
+          ]
+        },
+        {
+          "category": "pet",
+          "subcategory": "utility",
+          "stat": "petUtility",
+          "typeOfEffect": "flat",
+          "value": 10,
+          "recurrence": true,
+          "recurrenceInSeconds": 5
+        }
+      ]
+    },
+    {
+      "externalId": "warlock_destruction_empowered_imp",
+      "name": "Empowered Imp",
+      "before": [
+        {
+          "category": "damage",
+          "subcategory": "directDamage",
+          "stat": "damageDone",
+          "typeOfEffect": "percentage",
+          "value": 30
+        },
+        {
+          "category": "damage",
+          "subcategory": "hit",
+          "stat": "hitChance",
+          "typeOfEffect": "percentage",
+          "value": 100,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "spell critical hit chance for your next"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "pet",
+          "subcategory": "damageIncrease",
+          "stat": "petDamage",
+          "typeOfEffect": "percentage",
+          "value": 30
+        },
+        {
+          "category": "damage",
+          "subcategory": "hit",
+          "stat": "hitChance",
+          "typeOfEffect": "percentage",
+          "value": 100,
+          "scope": {
+            "attackType": "spell"
+          },
+          "spellNames": [
+            "spell critical hit chance for your next"
+          ]
+        }
+      ]
+    },
+    {
+      "externalId": "warrior_protection_critical_block",
+      "name": "Critical Block",
+      "before": [
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "blockChance",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "boolean",
+          "spellNames": [
+            "chance to critically hit with your Shield Slam"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "category": "defense",
+          "subcategory": "avoidance",
+          "stat": "blockChance",
+          "typeOfEffect": "boolean"
+        },
+        {
+          "category": "damage",
+          "subcategory": "critChance",
+          "stat": "critChance",
+          "typeOfEffect": "percentage",
+          "value": 15,
+          "spellNames": [
+            "chance to critically hit with your Shield Slam"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "effectsParsed": 1005,
+    "highConfidence": 776,
+    "mediumConfidence": 212,
+    "lowConfidence": 17,
+    "increasedAsReduction": 0,
+    "procCcAsDefense": 0,
+    "clauseMismatches": 95,
+    "petMisclassified": 0
+  }
+}

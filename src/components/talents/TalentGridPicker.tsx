@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BUILD_SLOTS } from "@/lib/buildSlots";
 import {
@@ -9,6 +10,11 @@ import {
 import { LoadingState } from "@/components/layout/PageHeader";
 import { cn } from "@/lib/utils";
 import { TalentGridCore } from "./TalentPickerModal";
+import { TalentPickerAdvancedView } from "./TalentPickerAdvancedView";
+import {
+  TalentPickerViewToggle,
+  type TalentPickerViewMode,
+} from "./TalentPickerViewToggle";
 
 interface TalentGridPickerProps {
   selectedIds: ReadonlySet<string>;
@@ -25,6 +31,8 @@ export function TalentGridPicker({
 }: TalentGridPickerProps) {
   const { t } = useTranslation();
   const maxTalents = BUILD_SLOTS.talent;
+  const [viewMode, setViewMode] = useState<TalentPickerViewMode>("grid");
+  const effectiveViewMode = readOnly ? "grid" : viewMode;
 
   return (
     <FantasyCard className={cn("mb-6", className)}>
@@ -33,20 +41,41 @@ export function TalentGridPicker({
           className="font-display text-sm tracking-widest uppercase"
           style={{ color: "var(--quality-uncommon)" }}
         >
-          {t("categories.talent.label")}
+          {t(
+            effectiveViewMode === "advanced"
+              ? "categories.talent.labelExperimental"
+              : "categories.talent.label",
+          )}
         </CardTitle>
-        <span className="font-mono text-xs text-muted-foreground">
-          {t("talents.counter", { count: selectedIds.size, max: maxTalents })}
-        </span>
+        <div className="flex flex-wrap items-center gap-3">
+          {!readOnly ? (
+            <TalentPickerViewToggle
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
+            />
+          ) : null}
+          <span className="font-mono text-xs text-muted-foreground">
+            {t("talents.counter", { count: selectedIds.size, max: maxTalents })}
+          </span>
+        </div>
       </CardHeader>
 
       <CardContent className="pt-4">
-        <TalentGridCore
-          selectedIds={selectedIds}
-          onSelectionChange={onSelectionChange}
-          readOnly={readOnly}
-          showSelectedStrip={!readOnly}
-        />
+        {effectiveViewMode === "grid" ? (
+          <TalentGridCore
+            selectedIds={selectedIds}
+            onSelectionChange={onSelectionChange}
+            readOnly={readOnly}
+            showSelectedStrip={!readOnly}
+          />
+        ) : (
+          <TalentPickerAdvancedView
+            selectedIds={selectedIds}
+            onSelectionChange={onSelectionChange}
+            readOnly={readOnly}
+            maxSelections={maxTalents}
+          />
+        )}
       </CardContent>
     </FantasyCard>
   );

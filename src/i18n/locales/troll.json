@@ -75,7 +75,7 @@
   },
   "categories": {
     "ability": { "label": "Fightin' Mojo", "shortLabel": "Mojo" },
-    "talent": { "label": "Voodoo Gifts", "shortLabel": "Gift" },
+    "talent": { "label": "Voodoo Gifts", "shortLabel": "Gift", "labelExperimental": "Voodoo Gifts (experimental)" },
     "capstone": { "label": "Big Finish", "shortLabel": "Finish" },
     "legendary_re": { "label": "Legendary RE", "shortLabel": "Legendary RE" },
     "epic_re": { "label": "Epic Talents", "shortLabel": "Epic" },
@@ -149,7 +149,24 @@
     "counter": "{{count}} / {{max}} talents",
     "loadingClass": "Loading talents...",
     "selected": "Selected",
-    "clickToRemove": "Click to remove"
+    "clickToRemove": "Click to remove",
+    "viewMode": "Talent view mode",
+    "viewGrid": "Grid",
+    "viewAdvanced": "Advanced",
+    "effectView": {
+      "builderTitle": "View builder",
+      "resetAllTabs": "Reset all tabs",
+      "effectCategory": "Effect category",
+      "columnFlat": "Flat increase",
+      "columnPercent": "Percent increase",
+      "columnConditional": "Conditional",
+      "invertSort": "Invert sort order",
+      "noTabsSelected": "Select effect subcategories above to open tabs.",
+      "noTalentsInColumn": "No talents in this column.",
+      "showBuilder": "Show view builder",
+      "hideBuilder": "Hide view builder",
+      "tabCount": "{{count}} tabs"
+    }
   },
   "capstones": {
     "editCapstone": "Edit capstone",
@@ -217,6 +234,7 @@
     "addedFromWowhead": "Added from Wowhead",
     "probablyTalent": "Probably a talent",
     "manageTalents": "Manage Talents",
+    "manageTalentsExperimental": "Manage Talents (experimental)",
     "manageRE": "Manage RE",
     "manageCapstones": "Manage Capstones",
     "manageItems": "Manage Items",

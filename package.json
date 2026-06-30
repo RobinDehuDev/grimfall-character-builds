@@ -12,6 +12,8 @@
     "split:grid-abilities": "node scripts/split-talent-grid-abilities.mjs",
     "generate:abilities": "node scripts/generate-wotlk-abilities.mjs && cp data/wotlk-abilities.json convex/seed/data/wotlk-abilities.json",
     "generate:data": "pnpm generate:talents && pnpm generate:abilities",
+    "generate:talent-effects": "vitest run scripts/talent-effect-parser.test.ts && node scripts/generate-talent-effect-taxonomy.mjs",
+    "backfill:talent-effects": "npx convex run seed/backfillTalentEffects:run",
     "seed": "npx convex run seed/reseedAll:run",
     "lint": "eslint .",
     "test": "vitest run",

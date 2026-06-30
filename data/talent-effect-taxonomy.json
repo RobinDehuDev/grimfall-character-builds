@@ -1,0 +1,978 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "damage",
+      "label": "Damage",
+      "subcategories": [
+        {
+          "id": "directDamage",
+          "label": "Direct damage",
+          "stats": [
+            "damageDone",
+            "weaponDamage",
+            "bleedDamage",
+            "meleeDamage",
+            "rangedDamage"
+          ]
+        },
+        {
+          "id": "critChance",
+          "label": "Critical strike chance",
+          "stats": [
+            "critChance"
+          ]
+        },
+        {
+          "id": "critDamage",
+          "label": "Critical strike damage",
+          "stats": [
+            "critDamageBonus"
+          ]
+        },
+        {
+          "id": "attackPower",
+          "label": "Attack power",
+          "stats": [
+            "attackPower",
+            "rangedAttackPower",
+            "attackPowerFromArmor"
+          ]
+        },
+        {
+          "id": "spellPower",
+          "label": "Spell power / spell damage",
+          "stats": [
+            "spellPower",
+            "spellDamage",
+            "spellPowerFromSpirit"
+          ]
+        },
+        {
+          "id": "weaponSpecialization",
+          "label": "Weapon specialization",
+          "stats": [
+            "twoHandWeaponDamage",
+            "dualWield",
+            "weaponDamage"
+          ]
+        },
+        {
+          "id": "schoolDamage",
+          "label": "School-specific damage",
+          "stats": [
+            "schoolDamage_shadow",
+            "schoolDamage_fire",
+            "schoolDamage_frost",
+            "schoolDamage_nature",
+            "schoolDamage_arcane",
+            "schoolDamage_holy",
+            "schoolDamage_physical"
+          ]
+        },
+        {
+          "id": "dotPeriodic",
+          "label": "Damage over time / periodic",
+          "stats": [
+            "dotDamage",
+            "periodicDamage"
+          ]
+        },
+        {
+          "id": "hit",
+          "label": "Hit chance",
+          "stats": [
+            "hitChance",
+            "missChance"
+          ]
+        },
+        {
+          "id": "expertise",
+          "label": "Expertise",
+          "stats": [
+            "expertise"
+          ]
+        },
+        {
+          "id": "haste",
+          "label": "Haste / attack speed",
+          "stats": [
+            "haste",
+            "attackSpeed"
+          ]
+        },
+        {
+          "id": "range",
+          "label": "Range",
+          "stats": [
+            "spellRange",
+            "meleeRange",
+            "range"
+          ]
+        },
+        {
+          "id": "penetration",
+          "label": "Penetration",
+          "stats": [
+            "armorPenetration",
+            "spellPenetration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defense",
+      "label": "Defense",
+      "subcategories": [
+        {
+          "id": "damageReduction",
+          "label": "Damage reduction",
+          "stats": [
+            "damageTaken",
+            "magicDamageTaken",
+            "physicalDamageTaken",
+            "damageReduction"
+          ]
+        },
+        {
+          "id": "armor",
+          "label": "Armor",
+          "stats": [
+            "armor",
+            "armorFromItems",
+            "bearFormArmor",
+            "devotionAuraArmor"
+          ]
+        },
+        {
+          "id": "avoidance",
+          "label": "Avoidance",
+          "stats": [
+            "dodgeChance",
+            "parryChance",
+            "blockChance",
+            "blockValue"
+          ]
+        },
+        {
+          "id": "resist",
+          "label": "Resistances",
+          "stats": [
+            "allResistances",
+            "schoolResist_shadow",
+            "schoolResist_fire",
+            "schoolResist_frost",
+            "schoolResist_nature",
+            "schoolResist_arcane",
+            "schoolResist_holy",
+            "schoolResist_physical"
+          ]
+        },
+        {
+          "id": "shield",
+          "label": "Shields / absorbs",
+          "stats": [
+            "shieldAbsorb",
+            "antiMagicShell"
+          ]
+        },
+        {
+          "id": "health",
+          "label": "Health / stamina",
+          "stats": [
+            "health",
+            "stamina",
+            "maxHealth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heal",
+      "label": "Heal",
+      "subcategories": [
+        {
+          "id": "healingDone",
+          "label": "Healing done",
+          "stats": [
+            "healingDone",
+            "amountHealed"
+          ]
+        },
+        {
+          "id": "healingReceived",
+          "label": "Healing received / absorb",
+          "stats": [
+            "healingReceived",
+            "absorbAmount"
+          ]
+        },
+        {
+          "id": "hot",
+          "label": "Heal over time",
+          "stats": [
+            "hotHealing"
+          ]
+        },
+        {
+          "id": "manaEfficiency",
+          "label": "Healing mana efficiency",
+          "stats": [
+            "healingPerMana",
+            "manaCost"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resource",
+      "label": "Resource",
+      "subcategories": [
+        {
+          "id": "mana",
+          "label": "Mana",
+          "stats": [
+            "mana",
+            "manaRegen",
+            "manaOnCast"
+          ]
+        },
+        {
+          "id": "rage",
+          "label": "Rage",
+          "stats": [
+            "rage",
+            "rageGenerated"
+          ]
+        },
+        {
+          "id": "energy",
+          "label": "Energy",
+          "stats": [
+            "energy",
+            "energyRegen"
+          ]
+        },
+        {
+          "id": "runicPower",
+          "label": "Runic power",
+          "stats": [
+            "runicPower",
+            "runicPowerGenerated"
+          ]
+        },
+        {
+          "id": "focus",
+          "label": "Focus",
+          "stats": [
+            "focus"
+          ]
+        },
+        {
+          "id": "cooldown",
+          "label": "Cooldown",
+          "stats": [
+            "cooldown",
+            "cooldownReduction"
+          ]
+        },
+        {
+          "id": "cost",
+          "label": "Ability cost",
+          "stats": [
+            "manaCost",
+            "abilityCost"
+          ]
+        },
+        {
+          "id": "regen",
+          "label": "Regeneration",
+          "stats": [
+            "healthRegen",
+            "resourceRegen",
+            "manaRegen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utility",
+      "label": "Utility",
+      "subcategories": [
+        {
+          "id": "threat",
+          "label": "Threat",
+          "stats": [
+            "threatGenerated",
+            "threatReduction"
+          ]
+        },
+        {
+          "id": "movement",
+          "label": "Movement speed",
+          "stats": [
+            "movementSpeed"
+          ]
+        },
+        {
+          "id": "castTime",
+          "label": "Cast time",
+          "stats": [
+            "castTime",
+            "channelTime"
+          ]
+        },
+        {
+          "id": "duration",
+          "label": "Duration",
+          "stats": [
+            "effectDuration",
+            "debuffDuration",
+            "duration"
+          ]
+        },
+        {
+          "id": "crowdControl",
+          "label": "Crowd control",
+          "stats": [
+            "stun",
+            "fear",
+            "silence",
+            "root",
+            "disarm",
+            "snare"
+          ]
+        },
+        {
+          "id": "dispel",
+          "label": "Dispel",
+          "stats": [
+            "dispelResistance",
+            "dispelChance"
+          ]
+        },
+        {
+          "id": "procMechanic",
+          "label": "Proc / buff / mechanic",
+          "stats": [
+            "procChance",
+            "grantsBuff",
+            "freeCast",
+            "summon",
+            "auraRadius"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pet",
+      "label": "Pet",
+      "subcategories": [
+        {
+          "id": "damageIncrease",
+          "label": "Damage increase",
+          "stats": [
+            "petDamage"
+          ]
+        },
+        {
+          "id": "statIncrease",
+          "label": "Stat increase",
+          "stats": [
+            "petAttackPower",
+            "critChance",
+            "haste"
+          ]
+        },
+        {
+          "id": "defense",
+          "label": "Defense",
+          "stats": [
+            "petHealth",
+            "petArmor",
+            "petDamageTaken"
+          ]
+        },
+        {
+          "id": "utility",
+          "label": "Utility",
+          "stats": [
+            "petUtility",
+            "grantsBuff"
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": [
+    {
+      "id": "strength",
+      "label": "Strength",
+      "category": "damage"
+    },
+    {
+      "id": "agility",
+      "label": "Agility",
+      "category": "damage"
+    },
+    {
+      "id": "stamina",
+      "label": "Stamina",
+      "category": "defense"
+    },
+    {
+      "id": "intellect",
+      "label": "Intellect",
+      "category": "resource"
+    },
+    {
+      "id": "spirit",
+      "label": "Spirit",
+      "category": "resource"
+    },
+    {
+      "id": "allAttributes",
+      "label": "All attributes",
+      "category": "damage"
+    },
+    {
+      "id": "attackPower",
+      "label": "Attack power",
+      "category": "damage"
+    },
+    {
+      "id": "spellPower",
+      "label": "Spell power",
+      "category": "damage"
+    },
+    {
+      "id": "rangedAttackPower",
+      "label": "Ranged attack power",
+      "category": "damage"
+    },
+    {
+      "id": "attackPowerFromArmor",
+      "label": "Attack power from armor",
+      "category": "damage"
+    },
+    {
+      "id": "spellPowerFromSpirit",
+      "label": "Spell power from spirit",
+      "category": "damage"
+    },
+    {
+      "id": "critChance",
+      "label": "Critical strike chance",
+      "category": "damage"
+    },
+    {
+      "id": "critDamageBonus",
+      "label": "Critical strike damage bonus",
+      "category": "damage"
+    },
+    {
+      "id": "hitChance",
+      "label": "Hit chance",
+      "category": "damage"
+    },
+    {
+      "id": "expertise",
+      "label": "Expertise",
+      "category": "damage"
+    },
+    {
+      "id": "haste",
+      "label": "Haste",
+      "category": "damage"
+    },
+    {
+      "id": "attackSpeed",
+      "label": "Attack speed",
+      "category": "damage"
+    },
+    {
+      "id": "dodgeChance",
+      "label": "Dodge chance",
+      "category": "defense"
+    },
+    {
+      "id": "parryChance",
+      "label": "Parry chance",
+      "category": "defense"
+    },
+    {
+      "id": "blockChance",
+      "label": "Block chance",
+      "category": "defense"
+    },
+    {
+      "id": "blockValue",
+      "label": "Block value",
+      "category": "defense"
+    },
+    {
+      "id": "armorPenetration",
+      "label": "Armor penetration",
+      "category": "damage"
+    },
+    {
+      "id": "spellPenetration",
+      "label": "Spell penetration",
+      "category": "damage"
+    },
+    {
+      "id": "defenseRating",
+      "label": "Defense rating",
+      "category": "defense"
+    },
+    {
+      "id": "damageDone",
+      "label": "Damage done",
+      "category": "damage"
+    },
+    {
+      "id": "damageTaken",
+      "label": "Damage taken",
+      "category": "defense"
+    },
+    {
+      "id": "spellDamage",
+      "label": "Spell damage",
+      "category": "damage"
+    },
+    {
+      "id": "meleeDamage",
+      "label": "Melee damage",
+      "category": "damage"
+    },
+    {
+      "id": "rangedDamage",
+      "label": "Ranged damage",
+      "category": "damage"
+    },
+    {
+      "id": "weaponDamage",
+      "label": "Weapon damage",
+      "category": "damage"
+    },
+    {
+      "id": "dotDamage",
+      "label": "DoT damage",
+      "category": "damage"
+    },
+    {
+      "id": "bleedDamage",
+      "label": "Bleed damage",
+      "category": "damage"
+    },
+    {
+      "id": "periodicDamage",
+      "label": "Periodic damage",
+      "category": "damage"
+    },
+    {
+      "id": "healingDone",
+      "label": "Healing done",
+      "category": "heal"
+    },
+    {
+      "id": "healingReceived",
+      "label": "Healing received",
+      "category": "heal"
+    },
+    {
+      "id": "amountHealed",
+      "label": "Amount healed",
+      "category": "heal"
+    },
+    {
+      "id": "absorbAmount",
+      "label": "Absorb amount",
+      "category": "heal"
+    },
+    {
+      "id": "hotHealing",
+      "label": "Heal over time",
+      "category": "heal"
+    },
+    {
+      "id": "armor",
+      "label": "Armor",
+      "category": "defense"
+    },
+    {
+      "id": "allResistances",
+      "label": "All resistances",
+      "category": "defense"
+    },
+    {
+      "id": "damageReduction",
+      "label": "Damage reduction",
+      "category": "defense"
+    },
+    {
+      "id": "shieldAbsorb",
+      "label": "Shield absorb",
+      "category": "defense"
+    },
+    {
+      "id": "mana",
+      "label": "Mana",
+      "category": "resource"
+    },
+    {
+      "id": "rage",
+      "label": "Rage",
+      "category": "resource"
+    },
+    {
+      "id": "energy",
+      "label": "Energy",
+      "category": "resource"
+    },
+    {
+      "id": "runicPower",
+      "label": "Runic power",
+      "category": "resource"
+    },
+    {
+      "id": "focus",
+      "label": "Focus",
+      "category": "resource"
+    },
+    {
+      "id": "healthRegen",
+      "label": "Health regeneration",
+      "category": "defense"
+    },
+    {
+      "id": "manaRegen",
+      "label": "Mana regeneration",
+      "category": "resource"
+    },
+    {
+      "id": "rageGenerated",
+      "label": "Rage generated",
+      "category": "resource"
+    },
+    {
+      "id": "runicPowerGenerated",
+      "label": "Runic power generated",
+      "category": "resource"
+    },
+    {
+      "id": "cooldown",
+      "label": "Cooldown",
+      "category": "resource"
+    },
+    {
+      "id": "cooldownReduction",
+      "label": "Cooldown reduction",
+      "category": "resource"
+    },
+    {
+      "id": "manaCost",
+      "label": "Mana cost",
+      "category": "resource"
+    },
+    {
+      "id": "abilityCost",
+      "label": "Ability cost",
+      "category": "resource"
+    },
+    {
+      "id": "castTime",
+      "label": "Cast time",
+      "category": "utility"
+    },
+    {
+      "id": "channelTime",
+      "label": "Channel time",
+      "category": "utility"
+    },
+    {
+      "id": "duration",
+      "label": "Duration",
+      "category": "utility"
+    },
+    {
+      "id": "range",
+      "label": "Range",
+      "category": "utility"
+    },
+    {
+      "id": "threatGenerated",
+      "label": "Threat generated",
+      "category": "utility"
+    },
+    {
+      "id": "movementSpeed",
+      "label": "Movement speed",
+      "category": "utility"
+    },
+    {
+      "id": "procChance",
+      "label": "Proc chance",
+      "category": "utility"
+    },
+    {
+      "id": "petDamage",
+      "label": "Pet damage",
+      "category": "pet"
+    },
+    {
+      "id": "petHealth",
+      "label": "Pet health",
+      "category": "pet"
+    },
+    {
+      "id": "petArmor",
+      "label": "Pet armor",
+      "category": "pet"
+    },
+    {
+      "id": "petAttackPower",
+      "label": "Pet attack power",
+      "category": "pet"
+    },
+    {
+      "id": "petDamageTaken",
+      "label": "Pet damage taken",
+      "category": "pet"
+    },
+    {
+      "id": "petUtility",
+      "label": "Pet utility",
+      "category": "pet"
+    },
+    {
+      "id": "schoolDamage_shadow",
+      "label": "Shadow damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_shadow",
+      "label": "Shadow resistance",
+      "category": "defense"
+    },
+    {
+      "id": "schoolDamage_fire",
+      "label": "Fire damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_fire",
+      "label": "Fire resistance",
+      "category": "defense"
+    },
+    {
+      "id": "schoolDamage_frost",
+      "label": "Frost damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_frost",
+      "label": "Frost resistance",
+      "category": "defense"
+    },
+    {
+      "id": "schoolDamage_nature",
+      "label": "Nature damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_nature",
+      "label": "Nature resistance",
+      "category": "defense"
+    },
+    {
+      "id": "schoolDamage_arcane",
+      "label": "Arcane damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_arcane",
+      "label": "Arcane resistance",
+      "category": "defense"
+    },
+    {
+      "id": "schoolDamage_holy",
+      "label": "Holy damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_holy",
+      "label": "Holy resistance",
+      "category": "defense"
+    },
+    {
+      "id": "schoolDamage_physical",
+      "label": "Physical damage",
+      "category": "damage"
+    },
+    {
+      "id": "schoolResist_physical",
+      "label": "Physical resistance",
+      "category": "defense"
+    }
+  ],
+  "typeOfEffect": [
+    "flat",
+    "percentage",
+    "duration",
+    "distance",
+    "boolean"
+  ],
+  "effectFields": [
+    {
+      "id": "duration",
+      "label": "Effect duration (seconds)",
+      "note": "Omit until duration data is available"
+    },
+    {
+      "id": "recurrence",
+      "label": "Periodic effect",
+      "note": "true when effect ticks on an interval"
+    },
+    {
+      "id": "recurrenceInSeconds",
+      "label": "Recurrence interval (seconds)",
+      "note": "e.g. per 5 sec → 5"
+    },
+    {
+      "id": "scope",
+      "label": "Effect scope",
+      "note": "Optional attackType (melee|ranged|spell) and school for school-specific effects"
+    }
+  ],
+  "conditionPatterns": [
+    {
+      "id": "when_you",
+      "label": "When / Whenever you…",
+      "example": "When you critically hit… / Whenever you kill an enemy…"
+    },
+    {
+      "id": "after_you",
+      "label": "After you…",
+      "example": "After you Dodge or Parry an attack…"
+    },
+    {
+      "id": "proc_chance",
+      "label": "Percent chance proc",
+      "example": "You have a 15% chance after dodging…"
+    },
+    {
+      "id": "on_hit_taken",
+      "label": "On taking damage / hit",
+      "example": "When struck in melee…"
+    },
+    {
+      "id": "after_avoidance",
+      "label": "After dodge/parry/block",
+      "example": "After dodging, parrying or blocking…"
+    },
+    {
+      "id": "on_cooldown_trigger",
+      "label": "On cooldown state",
+      "example": "Whenever your Blood Runes are on cooldown…"
+    },
+    {
+      "id": "in_presence",
+      "label": "In presence/stance/form",
+      "example": "While in Blood or Unholy Presence…"
+    },
+    {
+      "id": "while_state",
+      "label": "While in state",
+      "example": "While in combat…"
+    },
+    {
+      "id": "in_combat",
+      "label": "In combat",
+      "example": "While in combat you generate…"
+    },
+    {
+      "id": "on_crit",
+      "label": "On critical strike",
+      "example": "After dealing a critical strike…"
+    },
+    {
+      "id": "on_kill",
+      "label": "On kill",
+      "example": "Whenever you kill an enemy…"
+    }
+  ],
+  "generatedAt": "2026-06-30T16:00:08.025Z",
+  "talentCount": 685,
+  "summary": {
+    "effectsParsed": 1005,
+    "talentsWithEffects": 685,
+    "talentsWithoutEffects": 0,
+    "highConfidence": 776,
+    "mediumConfidence": 212,
+    "lowConfidence": 17,
+    "needsReview": 403,
+    "byCategory": {
+      "resource": 180,
+      "damage": 383,
+      "utility": 190,
+      "defense": 136,
+      "heal": 71,
+      "pet": 45
+    },
+    "bySubcategory": {
+      "resource.runicPower": 7,
+      "damage.critChance": 85,
+      "utility.threat": 19,
+      "defense.damageReduction": 29,
+      "defense.armor": 22,
+      "defense.avoidance": 27,
+      "damage.weaponSpecialization": 16,
+      "utility.procMechanic": 49,
+      "defense.health": 31,
+      "heal.healingDone": 56,
+      "damage.directDamage": 127,
+      "damage.expertise": 7,
+      "damage.schoolDamage": 27,
+      "damage.attackPower": 27,
+      "heal.healingReceived": 8,
+      "damage.critDamage": 16,
+      "damage.haste": 22,
+      "utility.crowdControl": 24,
+      "damage.range": 16,
+      "damage.hit": 16,
+      "utility.movement": 20,
+      "defense.resist": 7,
+      "utility.duration": 39,
+      "damage.dotPeriodic": 9,
+      "resource.cooldown": 55,
+      "pet.statIncrease": 13,
+      "pet.utility": 10,
+      "utility.dispel": 10,
+      "defense.shield": 18,
+      "utility.castTime": 29,
+      "heal.manaEfficiency": 5,
+      "pet.damageIncrease": 11,
+      "damage.spellPower": 15,
+      "resource.regen": 13,
+      "resource.mana": 32,
+      "resource.rage": 20,
+      "resource.energy": 17,
+      "resource.cost": 35,
+      "defense.procMechanic": 2,
+      "heal.hot": 2,
+      "pet.defense": 11,
+      "resource.focus": 1
+    },
+    "review": {
+      "effectsParsed": 1005,
+      "highConfidence": 776,
+      "mediumConfidence": 212,
+      "lowConfidence": 17,
+      "increasedAsReduction": 0,
+      "procCcAsDefense": 0,
+      "clauseMismatches": 95,
+      "petMisclassified": 0
+    }
+  }
+}

@@ -12,6 +12,7 @@ import {
 import type { TalentGameItem } from "@/lib/types";
 import { AdminFormModalShell } from "./AdminFormModalShell";
 import { AdminHiddenField } from "./AdminHiddenField";
+import { AdminTalentEffectsEditor } from "./AdminTalentEffectsEditor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -88,6 +89,7 @@ export function AdminTalentFormModal({
 
   return (
     <AdminFormModalShell
+      key={item?.id ?? "create"}
       open={open}
       title={item ? t("admin.editTalent") : t("admin.addTalent")}
       titleId="admin-talent-form-title"
@@ -95,7 +97,7 @@ export function AdminTalentFormModal({
       onSubmit={handleSubmit}
       saving={saving}
       submitLabel={item ? t("common.update") : t("common.add")}
-      className="w-full max-w-lg"
+      className="w-full max-w-3xl max-h-[90vh] overflow-y-auto"
       footerExtra={
         item ? (
           <Button
@@ -238,6 +240,11 @@ export function AdminTalentFormModal({
             onCheckedChange={(hidden) => setForm({ ...form, hidden })}
           />
         </div>
+
+        <AdminTalentEffectsEditor
+          effects={form.effects}
+          onChange={(effects) => setForm({ ...form, effects })}
+        />
       </div>
     </AdminFormModalShell>
   );
